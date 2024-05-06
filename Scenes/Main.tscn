@@ -16,3 +16,5 @@ func _process(delta):
 
 [node name="Main" type="Node2D"]
 script = SubResource("GDScript_nlmnl")
+
+[node name="Node2D" type="Node2D" parent="."]
