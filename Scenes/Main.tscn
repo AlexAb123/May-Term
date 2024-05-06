@@ -1,27 +1,7 @@
-<<<<<<< Updated upstream
-[gd_scene load_steps=2 format=3 uid="uid://rw4vtt0vfp5j"]
-=======
-[gd_scene load_steps=3 format=3 uid="uid://bbxn44us21j52"]
->>>>>>> Stashed changes
+[gd_scene load_steps=2 format=3 uid="uid://d2ia0qnw3d0k0"]
 
 [ext_resource type="PackedScene" uid="uid://naal5gnkc7er" path="res://Scenes/player.tscn" id="1_pu1qa"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xo2v2"]
-distance = -4.0
+[node name="main" type="Node2D"]
 
-[node name="Main" type="Node2D"]
-
-<<<<<<< Updated upstream
 [node name="Player" parent="." instance=ExtResource("1_pu1qa")]
-=======
-[node name="Player" parent="." instance=ExtResource("1_estkp")]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4, 4)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-1, 76)
-shape = SubResource("WorldBoundaryShape2D_xo2v2")
->>>>>>> Stashed changes

@@ -12,6 +12,8 @@ func _physics_process(delta):
 	var horizontal = Input.get_axis("move_left", "move_right")
 	velocity.x = horizontal
 	
+	
+	
 	var vertical = Input.get_axis("move_up", "move_down")
 	velocity.y = vertical
 	
