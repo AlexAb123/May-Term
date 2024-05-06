@@ -1,10 +1,9 @@
 extends CharacterBody2D
 
 @export_category("Movement")
-@export var moveSpeed = 350
+@export var moveSpeed = 500
 
 func _physics_process(delta):
-
 
 	#Get inputs and move up down left and right.
 	#Normalize vector so that diagnoal isn't faster
