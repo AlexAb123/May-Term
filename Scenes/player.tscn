@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://iopoqi3ui35n"]
+[gd_scene load_steps=10 format=3 uid="uid://cnscbil3epn63"]
 
 [ext_resource type="Script" path="res://Scripts/Player Scripts/player.gd" id="1_fb2bp"]
 [ext_resource type="Texture2D" uid="uid://s4t57ssophup" path="res://icon.svg" id="2_41dj7"]
@@ -42,7 +42,6 @@ animations = [{
 "name": &"idle",
 "speed": 10.0
 }]
-
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_fb2bp")
