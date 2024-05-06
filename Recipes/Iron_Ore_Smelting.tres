@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="Recipe" load_steps=3 format=3 uid="uid://bce767k8f4o3n"]
+[gd_resource type="Resource" script_class="Recipe" load_steps=4 format=3 uid="uid://bce767k8f4o3n"]
 
 [ext_resource type="Resource" uid="uid://y3y7pjfvyfnd" path="res://Items/Iron_Ore.tres" id="1_a42pc"]
 [ext_resource type="Script" path="res://Scripts/Recipe Scripts/Recipe.gd" id="1_nr8c4"]
+[ext_resource type="Resource" uid="uid://pl5aig4uuqis" path="res://Items/Coal.tres" id="2_vebne"]
 
 [resource]
 script = ExtResource("1_nr8c4")
-name = ""
-inputs = {}
-outputs = {}
-craftingTime = 0.0
-i = ExtResource("1_a42pc")
+name = "Iron Ore Smelting"
+inputItems = Array[Resource("res://Scripts/Item Scripts/Item.gd")]([ExtResource("1_a42pc"), ExtResource("2_vebne")])
+inputAmounts = Array[int]([2, 1])
+outputItems = Array[Resource("res://Scripts/Item Scripts/Item.gd")]([ExtResource("1_a42pc")])
+outputAmounts = Array[int]([1])
+craftingTime = 3.0
