@@ -1,9 +1,6 @@
-[gd_scene format=3 uid="uid://bbxn44us21j52"]
+[gd_scene load_steps=2 format=3 uid="uid://bbxn44us21j52"]
+
+[ext_resource type="Script" path="res://Scenes/Main.gd" id="1_hx7v5"]
 
 [node name="Main" type="Node2D"]
-
-[node name="Node2D" type="Node2D" parent="."]
-
-[node name="Branch" type="Node2D" parent="."]
-
-[node name="Node2D" type="Node2D" parent="Branch"]
+script = ExtResource("1_hx7v5")
