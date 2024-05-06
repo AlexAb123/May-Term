@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://iopoqi3ui35n"]
 
-[ext_resource type="Script" path="res://Scripts/player.gd" id="1_4f7sm"]
+[ext_resource type="Script" path="res://Scripts/Player Scripts/player.gd" id="1_fb2bp"]
 [ext_resource type="Texture2D" uid="uid://s4t57ssophup" path="res://icon.svg" id="2_41dj7"]
 [ext_resource type="Texture2D" uid="uid://c2ikd5at4f3jv" path="res://assets/sprites/knight.png" id="3_jywhi"]
 
@@ -43,8 +43,9 @@ animations = [{
 "speed": 10.0
 }]
 
+
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_4f7sm")
+script = ExtResource("1_fb2bp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)
