@@ -1,11 +1,7 @@
 extends CharacterBody2D
 
 @export_category("Movement")
-@export var moveSpeed = 350
-
-@export_category("Stats")
-@export var maxHealth = 10
-@export var currentHealth = 10
+@export var moveSpeed = 500
 
 func _physics_process(delta):
 
