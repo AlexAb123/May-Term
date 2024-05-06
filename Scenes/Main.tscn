@@ -1,6 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://dlnucghdota4i"]
 
 [ext_resource type="PackedScene" uid="uid://cnscbil3epn63" path="res://Scenes/player.tscn" id="1_estkp"]
+=======
+[ext_resource type="PackedScene" uid="uid://d2upvd0jywi46" path="res://Scenes/player.tscn" id="1_estkp"]
+>>>>>>> ceb4c0cd9f4881015427555b69412ccb21d13645
 
 [node name="Main" type="Node2D"]
 
