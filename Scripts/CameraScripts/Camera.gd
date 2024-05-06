@@ -9,7 +9,6 @@ extends Camera2D
 @export var deadzoneDistance = 10
 
 func _physics_process(delta):
-	print(delta)
 	if followPlayerDirectly:
 		global_position = playerNode.global_position
 	else:
