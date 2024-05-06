@@ -1,7 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dlnucghdota4i"]
+[gd_scene load_steps=2 format=3 uid="uid://bbxn44us21j52"]
 
-[ext_resource type="PackedScene" uid="uid://cnscbil3epn63" path="res://Scenes/player.tscn" id="1_estkp"]
+[ext_resource type="PackedScene" uid="uid://iopoqi3ui35n" path="res://Scenes/player.tscn" id="1_estkp"]
 
 [node name="Main" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_estkp")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
