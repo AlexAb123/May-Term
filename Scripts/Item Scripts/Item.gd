@@ -8,4 +8,4 @@ class_name Item
 @export var isPlaceable : bool
 
 func _to_string():
-	return "ITEM_" + name
+	return "ITEM_" + resource_path.get_file().trim_suffix('.tres')
