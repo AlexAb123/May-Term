@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cw5crlrf6r4bg"]
+[gd_scene load_steps=5 format=3 uid="uid://bbxn44us21j52"]
 
-[ext_resource type="PackedScene" path="res://Scenes/Furnace.tscn" id="1_ftpig"]
-[ext_resource type="PackedScene" uid="uid://naal5gnkc7er" path="res://Scenes/player.tscn" id="1_pu1qa"]
+[ext_resource type="PackedScene" uid="uid://d1fo8ljqojfkg" path="res://Scenes/Furnace.tscn" id="1_ftpig"]
+[ext_resource type="PackedScene" uid="uid://naal5gnkc7er" path="res://Scenes/Player.tscn" id="1_pu1qa"]
 [ext_resource type="Script" path="res://Scripts/CameraScripts/Camera.gd" id="2_wulpf"]
 [ext_resource type="Texture2D" uid="uid://s4t57ssophup" path="res://icon.svg" id="3_mlsly"]
 
@@ -12,7 +12,6 @@ position = Vector2(229, -195)
 
 [node name="Player" parent="." instance=ExtResource("1_pu1qa")]
 position = Vector2(-2, 0)
-moveSpeed = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(414, 36)
