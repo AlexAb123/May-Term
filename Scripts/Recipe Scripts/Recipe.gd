@@ -13,3 +13,6 @@ class_name Recipe
 @export_group("Outputs")
 @export var outputItems : Array[Item]
 @export var outputAmounts : Array[int]
+
+func _to_string():
+	return "RECIPE_" + name

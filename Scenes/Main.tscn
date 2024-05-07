@@ -1,12 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://cw5crlrf6r4bg"]
+[gd_scene load_steps=5 format=3 uid="uid://cw5crlrf6r4bg"]
 
+[ext_resource type="PackedScene" uid="uid://ruq2hfjwdxsf" path="res://Scenes/Furnace.tscn" id="1_ftpig"]
 [ext_resource type="PackedScene" uid="uid://naal5gnkc7er" path="res://Scenes/Player.tscn" id="1_pu1qa"]
 [ext_resource type="Script" path="res://Scripts/CameraScripts/Camera.gd" id="2_wulpf"]
 [ext_resource type="Texture2D" uid="uid://s4t57ssophup" path="res://icon.svg" id="3_mlsly"]
 
 [node name="Main" type="Node2D"]
 
+[node name="Furnace" parent="." instance=ExtResource("1_ftpig")]
+position = Vector2(229, -195)
+
 [node name="Player" parent="." instance=ExtResource("1_pu1qa")]
+position = Vector2(-2, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(414, 36)
