@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/CameraScripts/Camera.gd" id="2_wulpf"]
 [ext_resource type="Texture2D" uid="uid://s4t57ssophup" path="res://icon.svg" id="3_mlsly"]
 
-[node name="main" type="Node2D"]
+[node name="Main" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_pu1qa")]
 
