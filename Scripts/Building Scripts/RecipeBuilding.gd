@@ -4,7 +4,7 @@ class_name RecipeBuilding
 
 var selectedRecipe : Recipe
 
-var recipes : Array[Recipe]
+@export var recipes : Array[Recipe]
 
 var inputInventoryItems : Array[Item]
 var inputInventoryAmounts : Array[int]
@@ -20,11 +20,13 @@ func _ready():
 var timeElapsed = 0
 func _process(delta):
 	
+	#DEBUGGING
 	print(inputInventoryItems)
 	print(inputInventoryAmounts)
 	
 	print(outputInventoryItems)
 	print(outputInventoryAmounts)
+	#DEBUGGING
 	
 	#If we are currently crafting then either add to elapsed time or finish crafting if time is up.
 	if inProgress:
@@ -37,9 +39,9 @@ func _process(delta):
 	if !inProgress and enoughResources():
 		startCraft()
 	
-func selectRecipe(recipeIndex : int):
+func selectRecipe(recipe : Recipe):
 	
-	selectedRecipe = recipes[recipeIndex]
+	selectedRecipe = recipe
 	
 	#HAVE TO MOVE WHAT WAS IN INVENTORY TO THE PLAYERS INVENTORY
 	# OR KEEP THE ITEMS IF YOU SELECT A RECIPE THAT TAKES SAME ITEMS

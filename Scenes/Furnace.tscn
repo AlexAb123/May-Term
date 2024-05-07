@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://ruq2hfjwdxsf"]
+[gd_scene load_steps=3 format=3 uid="uid://ruq2hfjwdxsf"]
 
 [ext_resource type="Script" path="res://Scripts/Building Scripts/RecipeBuildings/Furnace.gd" id="1_xn2p1"]
+[ext_resource type="Resource" uid="uid://bce767k8f4o3n" path="res://Recipes/Iron_Ore_Smelting.tres" id="2_5sg51"]
 
 [node name="Furnace" type="Node2D"]
 script = ExtResource("1_xn2p1")
+recipes = Array[Resource("res://Scripts/Recipe Scripts/Recipe.gd")]([ExtResource("2_5sg51")])
