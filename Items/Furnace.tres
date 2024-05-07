@@ -6,3 +6,4 @@
 script = ExtResource("1_38672")
 stackSize = 10
 name = "Furnace"
+isPlaceable = true

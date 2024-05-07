@@ -7,8 +7,8 @@
 [resource]
 script = ExtResource("1_nr8c4")
 name = "Iron Ore Smelting"
+craftingTime = 3.0
 inputItems = Array[Resource("res://Scripts/Item Scripts/Item.gd")]([ExtResource("1_a42pc"), ExtResource("2_vebne")])
 inputAmounts = Array[int]([2, 1])
 outputItems = Array[Resource("res://Scripts/Item Scripts/Item.gd")]([ExtResource("1_a42pc")])
 outputAmounts = Array[int]([1])
-craftingTime = 3.0
