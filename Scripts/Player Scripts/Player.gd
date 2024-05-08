@@ -4,6 +4,8 @@ extends CharacterBody2D
 @export var moveSpeed = 150
 @onready var animated_sprite = $AnimatedSprite2D
 
+@export var furnace_item: PlaceableItem
+
 func _physics_process(delta):
 
 	#Get inputs and move up down left and right.
@@ -46,4 +48,6 @@ func _process(delta):
 			#furnace.selectRecipe(-1)
 		#else:
 			#furnace.selectRecipe(0)
+	
+
 	pass

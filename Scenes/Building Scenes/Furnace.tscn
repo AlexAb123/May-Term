@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://dloo3aiadge4"]
+
+[ext_resource type="Script" path="res://Scripts/Building Scripts/RecipeBuilding.gd" id="1_aian7"]
+[ext_resource type="Resource" uid="uid://b2nptf5b3kgjr" path="res://Resources/Recipes/RECIPE_Iron_Ore_Smelting.tres" id="2_b4tmu"]
+[ext_resource type="Texture2D" uid="uid://cepjwdjfdcyyp" path="res://assets/sprites/furnace.png" id="3_s82rm"]
+
+[node name="Furnace" type="Node2D"]
+script = ExtResource("1_aian7")
+recipes = Array[Resource("res://Scripts/Resource Scripts/Recipe Scripts/Recipe.gd")]([ExtResource("2_b4tmu")])
+buildTime = 3
+size = Vector2(2, 2)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_s82rm")

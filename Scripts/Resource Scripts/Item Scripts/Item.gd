@@ -7,4 +7,4 @@ class_name Item
 @export var sprite : Texture2D
 
 func _to_string():
-	return "ITEM_" + resource_path.get_file().trim_suffix('.tres')
+	return resource_path.get_file().trim_suffix('.tres')

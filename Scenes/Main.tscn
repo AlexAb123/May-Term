@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwiphvlchyy5"]
+[gd_scene load_steps=6 format=3 uid="uid://bwiphvlchyy5"]
 
+[ext_resource type="Script" path="res://Scenes/Main.gd" id="1_ix7eo"]
 [ext_resource type="PackedScene" uid="uid://cqbjmjoub20yy" path="res://Scenes/Player.tscn" id="1_pu1qa"]
+[ext_resource type="Resource" uid="uid://ctegtfrflqve6" path="res://Resources/Items/ITEM_Furnace.tres" id="2_dqh3b"]
 [ext_resource type="Script" path="res://Scripts/CameraScripts/Camera.gd" id="2_wulpf"]
 [ext_resource type="Texture2D" uid="uid://s4t57ssophup" path="res://icon.svg" id="3_mlsly"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_ix7eo")
+furnace_item = ExtResource("2_dqh3b")
 
 [node name="Player" parent="." instance=ExtResource("1_pu1qa")]
 
