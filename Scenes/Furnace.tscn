@@ -2,11 +2,13 @@
 
 [ext_resource type="Script" path="res://Scripts/Building Scripts/RecipeBuildings/Furnace.gd" id="1_xn2p1"]
 [ext_resource type="Resource" uid="uid://bce767k8f4o3n" path="res://Recipes/Iron_Ore_Smelting.tres" id="2_hf00p"]
-[ext_resource type="Texture2D" uid="uid://by5w57g37geee" path="res://assets/sprites/fruit.png" id="3_4gjlv"]
+[ext_resource type="Texture2D" uid="uid://cepjwdjfdcyyp" path="res://assets/sprites/furnace.png" id="3_4f5wj"]
 
 [node name="Furnace" type="Node2D"]
 script = ExtResource("1_xn2p1")
 recipes = Array[Resource("res://Scripts/Recipe Scripts/Recipe.gd")]([ExtResource("2_hf00p")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_4gjlv")
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(0.01, 0.01)
+texture = ExtResource("3_4f5wj")
