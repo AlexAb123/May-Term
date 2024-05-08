@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PlaceableItem" load_steps=3 format=3 uid="uid://ctegtfrflqve6"]
+
+[ext_resource type="Resource" uid="uid://bsceo663w00oh" path="res://Resources/Buildings/RecipeBuildings/BUILDING_Furnace.tres" id="1_ebihk"]
+[ext_resource type="Script" path="res://Scripts/Resource Scripts/Item Scripts/PlaceableItem.gd" id="1_yh5ai"]
+
+[resource]
+script = ExtResource("1_yh5ai")
+buildingResource = ExtResource("1_ebihk")
+name = "Furnace"
+stackSize = 10

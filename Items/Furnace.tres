@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://brh5ygg8p8wxl"]
-
-[ext_resource type="Script" path="res://Scripts/Item Scripts/Item.gd" id="1_38672"]
-
-[resource]
-script = ExtResource("1_38672")
-stackSize = 10
-name = "Furnace"
-isPlaceable = true
