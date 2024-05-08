@@ -16,6 +16,8 @@ func _physics_process(delta):
 	var vertical = Input.get_axis("move_up", "move_down")
 	velocity.y = vertical
 	
+	
+	
 	velocity = velocity.normalized()
 	
 	velocity = velocity * moveSpeed
