@@ -8,10 +8,9 @@
 [node name="Main" type="Node2D"]
 
 [node name="Furnace" parent="." instance=ExtResource("1_ftpig")]
-position = Vector2(229, -195)
+position = Vector2(46, -2)
 
 [node name="Player" parent="." instance=ExtResource("1_pu1qa")]
-position = Vector2(-2, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(414, 36)
