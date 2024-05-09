@@ -1,7 +1,7 @@
-[gd_scene load_steps=25 format=3 uid="uid://m2oj2xhlirnj"]
+[gd_scene load_steps=25 format=3 uid="uid://dexx0pgcl14vf"]
 
 [ext_resource type="Script" path="res://Scripts/Player Scripts/Player.gd" id="1_fb2bp"]
-[ext_resource type="Texture2D" path="res://assets/sprites/knight.png" id="2_ljflb"]
+[ext_resource type="Texture2D" uid="uid://c2ikd5at4f3jv" path="res://assets/sprites/knight.png" id="2_ljflb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7n2qk"]
 radius = 3.00164
@@ -166,7 +166,6 @@ script = ExtResource("1_fb2bp")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.19209e-07, 9)
 rotation = 1.58242
-scale = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_7n2qk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
