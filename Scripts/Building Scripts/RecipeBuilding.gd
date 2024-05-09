@@ -14,7 +14,6 @@ var outputInventoryAmounts : Array[int]
 
 var inProgress = false
 
-
 var timer = 0
 var timeElapsed = 0
 func process(delta):
