@@ -3,8 +3,9 @@ extends CharacterBody2D
 @export_category("Movement")
 @export var moveSpeed = 150
 @onready var animated_sprite = $AnimatedSprite2D
+@onready var selected_item_sprite: Sprite2D = $SelectedItemSprite
 
-@export var furnace_item: PlaceableItem
+@export var selected_item: Item
 
 func _physics_process(delta):
 
@@ -36,18 +37,49 @@ func _physics_process(delta):
 	move_and_slide()
 	
 func _process(delta):
-	
-	#if Input.is_action_just_pressed("z"):
-		#furnace.addItems(load("res://Items/Iron_Ore.tres"), 1)
-		#
-	#if Input.is_action_just_pressed("x"):
-		#furnace.addItems(load("res://Items/Coal.tres"), 1)
-		#
-	#if Input.is_action_just_pressed("c"):
-		#if furnace.selectedRecipe:
-			#furnace.selectRecipe(-1)
-		#else:
-			#furnace.selectRecipe(0)
-	
+	selected_item_sprite.global_position.x = snapped(get_global_mouse_position().x, 16)
+	selected_item_sprite.global_position.y = snapped(get_global_mouse_position().y, 16)
+	if Input.is_action_just_pressed("z"):
+		select_item(null)
+	if Input.is_action_just_pressed("x"):
+		select_item(Database.item_database["Furnace"])
 
-	pass
+func select_item(new_item: Item):
+	selected_item = new_item
+	if new_item:
+		selected_item_sprite.texture = selected_item.sprite
+	else:
+		selected_item_sprite.texture = null
+
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.pressed:
+			if event.button_index == 1:
+				_on_left_click_pressed()
+			if event.button_index == 2:
+				_on_right_click_pressed()
+		else:
+			if event.button_index == 1:
+				_on_left_click_released()
+			if event.button_index == 2:
+				_on_right_click_released()
+				
+var left_click_down = false
+var right_click_down = false
+
+func _on_left_click_pressed():
+	left_click_down = true
+	if selected_item is PlaceableItem:
+		var building: Building = selected_item.buildingScene.instantiate()
+		building.global_position.x = snapped(get_global_mouse_position().x, 16)
+		building.global_position.y = snapped(get_global_mouse_position().y, 16)
+		get_owner().add_child(building)
+	
+func _on_left_click_released():
+	left_click_down = false
+	
+func _on_right_click_pressed():
+	right_click_down = true
+
+func _on_right_click_released():
+	right_click_down = false

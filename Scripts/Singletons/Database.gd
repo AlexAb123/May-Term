@@ -1,6 +1,6 @@
 extends Node
 
-var item_database:Dictionary
+var item_database: Dictionary
 var item_directory = "res://Resources/Items/"
 
 # Called when the node enters the scene tree for the first time.
