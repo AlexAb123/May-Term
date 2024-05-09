@@ -3,7 +3,8 @@ extends CharacterBody2D
 @export_category("Movement")
 @export var moveSpeed = 150
 @onready var animated_sprite = $AnimatedSprite2D
-@onready var furnace : Furnace = owner.get_node("Furnace")
+
+@export var furnace_item: PlaceableItem
 
 func _physics_process(delta):
 
@@ -15,8 +16,6 @@ func _physics_process(delta):
 	
 	var vertical = Input.get_axis("move_up", "move_down")
 	velocity.y = vertical
-	
-	
 	
 	velocity = velocity.normalized()
 	
@@ -38,14 +37,17 @@ func _physics_process(delta):
 	
 func _process(delta):
 	
-	if Input.is_action_just_pressed("z"):
-		furnace.addItems(load("res://Items/Iron_Ore.tres"), 1)
-		
-	if Input.is_action_just_pressed("x"):
-		furnace.addItems(load("res://Items/Coal.tres"), 1)
-		
-	if Input.is_action_just_pressed("c"):
-		if furnace.selectedRecipe:
-			furnace.selectRecipe(-1)
-		else:
-			furnace.selectRecipe(0)
+	#if Input.is_action_just_pressed("z"):
+		#furnace.addItems(load("res://Items/Iron_Ore.tres"), 1)
+		#
+	#if Input.is_action_just_pressed("x"):
+		#furnace.addItems(load("res://Items/Coal.tres"), 1)
+		#
+	#if Input.is_action_just_pressed("c"):
+		#if furnace.selectedRecipe:
+			#furnace.selectRecipe(-1)
+		#else:
+			#furnace.selectRecipe(0)
+	
+
+	pass

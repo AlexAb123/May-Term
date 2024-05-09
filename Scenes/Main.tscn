@@ -1,20 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwiphvlchyy5"]
+[gd_scene load_steps=6 format=3 uid="uid://bwiphvlchyy5"]
 
-[ext_resource type="PackedScene" path="res://Scenes/Furnace.tscn" id="1_ftpig"]
-[ext_resource type="PackedScene" uid="uid://m2oj2xhlirnj" path="res://Scenes/Player.tscn" id="1_pu1qa"]
+[ext_resource type="Script" path="res://Scenes/Main.gd" id="1_ix7eo"]
+[ext_resource type="PackedScene" uid="uid://cqbjmjoub20yy" path="res://Scenes/Player.tscn" id="1_pu1qa"]
+[ext_resource type="Resource" uid="uid://ctegtfrflqve6" path="res://Resources/Items/ITEM_Furnace.tres" id="2_dqh3b"]
 [ext_resource type="Script" path="res://Scripts/CameraScripts/Camera.gd" id="2_wulpf"]
 [ext_resource type="Texture2D" uid="uid://s4t57ssophup" path="res://icon.svg" id="3_mlsly"]
 
 [node name="Main" type="Node2D"]
-
-[node name="Furnace" parent="." instance=ExtResource("1_ftpig")]
-position = Vector2(46, -2)
+script = ExtResource("1_ix7eo")
+furnace_item = ExtResource("2_dqh3b")
 
 [node name="Player" parent="." instance=ExtResource("1_pu1qa")]
 position = Vector2(0, 2)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(414, 36)
+position = Vector2(135, -103)
+scale = Vector2(0.515625, 0.546875)
 texture = ExtResource("3_mlsly")
 
 [node name="Camera2D" type="Camera2D" parent="."]

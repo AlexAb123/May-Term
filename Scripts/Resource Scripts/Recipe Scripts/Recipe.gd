@@ -15,4 +15,4 @@ class_name Recipe
 @export var outputAmounts : Array[int]
 
 func _to_string():
-	return "RECIPE_" + resource_path.get_file().trim_suffix('.tres')
+	return resource_path.get_file().trim_suffix('.tres')

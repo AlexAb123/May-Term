@@ -2,9 +2,9 @@ extends Building
 
 class_name RecipeBuilding
 
-@onready var selectedRecipe : Recipe
-
 @export var recipes : Array[Recipe]
+
+var selectedRecipe : Recipe
 
 var inputInventoryItems : Array[Item]
 var inputInventoryAmounts : Array[int]
@@ -14,12 +14,9 @@ var outputInventoryAmounts : Array[int]
 
 var inProgress = false
 
-func _ready():
-	pass
-
 var timer = 0
 var timeElapsed = 0
-func _process(delta):
+func process(delta):
 	
 	timer += delta
 	if timer > 1:

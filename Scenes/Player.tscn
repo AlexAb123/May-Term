@@ -1,7 +1,7 @@
-[gd_scene load_steps=25 format=3 uid="uid://m2oj2xhlirnj"]
+[gd_scene load_steps=25 format=3 uid="uid://cqbjmjoub20yy"]
 
 [ext_resource type="Script" path="res://Scripts/Player Scripts/Player.gd" id="1_fb2bp"]
-[ext_resource type="Texture2D" path="res://assets/sprites/knight.png" id="2_ljflb"]
+[ext_resource type="Texture2D" uid="uid://c2ikd5at4f3jv" path="res://assets/sprites/knight.png" id="2_ljflb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_46qei"]
 
