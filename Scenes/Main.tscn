@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bbxn44us21j52"]
 
 [ext_resource type="PackedScene" uid="uid://d1fo8ljqojfkg" path="res://Scenes/Furnace.tscn" id="1_ftpig"]
-[ext_resource type="PackedScene" uid="uid://dexx0pgcl14vf" path="res://Scenes/player.tscn" id="1_pu1qa"]
+[ext_resource type="PackedScene" uid="uid://dexx0pgcl14vf" path="res://Scenes/Player.tscn" id="1_pu1qa"]
 [ext_resource type="Script" path="res://Scripts/CameraScripts/Camera.gd" id="2_wulpf"]
 [ext_resource type="Texture2D" uid="uid://s4t57ssophup" path="res://icon.svg" id="3_mlsly"]
 [ext_resource type="Texture2D" uid="uid://ds5p6d23xpleh" path="res://assets/Test/16x16/Tilesets/New/Solaria Demo Tiles.png" id="5_wuw67"]
@@ -1115,6 +1115,7 @@ sources/0 = SubResource("TileSetAtlasSource_ijkaf")
 position = Vector2(46, -2)
 
 [node name="Player" parent="." instance=ExtResource("1_pu1qa")]
+position = Vector2(0, 2)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(414, 36)

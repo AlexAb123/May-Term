@@ -6,3 +6,4 @@
 script = ExtResource("1_2aiqf")
 stackSize = 100
 name = "Iron Ore"
+isPlaceable = false
