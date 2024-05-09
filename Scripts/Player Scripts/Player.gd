@@ -76,7 +76,6 @@ var right_click_down = false
 
 func _on_left_click_pressed():
 	left_click_down = true
-
 	
 func _on_left_click_released():
 	left_click_down = false
