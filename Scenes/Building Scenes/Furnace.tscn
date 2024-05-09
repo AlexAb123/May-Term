@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cepjwdjfdcyyp" path="res://assets/sprites/furnace.png" id="3_s82rm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pbue4"]
-size = Vector2(16, 8)
+size = Vector2(8, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_61a30"]
 size = Vector2(16, 16)
@@ -19,7 +19,6 @@ deconstruct_time = 0.2
 size = Vector2(2, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_pbue4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
