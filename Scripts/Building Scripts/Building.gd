@@ -2,7 +2,6 @@ extends Node2D
 
 class_name Building
 
-@export var build_time : float
 @export var deconstruct_time : float
 @export var size : Vector2
 

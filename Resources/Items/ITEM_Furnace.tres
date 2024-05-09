@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dloo3aiadge4" path="res://Scenes/Building Scenes/Furnace.tscn" id="1_1jaia"]
 [ext_resource type="Script" path="res://Scripts/Resource Scripts/Item Scripts/Placeable_Item.gd" id="2_08mpj"]
-[ext_resource type="Texture2D" uid="uid://w7elyw5vk47k" path="res://assets/sprites/pixil-frame-0.png" id="3_lecsl"]
+[ext_resource type="Texture2D" path="res://assets/sprites/pixil-frame-0.png" id="3_lecsl"]
 
 [resource]
 script = ExtResource("2_08mpj")
