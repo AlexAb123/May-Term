@@ -16,26 +16,27 @@ var inProgress = false
 
 var timer = 0
 var timeElapsed = 0
-func process(delta):
+func _physics_process(delta):
+	super(delta)
 	
-	timer += delta
-	if timer > 1:
-		#DEBUGGING
-		print("Input Items:", inputInventoryItems)
-		print("Input Amounts:", inputInventoryAmounts)
-		print()
-		print("Output Items:", outputInventoryItems)
-		print("Output Amounts:", outputInventoryAmounts)
-		print()
-		print("Selected Recipe:", selectedRecipe)
-		print("In Progress:", inProgress)
-		print()
-		print("Have enough:", haveEnoughResources())
-		print()
-		print("------------------------------------------")
-		#DEBUGGING
-		timer = 0
-	
+	#timer += delta
+	#if timer > 1:
+		##DEBUGGING
+		#print("Input Items:", inputInventoryItems)
+		#print("Input Amounts:", inputInventoryAmounts)
+		#print()
+		#print("Output Items:", outputInventoryItems)
+		#print("Output Amounts:", outputInventoryAmounts)
+		#print()
+		#print("Selected Recipe:", selectedRecipe)
+		#print("In Progress:", inProgress)
+		#print()
+		#print("Have enough:", haveEnoughResources())
+		#print()
+		#print("------------------------------------------")
+		##DEBUGGING
+		#timer = 0
+	#
 	
 	if selectedRecipe == null:
 		return
@@ -104,3 +105,4 @@ func haveEnoughResources() -> bool:
 			return false
 	return true
 	
+
