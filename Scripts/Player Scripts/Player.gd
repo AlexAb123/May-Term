@@ -43,6 +43,13 @@ func _process(delta):
 		select_item(null)
 	if Input.is_action_just_pressed("x"):
 		select_item(Database.item_database["Furnace"])
+	
+	if left_click_down:
+		if selected_item is PlaceableItem:
+			var building: Building = selected_item.buildingScene.instantiate()
+			building.global_position.x = snapped(get_global_mouse_position().x, 16)
+			building.global_position.y = snapped(get_global_mouse_position().y, 16)
+			get_owner().add_child(building)
 
 func select_item(new_item: Item):
 	selected_item = new_item
@@ -69,11 +76,7 @@ var right_click_down = false
 
 func _on_left_click_pressed():
 	left_click_down = true
-	if selected_item is PlaceableItem:
-		var building: Building = selected_item.buildingScene.instantiate()
-		building.global_position.x = snapped(get_global_mouse_position().x, 16)
-		building.global_position.y = snapped(get_global_mouse_position().y, 16)
-		get_owner().add_child(building)
+
 	
 func _on_left_click_released():
 	left_click_down = false
