@@ -6,7 +6,6 @@ class_name RecipeBuilding
 
 var selectedRecipe : Recipe
 
-
 var inputInventoryItems : Array[Item]
 var inputInventoryAmounts : Array[int]
 

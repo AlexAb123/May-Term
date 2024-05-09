@@ -3,12 +3,6 @@ extends Node
 var item_database:Dictionary
 var item_directory = "res://Resources/Items/"
 
-var building_database: Dictionary
-var building_directory = "res://Resources/Buildings/"
-
-var recipe_database: Dictionary
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	item_database = read_files(item_directory, "ITEM_")
@@ -26,9 +20,10 @@ func read_files(directory: String, prefix: String):
 		var file_name = dir.get_next()
 		while file_name != "":
 			if dir.current_is_dir():
-				print("Found directory: " + file_name)
+				#print("Found directory: " + file_name)
+				pass
 			else:
-				print("Found file: " + file_name)
+				#print("Found file: " + file_name)
 				database[file_name.trim_prefix(prefix).trim_suffix(".tres")] = load(directory + file_name)
 			file_name = dir.get_next()
 		dir.list_dir_end()
