@@ -14,6 +14,11 @@ func _physics_process(delta):
 	var horizontal = Input.get_axis("move_left", "move_right")
 	velocity.x = horizontal
 	
+	if horizontal > 0:
+		animated_sprite.flip_h = false
+	elif horizontal < 0:
+		animated_sprite.flip_h = true
+	
 	var vertical = Input.get_axis("move_up", "move_down")
 	velocity.y = vertical
 	
@@ -22,10 +27,7 @@ func _physics_process(delta):
 	velocity = velocity * moveSpeed
 	
 	#flip sprite
-	if horizontal > 0:
-		animated_sprite.flip_h = false
-	elif horizontal < 0:
-		animated_sprite.flip_h = true
+
 	
 	#play run vs idle animation
 	if velocity.length() == 0:
