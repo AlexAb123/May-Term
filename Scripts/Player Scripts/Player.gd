@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var animated_sprite = $AnimatedSprite2D
 
 @export var furnace_item: PlaceableItem
+@export var inventory : Inventory
 
 func _physics_process(delta):
 
