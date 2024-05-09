@@ -4,6 +4,5 @@
 
 [resource]
 script = ExtResource("1_lmm7v")
-stackSize = 100
 name = "Coal"
-isPlaceable = false
+stackSize = 100
