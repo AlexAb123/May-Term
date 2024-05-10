@@ -1,12 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bwiphvlchyy5"]
+[gd_scene load_steps=9 format=3 uid="uid://bwiphvlchyy5"]
 
-[ext_resource type="Script" path="res://Scenes/Main.gd" id="1_ix7eo"]
 [ext_resource type="PackedScene" uid="uid://cqbjmjoub20yy" path="res://Scenes/Player.tscn" id="1_pu1qa"]
 [ext_resource type="Script" path="res://Scripts/CameraScripts/Camera.gd" id="2_wulpf"]
 [ext_resource type="Texture2D" uid="uid://s4t57ssophup" path="res://icon.svg" id="3_mlsly"]
 [ext_resource type="Texture2D" uid="uid://ds5p6d23xpleh" path="res://assets/Test/16x16/Tilesets/New/Solaria Demo Tiles.png" id="5_wuw67"]
 [ext_resource type="PackedScene" uid="uid://b3xvsbpqeyd3s" path="res://Scenes/Enemy Scenes/Enemy.tscn" id="6_120ga"]
-[ext_resource type="PackedScene" path="res://Scenes/Defense Building.tscn" id="7_m73u1"]
+[ext_resource type="PackedScene" uid="uid://kppgt4f5wb1l" path="res://Scenes/Defense Building.tscn" id="7_m73u1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ijkaf"]
 texture = ExtResource("5_wuw67")
@@ -1118,7 +1117,6 @@ sources/0 = SubResource("TileSetAtlasSource_ijkaf")
 
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_ix7eo")
 
 [node name="Player" parent="." instance=ExtResource("1_pu1qa")]
 position = Vector2(-45, -29)
