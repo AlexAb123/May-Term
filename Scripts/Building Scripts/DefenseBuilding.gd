@@ -7,9 +7,7 @@ class_name DefenseBuilding
 @export var fire_rate: float
 @export var range: float
 
-
-
-
+var hasTarget: bool
 
 func _ready():
 	pass

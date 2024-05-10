@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dbg5hg88ngfkg"]
 
-[ext_resource type="Script" path="res://Scripts/Building Scripts/Building.gd" id="1_ugve8"]
+[ext_resource type="Script" path="res://Scripts/Building Scripts/Building.gd" id="1_e7ngb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e6rv2"]
 size = Vector2(8, 8)
@@ -9,7 +9,7 @@ size = Vector2(8, 8)
 size = Vector2(16, 16)
 
 [node name="Building" type="StaticBody2D"]
-script = ExtResource("1_ugve8")
+script = ExtResource("1_e7ngb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_e6rv2")

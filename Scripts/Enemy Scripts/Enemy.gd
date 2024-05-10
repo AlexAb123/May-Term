@@ -1,10 +1,10 @@
 extends CharacterBody2D
 @onready var animated_sprite = get_node("AnimatedSprite2D")
 
-var speed: int
-var damage: int
-var health: int
-var armor: int
+@export var speed: int
+@export var damage: int
+@export var health: int
+@export var armor: int
 var hasTarget = false
 var targets: Array[int]
 var curr: Node
