@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://bwiphvlchyy5"]
 
 [ext_resource type="PackedScene" uid="uid://cqbjmjoub20yy" path="res://Scenes/Player.tscn" id="1_pu1qa"]
-[ext_resource type="Script" path="res://Scripts/CameraScripts/Camera.gd" id="2_wulpf"]
 [ext_resource type="Texture2D" uid="uid://s4t57ssophup" path="res://icon.svg" id="3_mlsly"]
+[ext_resource type="PackedScene" uid="uid://x1y5wk4ik7t2" path="res://Scenes/Camera.tscn" id="3_nd7p8"]
 [ext_resource type="PackedScene" uid="uid://rorfcs1w02g0" path="res://Scenes/TileMap.tscn" id="4_241aj"]
 [ext_resource type="PackedScene" uid="uid://b3xvsbpqeyd3s" path="res://Scenes/Enemy Scenes/Enemy.tscn" id="6_120ga"]
 
@@ -18,9 +18,7 @@ position = Vector2(135, -103)
 scale = Vector2(0.515625, 0.546875)
 texture = ExtResource("3_mlsly")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4, 4)
-script = ExtResource("2_wulpf")
+[node name="Camera2D" parent="." instance=ExtResource("3_nd7p8")]
 
 [node name="TileMap" parent="." instance=ExtResource("4_241aj")]
 
