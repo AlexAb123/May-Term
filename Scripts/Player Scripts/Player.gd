@@ -51,7 +51,6 @@ func _process(delta):
 			var building: Building = selected_item.buildingScene.instantiate()
 			building.global_position = snapped(get_global_mouse_position(), Vector2(16, 16))
 			BuildingManager.add_building(building)
-			BuildingManager.add_building(building)
 			get_owner().add_child(building)
 	
 func select_item(new_item: Item):

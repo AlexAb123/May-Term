@@ -10,7 +10,6 @@ y_sort_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_pu1qa")]
 position = Vector2(-45, -29)
-moveSpeed = 150
 
 [node name="Camera2D" parent="." instance=ExtResource("3_nd7p8")]
 
