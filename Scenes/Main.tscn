@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwiphvlchyy5"]
+[gd_scene load_steps=5 format=3 uid="uid://bwiphvlchyy5"]
 
 [ext_resource type="PackedScene" uid="uid://cqbjmjoub20yy" path="res://Scenes/Player.tscn" id="1_pu1qa"]
-[ext_resource type="Texture2D" uid="uid://s4t57ssophup" path="res://icon.svg" id="3_mlsly"]
 [ext_resource type="PackedScene" uid="uid://x1y5wk4ik7t2" path="res://Scenes/Camera.tscn" id="3_nd7p8"]
-[ext_resource type="PackedScene" uid="uid://rorfcs1w02g0" path="res://Scenes/TileMap.tscn" id="4_241aj"]
+[ext_resource type="PackedScene" uid="uid://rorfcs1w02g0" path="res://Scenes/Level_1.tscn" id="4_241aj"]
 [ext_resource type="PackedScene" uid="uid://b3xvsbpqeyd3s" path="res://Scenes/Enemy Scenes/Enemy.tscn" id="6_120ga"]
 
 [node name="Main" type="Node2D"]
@@ -11,12 +10,6 @@ y_sort_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_pu1qa")]
 position = Vector2(-45, -29)
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(135, -103)
-scale = Vector2(0.515625, 0.546875)
-texture = ExtResource("3_mlsly")
 
 [node name="Camera2D" parent="." instance=ExtResource("3_nd7p8")]
 

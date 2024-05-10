@@ -45,10 +45,13 @@ func _process(delta):
 		select_item(Database.item_database["Furnace"])
 	
 	if left_click_down:
-		if selected_item is PlaceableItem:
+		var snapped_mouse_position: Vector2 = snapped(get_global_mouse_position(), Vector2(16, 16))
+		if selected_item is PlaceableItem and not BuildingManager.check_position_occupied(snapped_mouse_position):
 			var building: Building = selected_item.buildingScene.instantiate()
-			building.global_position.x = snapped(get_global_mouse_position().x, 16)
-			building.global_position.y = snapped(get_global_mouse_position().y, 16)
+			building.global_position = snapped_mouse_position
+			BuildingManager.add_building(building)
+			print(snapped(building.global_position, Vector2(16, 16))/16)
+			BuildingManager.add_building(building)
 			get_owner().add_child(building)
 
 func select_item(new_item: Item):

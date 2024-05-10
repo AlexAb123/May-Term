@@ -68,4 +68,5 @@ func _on_right_click_released():
 
 func deconstruct():
 	print("Add item to player inventory")
+	BuildingManager.remove_building(self)
 	queue_free()
