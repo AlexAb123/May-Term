@@ -2,8 +2,10 @@ extends Node2D
 
 class_name Building
 
-@export var deconstruct_time : float
-@export var size : Vector2
+@export var deconstruct_time : float = 0.1
+@export var size : Vector2 = Vector2(1,1)
+@export var sprite: Texture2D
+@onready var sprite2D: Sprite2D = get_node("Sprite2D")
 
 
 var deconstruct_timer = 0
@@ -16,6 +18,10 @@ func _physics_process(delta):
 	if deconstruct_timer >= deconstruct_time:
 		deconstruct_timer = 0
 		deconstruct()
+		
+func _ready():
+	sprite2D.texture = sprite
+	
 
 var mouse_hover = false
 
