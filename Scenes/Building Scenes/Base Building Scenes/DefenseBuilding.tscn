@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://n0puljiygqrr"]
+
+[ext_resource type="PackedScene" uid="uid://dbg5hg88ngfkg" path="res://Scenes/Building Scenes/Base Building Scenes/Building.tscn" id="1_1tcue"]
+[ext_resource type="Script" path="res://Scripts/Building Scripts/DefenseBuilding.gd" id="2_6b44f"]
+
+[node name="DefenseBuilding" instance=ExtResource("1_1tcue")]
+script = ExtResource("2_6b44f")

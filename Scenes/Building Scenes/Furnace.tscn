@@ -1,34 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://dloo3aiadge4"]
+[gd_scene load_steps=4 format=3 uid="uid://bjk5l1x1d6v8n"]
 
-[ext_resource type="Script" path="res://Scripts/Building Scripts/RecipeBuilding.gd" id="1_aian7"]
+[ext_resource type="PackedScene" uid="uid://413lxhppw7hu" path="res://Scenes/Building Scenes/Base Building Scenes/RecipeBuilding.tscn" id="1_yx8fn"]
 [ext_resource type="Resource" uid="uid://b2nptf5b3kgjr" path="res://Resources/Recipes/RECIPE_Iron_Ore_Smelting.tres" id="2_b4tmu"]
-[ext_resource type="Texture2D" uid="uid://cepjwdjfdcyyp" path="res://assets/sprites/furnace.png" id="3_s82rm"]
+[ext_resource type="Texture2D" uid="uid://w7elyw5vk47k" path="res://assets/sprites/pixil-frame-0.png" id="3_ue2lb"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pbue4"]
-size = Vector2(8, 8)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_61a30"]
-size = Vector2(16, 16)
-
-[node name="Furnace" type="StaticBody2D"]
-y_sort_enabled = true
-script = ExtResource("1_aian7")
+[node name="Furnace" instance=ExtResource("1_yx8fn")]
 recipes = Array[Resource("res://Scripts/Resource Scripts/Recipe Scripts/Recipe.gd")]([ExtResource("2_b4tmu")])
-deconstruct_time = 0.2
-size = Vector2(2, 2)
+sprite = ExtResource("3_ue2lb")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_pbue4")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.01, 0.01)
-texture = ExtResource("3_s82rm")
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_61a30")
-
-[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
-[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(1, 1)
