@@ -6,6 +6,7 @@
 
 [node name="Furnace" instance=ExtResource("1_gbcw6")]
 recipes = Array[Resource("res://Scripts/Resource Scripts/Recipe Scripts/Recipe.gd")]([ExtResource("2_dqifs")])
+deconstruct_time = 0.2
 sprite = ExtResource("3_g580d")
 
 [node name="Sprite2D" parent="." index="1"]
