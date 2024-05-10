@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://s4t57ssophup" path="res://icon.svg" id="3_mlsly"]
 [ext_resource type="Texture2D" uid="uid://ds5p6d23xpleh" path="res://assets/Test/16x16/Tilesets/New/Solaria Demo Tiles.png" id="5_wuw67"]
 [ext_resource type="PackedScene" uid="uid://b3xvsbpqeyd3s" path="res://Scenes/Enemy.tscn" id="6_120ga"]
-[ext_resource type="PackedScene" uid="uid://4evu2ykqbuna" path="res://Scenes/Archer.tscn" id="7_m73u1"]
+[ext_resource type="PackedScene" uid="uid://4evu2ykqbuna" path="res://Scenes/Defense Building.tscn" id="7_m73u1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ijkaf"]
 texture = ExtResource("5_wuw67")
