@@ -12,9 +12,6 @@ func _ready():
 			temp.append(null)
 		buildings.append(temp)
 
-func _process(delta):
-	print(Engine.get_frames_per_second())
-	
 func get_building(pos: Vector2) -> Building:
 	#Pos is an unsnapped position in world coordinates
 	var i = snapped(pos.x, 16)/16+map_size/2
