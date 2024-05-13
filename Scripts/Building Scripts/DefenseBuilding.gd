@@ -7,6 +7,8 @@ class_name DefenseBuilding
 @export var fire_rate: float
 @export var range: float
 
+@onready var area_shape: CollisionShape2D = $
+
 var hasTarget: bool
 
 func _ready():

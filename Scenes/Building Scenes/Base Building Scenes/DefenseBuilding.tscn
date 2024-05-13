@@ -5,7 +5,9 @@
 
 [node name="DefenseBuilding" instance=ExtResource("1_1tcue")]
 script = ExtResource("2_6b44f")
-health = 0
-damage = 0
-fire_rate = 0.0
-range = 0.0
+deconstruct_time = null
+size = null
+health = null
+damage = null
+fire_rate = null
+range = null

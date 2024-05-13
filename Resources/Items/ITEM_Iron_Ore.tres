@@ -1,8 +1,10 @@
-[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://y3y7pjfvyfnd"]
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://y3y7pjfvyfnd"]
 
 [ext_resource type="Script" path="res://Scripts/Resource Scripts/Item Scripts/Item.gd" id="1_2aiqf"]
+[ext_resource type="Texture2D" uid="uid://c0xk7signe0q1" path="res://assets/Custom Sprites/Iron_Ore.png" id="2_65qyh"]
 
 [resource]
 script = ExtResource("1_2aiqf")
 name = "Iron Ore"
 stackSize = 100
+sprite = ExtResource("2_65qyh")

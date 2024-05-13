@@ -11,8 +11,10 @@ class_name Player
 
 var is_deconstructing: bool = false
 
+func _ready():
+	selected_item_sprite.modulate.a = 0.5
+
 func _physics_process(delta):
-	print(is_deconstructing)
 
 	#Get inputs and move up down left and right.
 	#Normalize vector so that diagonal isn't faster

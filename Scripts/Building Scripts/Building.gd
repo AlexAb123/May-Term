@@ -29,6 +29,7 @@ func _physics_process(delta):
 		
 	if deconstruct_timer >= deconstruct_time:
 		deconstruct_timer = 0
+		
 		player.is_deconstructing = false
 		deconstruct()
 		
