@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwiphvlchyy5"]
+[gd_scene load_steps=10 format=3 uid="uid://bwiphvlchyy5"]
 
 [ext_resource type="Script" path="res://Scenes/Main.gd" id="1_ix7eo"]
 [ext_resource type="PackedScene" uid="uid://cqbjmjoub20yy" path="res://Scenes/Player.tscn" id="1_pu1qa"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/CameraScripts/Camera.gd" id="2_wulpf"]
 [ext_resource type="Texture2D" uid="uid://s4t57ssophup" path="res://icon.svg" id="3_mlsly"]
 [ext_resource type="Texture2D" uid="uid://ds5p6d23xpleh" path="res://assets/Test/16x16/Tilesets/New/Solaria Demo Tiles.png" id="5_wuw67"]
+[ext_resource type="PackedScene" uid="uid://cbevvfkxg4xd0" path="res://Scenes/InventoryUI.tscn" id="6_7vi8w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ijkaf"]
 texture = ExtResource("5_wuw67")
@@ -1116,6 +1117,21 @@ furnace_item = ExtResource("2_dqh3b")
 
 [node name="Player" parent="." instance=ExtResource("1_pu1qa")]
 position = Vector2(0, 2)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Player"]
+
+[node name="InventoryUI" parent="Player/CanvasLayer" instance=ExtResource("6_7vi8w")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -175.0
+offset_right = 175.0
+offset_bottom = 175.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(135, -103)

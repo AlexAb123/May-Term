@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_73pbn")
-invItems = Array[Resource("res://Scripts/Resource Scripts/Item Scripts/Item.gd")]([null, null, null, null, null, null, null, null, null, null])
+invItems = Array[Resource("res://Scripts/Resource Scripts/Item Scripts/Item.gd")]([null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
