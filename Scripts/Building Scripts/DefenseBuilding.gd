@@ -30,5 +30,3 @@ func _on_detection_area_2d_body_exited(body):
 	hasTarget = false
 	print(body)
 	print("exit")
-
-
