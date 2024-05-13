@@ -1,18 +1,33 @@
 extends CharacterBody2D
+class_name Player
+
+signal healthChanged
 
 class_name Player
 
 @export_category("Movement")
+@export var maxHealth = 100
 @export var moveSpeed = 150
+@onready var currentHealth: int = maxHealth
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var selected_item_sprite: Sprite2D = $SelectedItemSprite
+@onready var isHurt: bool = false
+
 
 @export var selected_item: Item
+
 
 var is_deconstructing: bool = false
 
 func _ready():
 	selected_item_sprite.modulate.a = 0.5
+
+func hurtByEnemy(area):
+	currentHealth -= 10
+	if currentHealth <= 0:
+		currentHealth = maxHealth
+	healthChanged.emit()
+
 
 func _physics_process(delta):
 
@@ -41,6 +56,15 @@ func _physics_process(delta):
 	else:
 		animated_sprite.play("run")
 	
+
+	if not is_deconstructing:
+		move_and_slide()
+	
+	#if !isHurt:
+		#for area in hitbox.get_overlapping_areas:
+			#if area.name == "hitBox":
+				#hurtByEnemy(area)
+
 	if not is_deconstructing:
 		move_and_slide()
 	
