@@ -9,7 +9,7 @@ extends CharacterBody2D
 @export var health: int
 @export var armor: int
 @export var detection_range: int = 25
-@export var damage_range: int = 10
+@export var damage_range: int = 8
 
 var target
 
