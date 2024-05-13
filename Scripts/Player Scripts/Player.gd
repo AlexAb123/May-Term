@@ -3,8 +3,6 @@ class_name Player
 
 signal healthChanged
 
-class_name Player
-
 @export_category("Movement")
 @export var maxHealth = 100
 @export var moveSpeed = 150
