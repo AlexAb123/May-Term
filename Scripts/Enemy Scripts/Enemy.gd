@@ -1,37 +1,81 @@
 extends CharacterBody2D
 @onready var animated_sprite = get_node("AnimatedSprite2D")
+@onready var detection_shape = $DetectionArea2D/DetectionArea2DCollisionShape2D
+@onready var damage_shape = $DamageArea2D/DamageCollisionShape2D
 
-@export var speed: float
-@export var damage: int
+@export var speed: int = 25
+@export var damage: int = 5
+@export var attack_cooldown: float = 1
 @export var health: int
 @export var armor: int
-var hasTarget = false
-var targets: Array[int]
-var curr: Node
+@export var detection_range: int = 25
+@export var damage_range: int = 10
+
+var target
+
+var detection_targets: Array
+var damage_targets: Array
 
 signal on_death
 
+func _ready():
+	detection_shape.shape.radius = detection_range
+	damage_shape.shape.radius = damage_range
 
-func _on_detection_area_body_entered(body):
-	print(body.name)
-	if "Building" in body.name:
-		var temp = []
+
+func _on_detection_area_2d_body_entered(body):
+	if body is Building or body is Player:
+		detection_targets.append(body)
 		#currTargets = get_node("Tower").get_overlapping_bodies()
-		hasTarget = true
+	print("det")
+	print(detection_targets)
+func _on_detection_area_2d_body_exited(body):
+	detection_targets.erase(body)
+	
 
+func _on_damage_area_2d_body_entered(body):
+	if body is Building or body is Player:
+		damage_targets.append(body)
+	print("damage")
+		
+	print(damage_targets)
 
-func _on_detection_area_body_exited(body):
-	hasTarget = false
+func _on_damage_area_2d_body_exited(body):
+	damage_targets.erase(body)
+
+	
+var attack_cooldown_timer = 0
+var is_attacking: bool = false
 
 func _physics_process(delta):
-	if hasTarget:
-		print("TARGET")
+	find_target()
+
+	if target in damage_targets:
+		is_attacking = true
+		if attack_cooldown_timer <= 0:
+			target.take_damage(damage)
+			attack_cooldown_timer = attack_cooldown
+		else:
+			attack_cooldown_timer -= delta
 	else:
-		pass
-	if !hasTarget:
-		velocity = (global_position * (-1)).normalized() * speed
+		is_attacking = false	
+		attack_cooldown_timer -= delta
 	
-	move_and_slide()
+	if target:
+		velocity = (target.global_position - global_position).normalized() * speed
+	else:
+		velocity = (Vector2(0, 0) - global_position).normalized() * speed
+	
+	if not is_attacking:
+		move_and_slide()
 		
+
+func find_target():
+	if detection_targets:
+		target = detection_targets[0]
+	else:
+		target = null
+
 func die():
 	queue_free()
+

@@ -6,6 +6,8 @@ class_name Building
 @export var size : Vector2 = Vector2(1,1)
 @export var sprite: Texture2D
 @onready var sprite2D: Sprite2D = get_node("Sprite2D")
+@export var max_health: int = 10
+@onready var current_health: int = max_health
 
 var player
 
@@ -65,6 +67,14 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 			if event.button_index == 2:
 				right_click_down = true
 
+func take_damage(damage):
+	current_health -= damage
+	if current_health <= 0:
+		destroy()
+
+func destroy():
+	print("Destoryed")
+	queue_free()
 func deconstruct():
 	print("Add item to player inventory")
 	BuildingManager.remove_building(self)

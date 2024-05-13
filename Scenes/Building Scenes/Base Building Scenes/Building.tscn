@@ -9,6 +9,8 @@ size = Vector2(8, 8)
 size = Vector2(16, 16)
 
 [node name="Building" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 0
 script = ExtResource("1_e7ngb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -16,11 +18,11 @@ shape = SubResource("RectangleShape2D_e6rv2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="MouseArea2D" type="Area2D" parent="."]
 
-[node name="AreaCollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="AreaCollisionShape2D" type="CollisionShape2D" parent="MouseArea2D"]
 shape = SubResource("RectangleShape2D_3j7wk")
 
-[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
-[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="input_event" from="MouseArea2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="MouseArea2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="MouseArea2D" to="." method="_on_area_2d_mouse_exited"]

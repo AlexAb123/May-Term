@@ -4,9 +4,9 @@ class_name Player
 signal healthChanged
 
 @export_category("Movement")
-@export var maxHealth = 100
-@export var moveSpeed = 50
-@onready var currentHealth: int = maxHealth
+@export var max_health = 100
+@export var moveSpeed = 100
+@onready var current_health: int = max_health
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var selected_item_sprite: Sprite2D = $SelectedItemSprite
 @onready var isHurt: bool = false
@@ -20,11 +20,15 @@ var is_deconstructing: bool = false
 func _ready():
 	selected_item_sprite.modulate.a = 0.5
 
-func hurtByEnemy(area):
-	currentHealth -= 10
-	if currentHealth <= 0:
-		currentHealth = maxHealth
+func take_damage(damage):
+	current_health -= damage
 	healthChanged.emit()
+	if current_health <= 0:
+		current_health = max_health
+		death()
+		
+func death():
+	print("Player Died")
 
 
 func _physics_process(delta):
@@ -54,7 +58,6 @@ func _physics_process(delta):
 	else:
 		animated_sprite.play("run")
 	
-
 	if not is_deconstructing:
 		move_and_slide()
 	

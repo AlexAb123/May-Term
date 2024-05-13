@@ -72,6 +72,12 @@ e={
 , null]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Background"
+2d_physics/layer_2="Buildings + Player"
+2d_physics/layer_3="Enemies"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
