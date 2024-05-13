@@ -75,6 +75,8 @@ func _process(delta):
 		select_item(null)
 	if Input.is_action_just_pressed("x"):
 		select_item(Database.item_database["Furnace"])
+	if Input.is_action_just_pressed("g"):
+		select_item(Database.item_database["Archer"])
 	
 	var mouse_position: Vector2 = get_global_mouse_position()
 	
