@@ -1,7 +1,7 @@
 extends CharacterBody2D
 @onready var animated_sprite = get_node("AnimatedSprite2D")
 
-@export var speed: int
+@export var speed: float
 @export var damage: int
 @export var health: int
 @export var armor: int
@@ -26,4 +26,8 @@ func _physics_process(delta):
 		print("TARGET")
 	else:
 		pass
+	if !hasTarget:
+		velocity = (global_position * (-1)).normalized() * speed
+	
+	move_and_slide()
 		

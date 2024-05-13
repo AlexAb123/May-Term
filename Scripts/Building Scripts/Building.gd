@@ -7,22 +7,32 @@ class_name Building
 @export var sprite: Texture2D
 @onready var sprite2D: Sprite2D = get_node("Sprite2D")
 
+var player
+
 var deconstruct_timer = 0
 
+	
+func _ready():
+	sprite2D.texture = sprite
+	player = get_parent().get_node("Player")
+	
+	
 func _physics_process(delta):
 	
 	if right_click_down:
 		deconstruct_timer += delta
+		player.is_deconstructing = true
 		
-		if deconstruct_timer >= deconstruct_time:
-			deconstruct_timer = 0
-			deconstruct()
-	else:
+	elif deconstruct_timer > 0:
 		deconstruct_timer = 0
-	
-func _ready():
-	sprite2D.texture = sprite
-
+		player.is_deconstructing = false
+		
+	if deconstruct_timer >= deconstruct_time:
+		deconstruct_timer = 0
+		
+		player.is_deconstructing = false
+		deconstruct()
+		
 var mouse_hover = false
 
 func _on_area_2d_mouse_entered():
@@ -31,6 +41,7 @@ func _on_area_2d_mouse_entered():
 		left_click_down = true
 	if Input.is_mouse_button_pressed(2):
 		right_click_down = true
+		
 
 func _on_area_2d_mouse_exited():
 	mouse_hover = false
