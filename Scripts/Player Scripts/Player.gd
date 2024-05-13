@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Player
+
 @export_category("Movement")
 @export var moveSpeed = 150
 @onready var animated_sprite = $AnimatedSprite2D
@@ -7,7 +9,10 @@ extends CharacterBody2D
 
 @export var selected_item: Item
 
+var is_deconstructing: bool = false
+
 func _physics_process(delta):
+	print(is_deconstructing)
 
 	#Get inputs and move up down left and right.
 	#Normalize vector so that diagonal isn't faster
@@ -34,7 +39,8 @@ func _physics_process(delta):
 	else:
 		animated_sprite.play("run")
 	
-	move_and_slide()
+	if not is_deconstructing:
+		move_and_slide()
 	
 func _process(delta):
 	selected_item_sprite.global_position.x = snapped(get_global_mouse_position().x, 16)
