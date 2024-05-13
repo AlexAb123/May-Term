@@ -73,8 +73,8 @@ func take_damage(damage):
 		destroy()
 
 func destroy():
-	print("Destoryed")
 	queue_free()
+	
 func deconstruct():
 	print("Add item to player inventory")
 	BuildingManager.remove_building(self)

@@ -26,9 +26,7 @@ func _ready():
 func _on_detection_area_2d_body_entered(body):
 	if body is Building or body is Player:
 		detection_targets.append(body)
-		#currTargets = get_node("Tower").get_overlapping_bodies()
-	print("det")
-	print(detection_targets)
+		
 func _on_detection_area_2d_body_exited(body):
 	detection_targets.erase(body)
 	
@@ -36,10 +34,7 @@ func _on_detection_area_2d_body_exited(body):
 func _on_damage_area_2d_body_entered(body):
 	if body is Building or body is Player:
 		damage_targets.append(body)
-	print("damage")
 		
-	print(damage_targets)
-
 func _on_damage_area_2d_body_exited(body):
 	damage_targets.erase(body)
 
