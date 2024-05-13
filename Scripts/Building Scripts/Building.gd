@@ -2,13 +2,15 @@ extends Node2D
 
 class_name Building
 
-@export var deconstruct_time : float = 0
+@export var deconstruct_time : float = 0.1
 @export var size : Vector2 = Vector2(1,1)
 @export var sprite: Texture2D
 @onready var sprite2D: Sprite2D = get_node("Sprite2D")
-@export var max_health: int = 10
+@export var max_health: int = 50
 @onready var current_health: int = max_health
+@onready var health_bar: TextureProgressBar = $HealthBar
 
+signal healthChanged
 var player
 
 var deconstruct_timer = 0
@@ -20,6 +22,11 @@ func _ready():
 	
 	
 func _physics_process(delta):
+	
+	if current_health == max_health:
+		health_bar.visible = false
+	else:
+		health_bar.visible = true
 	
 	if right_click_down:
 		deconstruct_timer += delta
@@ -69,6 +76,7 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 
 func take_damage(damage):
 	current_health -= damage
+	healthChanged.emit()
 	if current_health <= 0:
 		destroy()
 

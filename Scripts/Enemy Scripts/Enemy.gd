@@ -22,10 +22,10 @@ func _ready():
 	detection_shape.shape.radius = detection_range
 	damage_shape.shape.radius = damage_range
 
-
 func _on_detection_area_2d_body_entered(body):
 	if body is Building or body is Player:
 		detection_targets.append(body)
+		detection_targets.sort_custom(compare_distance)
 		
 func _on_detection_area_2d_body_exited(body):
 	detection_targets.erase(body)
@@ -43,6 +43,7 @@ var attack_cooldown_timer = 0
 var is_attacking: bool = false
 
 func _physics_process(delta):
+	
 	find_target()
 
 	if target in damage_targets:
@@ -63,14 +64,15 @@ func _physics_process(delta):
 	
 	if not is_attacking:
 		move_and_slide()
-		
 
 func find_target():
 	if detection_targets:
 		target = detection_targets[0]
 	else:
 		target = null
+		
+func compare_distance(body1, body2):
+	return (global_position - body1.global_position).length() < (global_position - body2.global_position).length()
 
 func die():
 	queue_free()
-

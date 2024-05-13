@@ -1122,4 +1122,4 @@ layer_1/z_index = -1
 layer_1/tile_data = PackedInt32Array()
 layer_2/name = "ysort"
 layer_2/y_sort_enabled = true
-layer_2/tile_data = PackedInt32Array(-196606, 458752, 0, 131072, 458752, 3, -131075, 589824, 4, -196608, 524288, 3, 65533, 524288, 3, 65540, 589824, 4)
+layer_2/tile_data = PackedInt32Array()
