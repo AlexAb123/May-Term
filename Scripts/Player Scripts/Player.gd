@@ -62,9 +62,6 @@ func _physics_process(delta):
 		#for area in hitbox.get_overlapping_areas:
 			#if area.name == "hitBox":
 				#hurtByEnemy(area)
-
-	if not is_deconstructing:
-		move_and_slide()
 	
 func _process(delta):
 	selected_item_sprite.global_position.x = snapped(get_global_mouse_position().x, 16)

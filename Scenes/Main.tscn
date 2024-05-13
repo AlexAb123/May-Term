@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://bwiphvlchyy5"]
 
-[ext_resource type="PackedScene" path="res://Scenes/Enemy Spawner.tscn" id="1_0uccq"]
+[ext_resource type="PackedScene" uid="uid://pkbdxaosu5ld" path="res://Scenes/Enemy Spawner.tscn" id="1_0uccq"]
 [ext_resource type="PackedScene" uid="uid://cqbjmjoub20yy" path="res://Scenes/Player.tscn" id="1_pu1qa"]
 [ext_resource type="PackedScene" uid="uid://x1y5wk4ik7t2" path="res://Scenes/Camera.tscn" id="3_nd7p8"]
-[ext_resource type="PackedScene" uid="uid://rorfcs1w02g0" path="res://Scenes/Level_1.tscn" id="4_241aj"]
+[ext_resource type="PackedScene" path="res://Scenes/Level_1.tscn" id="4_241aj"]
 [ext_resource type="Texture2D" uid="uid://dw3niubftv6cf" path="res://assets/health/bar.png" id="5_7n2sy"]
 [ext_resource type="PackedScene" uid="uid://b3xvsbpqeyd3s" path="res://Scenes/Enemy Scenes/Base Enemy Scenes/Enemy.tscn" id="6_120ga"]
 [ext_resource type="Texture2D" uid="uid://mg6onenv8ktb" path="res://assets/health/health.png" id="6_o41ll"]
