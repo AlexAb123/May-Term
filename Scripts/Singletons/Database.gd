@@ -4,7 +4,7 @@ var item_database: Dictionary
 var item_directory = "res://Resources/Items/"
 
 var enemy_database: Dictionary
-var enemy_directory = "res://Scenes/Enemy Scenes/Usable Enemy Scenes/"
+var enemy_directory = "res://Scenes/Enemy Scenes/"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

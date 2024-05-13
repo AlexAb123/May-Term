@@ -9,6 +9,8 @@ var hasTarget = false
 var targets: Array[int]
 var curr: Node
 
+signal on_death
+
 
 func _on_detection_area_body_entered(body):
 	print(body.name)
@@ -31,3 +33,5 @@ func _physics_process(delta):
 	
 	move_and_slide()
 		
+func die():
+	queue_free()
