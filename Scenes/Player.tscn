@@ -1,8 +1,9 @@
-[gd_scene load_steps=26 format=3 uid="uid://cqbjmjoub20yy"]
+[gd_scene load_steps=27 format=3 uid="uid://cqbjmjoub20yy"]
 
 [ext_resource type="Script" path="res://Scripts/Player Scripts/Player.gd" id="1_fb2bp"]
 [ext_resource type="Resource" uid="uid://ctegtfrflqve6" path="res://Resources/Items/ITEM_Furnace.tres" id="2_3k7x3"]
 [ext_resource type="Texture2D" uid="uid://c2ikd5at4f3jv" path="res://assets/sprites/knight.png" id="2_ljflb"]
+[ext_resource type="Script" path="res://Scenes/HealthBar.gd" id="4_3dyuu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7n2qk"]
 radius = 3.00164
@@ -179,3 +180,9 @@ autoplay = "idle"
 offset = Vector2(2.08165e-12, -10)
 
 [node name="SelectedItemSprite" type="Sprite2D" parent="."]
+
+[node name="HealthBar" type="TextureProgressBar" parent="." node_paths=PackedStringArray("player")]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_3dyuu")
+player = NodePath("..")

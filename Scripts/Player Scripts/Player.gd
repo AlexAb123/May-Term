@@ -1,9 +1,14 @@
 extends CharacterBody2D
+class_name Player
+
 
 @export_category("Movement")
+@export var maxHealth = 100
 @export var moveSpeed = 150
+@onready var health: int = maxHealth
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var selected_item_sprite: Sprite2D = $SelectedItemSprite
+
 
 @export var selected_item: Item
 
