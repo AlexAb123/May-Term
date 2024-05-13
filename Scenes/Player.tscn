@@ -4,9 +4,8 @@
 [ext_resource type="Resource" uid="uid://ctegtfrflqve6" path="res://Resources/Items/ITEM_Furnace.tres" id="2_3k7x3"]
 [ext_resource type="Texture2D" uid="uid://c2ikd5at4f3jv" path="res://assets/sprites/knight.png" id="2_ljflb"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7n2qk"]
-radius = 3.00164
-height = 11.9992
+[sub_resource type="CircleShape2D" id="CircleShape2D_gwfyl"]
+radius = 3.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_78dkm"]
 atlas = ExtResource("2_ljflb")
@@ -163,6 +162,7 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 3
+motion_mode = 1
 script = ExtResource("1_fb2bp")
 selected_item = ExtResource("2_3k7x3")
 
@@ -170,7 +170,7 @@ selected_item = ExtResource("2_3k7x3")
 y_sort_enabled = true
 position = Vector2(2.08165e-12, -1)
 rotation = 1.58242
-shape = SubResource("CapsuleShape2D_7n2qk")
+shape = SubResource("CircleShape2D_gwfyl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ra3uj")

@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://b3xvsbpqeyd3s"]
+[gd_scene load_steps=15 format=3 uid="uid://b3xvsbpqeyd3s"]
 
+[ext_resource type="Script" path="res://Scripts/Enemy Scripts/Enemy.gd" id="1_8cx2i"]
 [ext_resource type="Texture2D" uid="uid://cspf1k2foi5dl" path="res://assets/sprites/slime_purple.png" id="1_pijau"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_etw0v"]
@@ -96,13 +97,13 @@ height = 11.9999
 
 [node name="Enemy" type="CharacterBody2D"]
 y_sort_enabled = true
+motion_mode = 1
+script = ExtResource("1_8cx2i")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_mfmcn")
 animation = &"death"
 autoplay = "idle"
-frame = 3
-frame_progress = 1.0
 offset = Vector2(2.08165e-12, -10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cqbjmjoub20yy" path="res://Scenes/Player.tscn" id="1_pu1qa"]
 [ext_resource type="PackedScene" uid="uid://x1y5wk4ik7t2" path="res://Scenes/Camera.tscn" id="3_nd7p8"]
 [ext_resource type="PackedScene" uid="uid://rorfcs1w02g0" path="res://Scenes/Level_1.tscn" id="4_241aj"]
-[ext_resource type="PackedScene" uid="uid://b3xvsbpqeyd3s" path="res://Scenes/Enemy Scenes/Enemy.tscn" id="6_120ga"]
+[ext_resource type="PackedScene" uid="uid://b3xvsbpqeyd3s" path="res://Scenes/Enemy Scenes/Base Enemy Scenes/Enemy.tscn" id="6_120ga"]
 
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
@@ -17,4 +17,5 @@ position = Vector2(-45, -29)
 
 [node name="Enemy" parent="." instance=ExtResource("6_120ga")]
 position = Vector2(61, -2)
-collision_layer = 3
+collision_layer = 2
+collision_mask = 2
