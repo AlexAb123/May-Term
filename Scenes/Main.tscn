@@ -28,7 +28,7 @@ scale = Vector2(0.0774108, -0.0725074)
 texture_under = ExtResource("5_7n2sy")
 texture_progress = ExtResource("6_o41ll")
 script = ExtResource("7_u84qr")
-player = NodePath("")
+player = NodePath("../../Player")
 
 [node name="TileMap" parent="." instance=ExtResource("4_241aj")]
 

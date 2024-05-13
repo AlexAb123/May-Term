@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var positions = [$Marker2D, $Marker2D2, $Marker2D3, $Marker2D4]
-@onready var enemies = [preload("res://Scenes/Enemy Scenes/Enemy.tscn")] 
+@onready var enemies = [preload("res://Scenes/Enemy Scenes/Base Enemy Scenes/Enemy.tscn")] 
 # must edit when adding more enemies
 
 func getRandPosition():

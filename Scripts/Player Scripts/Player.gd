@@ -5,7 +5,7 @@ signal healthChanged
 
 @export_category("Movement")
 @export var maxHealth = 100
-@export var moveSpeed = 150
+@export var moveSpeed = 50
 @onready var currentHealth: int = maxHealth
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var selected_item_sprite: Sprite2D = $SelectedItemSprite

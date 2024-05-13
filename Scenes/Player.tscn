@@ -1,7 +1,6 @@
-[gd_scene load_steps=26 format=3 uid="uid://cqbjmjoub20yy"]
+[gd_scene load_steps=25 format=3 uid="uid://cqbjmjoub20yy"]
 
 [ext_resource type="Script" path="res://Scripts/Player Scripts/Player.gd" id="1_fb2bp"]
-[ext_resource type="Resource" uid="uid://ctegtfrflqve6" path="res://Resources/Items/ITEM_Furnace.tres" id="2_3k7x3"]
 [ext_resource type="Texture2D" uid="uid://c2ikd5at4f3jv" path="res://assets/sprites/knight.png" id="2_ljflb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gwfyl"]
@@ -164,7 +163,6 @@ animations = [{
 collision_layer = 3
 motion_mode = 1
 script = ExtResource("1_fb2bp")
-selected_item = ExtResource("2_3k7x3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
