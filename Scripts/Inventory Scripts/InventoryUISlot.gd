@@ -9,8 +9,8 @@ var slot_id: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	itemSprite2D.texture = Database.item_database["Coal"].sprite
-
+	pass
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -20,5 +20,5 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 
 func set_sprite(sprite: Texture2D):
 	itemSprite2D.texture = sprite
-func set_count_label(count: int):
-	itemCountLabel.text = str(count)
+func set_count_label(text: String):
+	itemCountLabel.text = str(text)

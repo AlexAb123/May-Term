@@ -14,6 +14,8 @@ signal healthChanged
 
 @export var selected_item: Item
 
+@export var selected_item_stack: ItemStack
+
 var is_deconstructing: bool = false
 
 func _ready():
@@ -33,7 +35,6 @@ func death():
 
 
 func _physics_process(delta):
-
 	#Get inputs and move up down left and right.
 	#Normalize vector so that diagonal isn't faster
 	
