@@ -5,7 +5,7 @@ signal healthChanged
 
 @export_category("Movement")
 @export var max_health = 100
-@export var moveSpeed = 100
+@export var moveSpeed: int = 100
 @onready var current_health: int = max_health
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var selected_item_sprite: Sprite2D = $SelectedItemSprite
@@ -17,6 +17,8 @@ signal healthChanged
 var is_deconstructing: bool = false
 
 func _ready():
+	Global.set_player(self)
+	
 	selected_item_sprite.modulate.a = 0.5
 
 func take_damage(damage):

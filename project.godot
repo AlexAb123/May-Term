@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Database="*res://Scripts/Singletons/Database.gd"
 BuildingManager="*res://Scripts/Singletons/BuildingManager.gd"
+Global="*res://Scripts/Singletons/Global.gd"
 
 [display]
 

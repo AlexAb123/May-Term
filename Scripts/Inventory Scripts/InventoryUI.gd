@@ -2,8 +2,6 @@ extends GridContainer
 
 class_name Inventory_UI
 
-var selected_item: Item
-
 @export var slot_scene: PackedScene
 
 @export var slot_count: int = 9
@@ -51,6 +49,7 @@ func _process(delta):
 			close()
 		else:
 			open()
+	print(Global.player)
 func open():
 	visible = true
 
