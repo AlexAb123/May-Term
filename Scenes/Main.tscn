@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bwiphvlchyy5"]
+[gd_scene load_steps=9 format=3 uid="uid://bwiphvlchyy5"]
 
 [ext_resource type="PackedScene" uid="uid://pkbdxaosu5ld" path="res://Scenes/Enemy Spawner.tscn" id="1_0uccq"]
 [ext_resource type="PackedScene" uid="uid://cqbjmjoub20yy" path="res://Scenes/Player.tscn" id="1_pu1qa"]
-
 [ext_resource type="PackedScene" uid="uid://x1y5wk4ik7t2" path="res://Scenes/Camera.tscn" id="3_nd7p8"]
 [ext_resource type="PackedScene" uid="uid://rorfcs1w02g0" path="res://Scenes/Level_1.tscn" id="4_241aj"]
 [ext_resource type="Texture2D" uid="uid://dw3niubftv6cf" path="res://assets/health/bar.png" id="5_7n2sy"]
@@ -19,7 +18,6 @@ y_sort_enabled = true
 position = Vector2(-45, -29)
 
 [node name="Camera2D" parent="." instance=ExtResource("3_nd7p8")]
-
 
 [node name="HealthBar" type="TextureProgressBar" parent="Camera2D" node_paths=PackedStringArray("player")]
 offset_left = 77.0

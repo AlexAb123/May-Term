@@ -1,8 +1,8 @@
 [gd_scene load_steps=26 format=3 uid="uid://cqbjmjoub20yy"]
 
 [ext_resource type="Script" path="res://Scripts/Player Scripts/Player.gd" id="1_fb2bp"]
-[ext_resource type="Resource" uid="uid://yynuc0q3bjge" path="res://Resources/Inventories/PlayerInventory.tres" id="2_3k0cn"]
 [ext_resource type="Texture2D" uid="uid://c2ikd5at4f3jv" path="res://assets/sprites/knight.png" id="2_ljflb"]
+[ext_resource type="PackedScene" uid="uid://xy2vr6tknt6g" path="res://Scenes/Inventory Scenes/InventoryUI.tscn" id="3_cdftl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gwfyl"]
 radius = 3.0
@@ -165,7 +165,6 @@ collision_layer = 3
 collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_fb2bp")
-inventory = ExtResource("2_3k0cn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
@@ -180,3 +179,7 @@ autoplay = "idle"
 offset = Vector2(2.08165e-12, -10)
 
 [node name="SelectedItemSprite" type="Sprite2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="InventoryUI" parent="CanvasLayer" instance=ExtResource("3_cdftl")]
