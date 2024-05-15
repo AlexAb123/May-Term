@@ -1,12 +1,10 @@
 [gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://pl5aig4uuqis"]
 
 [ext_resource type="Script" path="res://Scripts/Resource Scripts/Item Scripts/Item.gd" id="1_lmm7v"]
-
 [ext_resource type="Texture2D" uid="uid://5wkpjecv01nj" path="res://assets/Custom Sprites/Coal.png" id="2_s0xd1"]
 
 [resource]
 script = ExtResource("1_lmm7v")
 name = "Coal"
 stackSize = 100
-
 sprite = ExtResource("2_s0xd1")

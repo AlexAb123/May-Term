@@ -9,11 +9,10 @@ signal healthChanged
 @onready var current_health: int = max_health
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var selected_item_sprite: Sprite2D = $SelectedItemSprite
-@onready var isHurt: bool = false
 
+@onready var inventory: Inventory_UI = $CanvasLayer/InventoryUI
 
 @export var selected_item: Item
-
 
 var is_deconstructing: bool = false
 
@@ -61,18 +60,25 @@ func _physics_process(delta):
 	if not is_deconstructing:
 		move_and_slide()
 	
-	#if !isHurt:
-		#for area in hitbox.get_overlapping_areas:
-			#if area.name == "hitBox":
-				#hurtByEnemy(area)
-	
 func _process(delta):
 	
 	var mouse_position: Vector2 = get_global_mouse_position()
 	
 	selected_item_sprite.global_position.x = snapped(get_global_mouse_position().x, 16)
 	selected_item_sprite.global_position.y = snapped(get_global_mouse_position().y, 16)
-	if Input.is_action_just_pressed("z"):
+
+	
+	
+	if not inventory.visible and left_click_down:
+		if selected_item is PlaceableItem and not BuildingManager.check_position_occupied(get_global_mouse_position()):
+			var building: Building = selected_item.buildingScene.instantiate()
+			building.global_position = snapped(get_global_mouse_position(), Vector2(16, 16))
+			BuildingManager.add_building(building)
+			get_owner().add_child(building)
+		
+		
+		
+	if Input.is_action_just_pressed("q"):
 		select_item(null)
 	if Input.is_action_just_pressed("x"):
 		select_item(Database.item_database["Furnace"])
@@ -82,14 +88,6 @@ func _process(delta):
 		var enemy = load("res://Scenes/Enemy Scenes/Base Enemy Scenes/Enemy.tscn").instantiate()
 		enemy.global_position = mouse_position
 		owner.add_child(enemy)
-	
-	
-	if left_click_down:
-		if selected_item is PlaceableItem and not BuildingManager.check_position_occupied(get_global_mouse_position()):
-			var building: Building = selected_item.buildingScene.instantiate()
-			building.global_position = snapped(get_global_mouse_position(), Vector2(16, 16))
-			BuildingManager.add_building(building)
-			get_owner().add_child(building)
 	
 func select_item(new_item: Item):
 	selected_item = new_item
