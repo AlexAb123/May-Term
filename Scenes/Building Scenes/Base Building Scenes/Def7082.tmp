@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://n0puljiygqrr"]
+
+[ext_resource type="PackedScene" uid="uid://dbg5hg88ngfkg" path="res://Scenes/Building Scenes/Base Building Scenes/Building.tscn" id="1_1tcue"]
+[ext_resource type="Script" path="res://Scripts/Building Scripts/DefenseBuilding.gd" id="2_6b44f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_55d75"]
+
+[node name="DefenseBuilding" instance=ExtResource("1_1tcue")]
+script = ExtResource("2_6b44f")
+health = 10
+detection_range = 25
+attack_cooldown = 1.0
+
+[node name="DetectionArea2D" type="Area2D" parent="." index="3"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="DetectionArea2DCollisionShape2D" type="CollisionShape2D" parent="DetectionArea2D" index="0"]
+shape = SubResource("CircleShape2D_55d75")
+
+[connection signal="body_entered" from="DetectionArea2D" to="." method="_on_detection_area_2d_body_entered"]
+[connection signal="body_exited" from="DetectionArea2D" to="." method="_on_detection_area_2d_body_exited"]

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bobon6vvg73i3"]
+
+[ext_resource type="PackedScene" uid="uid://cl667d53ayrlk" path="res://Scenes/Projectile Scenes/Projectile.tscn" id="1_ruguw"]
+[ext_resource type="Texture2D" uid="uid://4eombfer1h0b" path="res://assets/Custom Sprites/Projectile.png" id="2_gajfj"]
+
+[node name="BallProjectile" instance=ExtResource("1_ruguw")]
+collision_layer = 0
+collision_mask = 0
+speed = 150
+pierce_count = 2
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_gajfj")

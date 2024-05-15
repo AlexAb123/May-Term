@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://dbg5hg88ngfkg"]
+
+[ext_resource type="Script" path="res://Scripts/Building Scripts/Building.gd" id="1_e7ngb"]
+[ext_resource type="Script" path="res://Scripts/Health Bar Scripts/BuildingHealthBar.gd" id="3_1ehi7"]
+[ext_resource type="Texture2D" uid="uid://mg6onenv8ktb" path="res://assets/health/health.png" id="3_66sok"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e6rv2"]
+size = Vector2(8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3j7wk"]
+size = Vector2(16, 16)
+
+[node name="Building" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_e7ngb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_e6rv2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="MouseArea2D" type="Area2D" parent="."]
+
+[node name="AreaCollisionShape2D" type="CollisionShape2D" parent="MouseArea2D"]
+shape = SubResource("RectangleShape2D_3j7wk")
+
+[node name="HealthBar" type="TextureProgressBar" parent="." node_paths=PackedStringArray("building")]
+offset_left = -8.0
+offset_top = 8.0
+offset_right = 786.0
+offset_bottom = 132.0
+scale = Vector2(0.0199957, -0.0331187)
+texture_progress = ExtResource("3_66sok")
+script = ExtResource("3_1ehi7")
+building = NodePath("..")
+
+[connection signal="input_event" from="MouseArea2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="MouseArea2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="MouseArea2D" to="." method="_on_area_2d_mouse_exited"]

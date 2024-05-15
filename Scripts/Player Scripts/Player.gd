@@ -1,11 +1,35 @@
 extends CharacterBody2D
+class_name Player
+
+signal healthChanged
 
 @export_category("Movement")
-@export var moveSpeed = 150
+@export var max_health = 100
+@export var moveSpeed = 100
+@onready var current_health: int = max_health
 @onready var animated_sprite = $AnimatedSprite2D
+@onready var selected_item_sprite: Sprite2D = $SelectedItemSprite
+@onready var isHurt: bool = false
 
-@export var furnace_item: PlaceableItem
-@export var inventory : Inventory
+
+@export var selected_item: Item
+
+
+var is_deconstructing: bool = false
+
+func _ready():
+	selected_item_sprite.modulate.a = 0.5
+
+func take_damage(damage):
+	current_health -= damage
+	healthChanged.emit()
+	if current_health <= 0:
+		current_health = max_health
+		death()
+		
+func death():
+	print("Player Died")
+
 
 func _physics_process(delta):
 
@@ -34,21 +58,70 @@ func _physics_process(delta):
 	else:
 		animated_sprite.play("run")
 	
-	move_and_slide()
+	if not is_deconstructing:
+		move_and_slide()
+	
+	#if !isHurt:
+		#for area in hitbox.get_overlapping_areas:
+			#if area.name == "hitBox":
+				#hurtByEnemy(area)
 	
 func _process(delta):
 	
-	#if Input.is_action_just_pressed("z"):
-		#furnace.addItems(load("res://Items/Iron_Ore.tres"), 1)
-		#
-	#if Input.is_action_just_pressed("x"):
-		#furnace.addItems(load("res://Items/Coal.tres"), 1)
-		#
-	#if Input.is_action_just_pressed("c"):
-		#if furnace.selectedRecipe:
-			#furnace.selectRecipe(-1)
-		#else:
-			#furnace.selectRecipe(0)
+	var mouse_position: Vector2 = get_global_mouse_position()
 	
+	selected_item_sprite.global_position.x = snapped(get_global_mouse_position().x, 16)
+	selected_item_sprite.global_position.y = snapped(get_global_mouse_position().y, 16)
+	if Input.is_action_just_pressed("z"):
+		select_item(null)
+	if Input.is_action_just_pressed("x"):
+		select_item(Database.item_database["Furnace"])
+	if Input.is_action_just_pressed("g"):
+		select_item(Database.item_database["Archer_Tower"])
+	if Input.is_action_just_pressed("middle_click"):
+		var enemy = load("res://Scenes/Enemy Scenes/Base Enemy Scenes/Enemy.tscn").instantiate()
+		enemy.global_position = mouse_position
+		owner.add_child(enemy)
+	
+	
+	if left_click_down:
+		if selected_item is PlaceableItem and not BuildingManager.check_position_occupied(get_global_mouse_position()):
+			var building: Building = selected_item.buildingScene.instantiate()
+			building.global_position = snapped(get_global_mouse_position(), Vector2(16, 16))
+			BuildingManager.add_building(building)
+			get_owner().add_child(building)
+	
+func select_item(new_item: Item):
+	selected_item = new_item
+	if new_item:
+		selected_item_sprite.texture = selected_item.sprite
+	else:
+		selected_item_sprite.texture = null
 
-	pass
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.pressed:
+			if event.button_index == 1:
+				_on_left_click_pressed()
+			if event.button_index == 2:
+				_on_right_click_pressed()
+		else:
+			if event.button_index == 1:
+				_on_left_click_released()
+			if event.button_index == 2:
+				_on_right_click_released()
+				
+var left_click_down = false
+var right_click_down = false
+
+func _on_left_click_pressed():
+	left_click_down = true
+	
+func _on_left_click_released():
+	left_click_down = false
+	
+func _on_right_click_pressed():
+	right_click_down = true
+
+func _on_right_click_released():
+	right_click_down = false

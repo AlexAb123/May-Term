@@ -1,18 +1,21 @@
 extends Node
 
-var item_database:Dictionary
+var item_database: Dictionary
 var item_directory = "res://Resources/Items/"
+
+var enemy_database: Dictionary
+var enemy_directory = "res://Scenes/Enemy Scenes/"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	item_database = read_files(item_directory, "ITEM_")
-	print(item_database)
+	item_database = read_files(item_directory, "ITEM_", ".tres")
+	enemy_database = read_files(enemy_directory, "", ".tscn")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
-func read_files(directory: String, prefix: String):
+func read_files(directory: String, prefix: String, suffix: String):
 	var database = {}
 	var dir = DirAccess.open(directory)
 	if dir:
@@ -24,7 +27,7 @@ func read_files(directory: String, prefix: String):
 				pass
 			else:
 				#print("Found file: " + file_name)
-				database[file_name.trim_prefix(prefix).trim_suffix(".tres")] = load(directory + file_name)
+				database[file_name.trim_prefix(prefix).trim_suffix(suffix)] = load(directory + file_name)
 			file_name = dir.get_next()
 		dir.list_dir_end()
 	else:

@@ -4,6 +4,8 @@ class_name RecipeBuilding
 
 @export var recipes : Array[Recipe]
 
+@export var on_sprite: Texture2D
+
 var selectedRecipe : Recipe
 
 var inputInventoryItems : Array[Item]
@@ -16,40 +18,49 @@ var inProgress = false
 
 var timer = 0
 var timeElapsed = 0
-func process(delta):
-	
-	timer += delta
-	if timer > 1:
-		#DEBUGGING
-		print("Input Items:", inputInventoryItems)
-		print("Input Amounts:", inputInventoryAmounts)
-		print()
-		print("Output Items:", outputInventoryItems)
-		print("Output Amounts:", outputInventoryAmounts)
-		print()
-		print("Selected Recipe:", selectedRecipe)
-		print("In Progress:", inProgress)
-		print()
-		print("Have enough:", haveEnoughResources())
-		print()
-		print("------------------------------------------")
-		#DEBUGGING
-		timer = 0
-	
+func _physics_process(delta):
+	super(delta)
+	if left_click_down:
+		selectRecipe(0)
+		startCraft()
+
+	#timer += delta
+	#if timer > 1:
+		##DEBUGGING
+		#
+		#print("Input Items:", inputInventoryItems)
+		#print("Input Amounts:", inputInventoryAmounts)
+		#print()
+		#print("Output Items:", outputInventoryItems)
+		#print("Output Amounts:", outputInventoryAmounts)
+		#print()
+		#print("Selected Recipe:", selectedRecipe)
+		#print("In Progress:", inProgress)
+		#print()
+		#print("Have enough:", haveEnoughResources())
+		#print(left_click_down)
+		#print()
+		#print("------------------------------------------")
+		##DEBUGGING
+		#timer = 0
 	
 	if selectedRecipe == null:
 		return
 	
 	#If we are currently crafting then either add to elapsed time or finish crafting if time is up.
 	if inProgress:
-		
+		sprite2D.texture = on_sprite
+			
 		if timeElapsed > selectedRecipe.craftingTime:
 			endCraft()
 		else:
 			timeElapsed += delta
 		
+	else:
+		sprite2D.texture = sprite
 	if !inProgress and haveEnoughResources():
 		startCraft()
+	
 	
 func selectRecipe(recipeIndex : int):
 	
@@ -104,3 +115,4 @@ func haveEnoughResources() -> bool:
 			return false
 	return true
 	
+

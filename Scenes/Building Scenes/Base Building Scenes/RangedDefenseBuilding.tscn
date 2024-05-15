@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctqwwuvbd0b7c"]
+
+[ext_resource type="PackedScene" uid="uid://n0puljiygqrr" path="res://Scenes/Building Scenes/Base Building Scenes/DefenseBuilding.tscn" id="1_iheb4"]
+[ext_resource type="Script" path="res://Scripts/Building Scripts/RangedDefenseBuilding.gd" id="2_40lsu"]
+
+[node name="RangedDefenseBuilding" instance=ExtResource("1_iheb4")]
+script = ExtResource("2_40lsu")
+projectile = null
