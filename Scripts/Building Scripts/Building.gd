@@ -72,7 +72,7 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 			if event.button_index == 1:
 				left_click_down = false
 			if event.button_index == 2:
-				right_click_down = true
+				right_click_down = false
 
 func take_damage(damage):
 	current_health -= damage

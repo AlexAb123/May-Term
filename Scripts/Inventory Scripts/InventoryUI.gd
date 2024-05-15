@@ -23,18 +23,28 @@ func _ready():
 		add_child(new_slot)
 		
 		slots.append(new_slot)
-	print(slot_count/columns)
+		
+	#CENTERING THE INVENTORY ON THE SCREEN
 	pivot_offset.x = (16*columns+get_theme_constant("h_separation")*(columns-1))/2
 	var tempy = (int(float(slot_count)/columns))
 	pivot_offset.y = (16*tempy+get_theme_constant("v_separation")*(tempy-1))/2
 	anchors_preset = PRESET_CENTER
-	print(pivot_offset)
 	
 	close()
 	
-func slot_input_event(slot_id, inputEvent):
-	pass
-	
+func slot_input_event(slot_id, event):
+	if event is InputEventMouseButton:
+		if event.pressed:
+			if event.button_index == 1:
+				left_click_slot(slot_id)
+			if event.button_index == 2:
+				right_click_slot(slot_id)
+
+func left_click_slot(slot_id):
+	print("left " + str(slot_id))
+func right_click_slot(slot_id):
+	print("right " + str(slot_id))		
+
 func _process(delta):
 	if Input.is_action_just_pressed("e"):
 		if visible:
