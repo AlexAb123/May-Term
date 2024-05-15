@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://dbg5hg88ngfkg"]
 
 [ext_resource type="Script" path="res://Scripts/Building Scripts/Building.gd" id="1_e7ngb"]
+[ext_resource type="Script" path="res://Scripts/Health Bar Scripts/BuildingHealthBar.gd" id="3_1ehi7"]
 [ext_resource type="Texture2D" uid="uid://mg6onenv8ktb" path="res://assets/health/health.png" id="3_66sok"]
-[ext_resource type="Script" path="res://Scenes/Health Bar Scripts/BuildingHealthBar.gd" id="4_820u8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e6rv2"]
 size = Vector2(8, 8)
@@ -32,7 +32,7 @@ offset_right = 786.0
 offset_bottom = 132.0
 scale = Vector2(0.0199957, -0.0331187)
 texture_progress = ExtResource("3_66sok")
-script = ExtResource("4_820u8")
+script = ExtResource("3_1ehi7")
 building = NodePath("..")
 
 [connection signal="input_event" from="MouseArea2D" to="." method="_on_area_2d_input_event"]

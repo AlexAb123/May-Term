@@ -10,8 +10,6 @@ var enemy_directory = "res://Scenes/Enemy Scenes/"
 func _ready():
 	item_database = read_files(item_directory, "ITEM_", ".tres")
 	enemy_database = read_files(enemy_directory, "", ".tscn")
-	print(item_database)
-	print(enemy_database)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

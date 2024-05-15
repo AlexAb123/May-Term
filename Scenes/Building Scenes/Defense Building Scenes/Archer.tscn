@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwxht4pvk6ljw"]
-
-[ext_resource type="PackedScene" uid="uid://n0puljiygqrr" path="res://Scenes/Building Scenes/Base Building Scenes/DefenseBuilding.tscn" id="1_htjw4"]
-[ext_resource type="Texture2D" uid="uid://dl0qs1cg2k0d3" path="res://assets/Custom Sprites/Gold_Ore.png" id="2_g5skr"]
-
-[node name="Archer" instance=ExtResource("1_htjw4")]
-damage = 10
-fire_rate = 1.0
-sprite = ExtResource("2_g5skr")

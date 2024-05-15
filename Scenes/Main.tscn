@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dw3niubftv6cf" path="res://assets/health/bar.png" id="5_7n2sy"]
 [ext_resource type="PackedScene" uid="uid://b3xvsbpqeyd3s" path="res://Scenes/Enemy Scenes/Base Enemy Scenes/Enemy.tscn" id="6_120ga"]
 [ext_resource type="Texture2D" uid="uid://mg6onenv8ktb" path="res://assets/health/health.png" id="6_o41ll"]
-[ext_resource type="Script" path="res://Scenes/Health Bar Scripts/PlayerHealthBar.gd" id="7_u84qr"]
+[ext_resource type="Script" path="res://Scripts/Health Bar Scripts/PlayerHealthBar.gd" id="7_u84qr"]
 
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
@@ -34,4 +34,3 @@ player = NodePath("../../Player")
 
 [node name="Enemy" parent="." instance=ExtResource("6_120ga")]
 position = Vector2(61, -2)
-collision_layer = 3

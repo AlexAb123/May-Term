@@ -67,6 +67,9 @@ func _physics_process(delta):
 				#hurtByEnemy(area)
 	
 func _process(delta):
+	
+	var mouse_position: Vector2 = get_global_mouse_position()
+	
 	selected_item_sprite.global_position.x = snapped(get_global_mouse_position().x, 16)
 	selected_item_sprite.global_position.y = snapped(get_global_mouse_position().y, 16)
 	if Input.is_action_just_pressed("z"):
@@ -74,9 +77,12 @@ func _process(delta):
 	if Input.is_action_just_pressed("x"):
 		select_item(Database.item_database["Furnace"])
 	if Input.is_action_just_pressed("g"):
-		select_item(Database.item_database["Archer"])
+		select_item(Database.item_database["Archer_Tower"])
+	if Input.is_action_just_pressed("middle_click"):
+		var enemy = load("res://Scenes/Enemy Scenes/Base Enemy Scenes/Enemy.tscn").instantiate()
+		enemy.global_position = mouse_position
+		owner.add_child(enemy)
 	
-	var mouse_position: Vector2 = get_global_mouse_position()
 	
 	if left_click_down:
 		if selected_item is PlaceableItem and not BuildingManager.check_position_occupied(get_global_mouse_position()):
