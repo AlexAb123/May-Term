@@ -8,5 +8,5 @@
 projectile = ExtResource("2_jrcpx")
 health = 50
 detection_range = 75
-attack_cooldown = 0.1
+attack_cooldown = 0.5
 sprite = ExtResource("2_dy8nd")

@@ -7,6 +7,9 @@ var direction: Vector2
 @export var damage: int = 10
 @export var speed: int = 10
 
+@export var starting_pierce_count: int = 1
+@onready var current_pierce_count: int = starting_pierce_count
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	global_position = start_position
@@ -22,8 +25,10 @@ func _physics_process(delta):
 func _on_area_2d_body_entered(body):
 	if body is Enemy:
 		body.take_damage(damage)
-		queue_free()
-
+		current_pierce_count = current_pierce_count - 1
+		if current_pierce_count <= 0:
+			queue_free()
+		
 
 func _on_timer_timeout():
 	queue_free()

@@ -10,7 +10,7 @@ class_name Enemy
 @export var damage: int = 5
 @export var attack_cooldown: float = 1
 @export var max_health: int = 20
-@export var current_health: int = max_health
+@onready var current_health: int = max_health
 @export var armor: int
 @export var detection_range: int = 25
 @export var damage_range: int = 8
