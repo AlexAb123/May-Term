@@ -106,7 +106,6 @@ y_sort_enabled = true
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_8cx2i")
-damage = 0
 attack_cooldown = 0.3
 max_health = 30
 detection_range = 35
