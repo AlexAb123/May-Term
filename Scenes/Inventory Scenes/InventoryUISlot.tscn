@@ -1,16 +1,18 @@
 [gd_scene load_steps=3 format=3 uid="uid://bxm3jiyoixyf0"]
 
-[ext_resource type="Texture2D" uid="uid://bkgdprgdchbxj" path="res://assets/sprites/MinecraftSlot.webp" id="1_c6nfp"]
-[ext_resource type="Script" path="res://InventoryUISlot.gd" id="1_oat8s"]
+[ext_resource type="Script" path="res://Scripts/Inventory Scripts/InventoryUISlot.gd" id="1_mjltl"]
+[ext_resource type="Texture2D" uid="uid://bkgdprgdchbxj" path="res://assets/sprites/MinecraftSlot.webp" id="2_bygfh"]
 
 [node name="InventoryUISlot" type="Panel"]
 self_modulate = Color(1, 1, 1, 0.219608)
 custom_minimum_size = Vector2(85, 85)
 offset_right = 85.0
 offset_bottom = 85.0
-script = ExtResource("1_oat8s")
+script = ExtResource("1_mjltl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(43.7, 44.22)
 scale = Vector2(0.0461458, 0.0456042)
-texture = ExtResource("1_c6nfp")
+texture = ExtResource("2_bygfh")
+
+[node name="ItemSprite2D" type="Sprite2D" parent="."]

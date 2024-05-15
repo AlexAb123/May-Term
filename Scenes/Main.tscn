@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/CameraScripts/Camera.gd" id="2_wulpf"]
 [ext_resource type="Texture2D" uid="uid://s4t57ssophup" path="res://icon.svg" id="3_mlsly"]
 [ext_resource type="Texture2D" uid="uid://ds5p6d23xpleh" path="res://assets/Test/16x16/Tilesets/New/Solaria Demo Tiles.png" id="5_wuw67"]
-[ext_resource type="PackedScene" uid="uid://cbevvfkxg4xd0" path="res://Scenes/InventoryUI.tscn" id="6_7vi8w"]
+[ext_resource type="PackedScene" uid="uid://xy2vr6tknt6g" path="res://Scenes/Inventory Scenes/InventoryUI.tscn" id="6_7vi8w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ijkaf"]
 texture = ExtResource("5_wuw67")

@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbevvfkxg4xd0"]
+[gd_scene load_steps=3 format=3 uid="uid://xy2vr6tknt6g"]
 
 [ext_resource type="Script" path="res://Scripts/Inventory Scripts/InventoryUI.gd" id="1_mbsl2"]
-[ext_resource type="PackedScene" uid="uid://bxm3jiyoixyf0" path="res://InventoryUISlot.tscn" id="2_javjt"]
+[ext_resource type="PackedScene" uid="uid://bxm3jiyoixyf0" path="res://Scenes/Inventory Scenes/InventoryUISlot.tscn" id="2_javjt"]
 
 [node name="InventoryUI" type="Control"]
 custom_minimum_size = Vector2(350, 350)

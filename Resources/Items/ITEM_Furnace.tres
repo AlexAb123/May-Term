@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="PlaceableItem" load_steps=3 format=3 uid="uid://ctegtfrflqve6"]
 
-[ext_resource type="PackedScene" uid="uid://dloo3aiadge4" path="res://Scenes/Building Scenes/Furnace.tscn" id="1_1jaia"]
+[ext_resource type="PackedScene" path="res://Scenes/Building Scenes/Furnace.tscn" id="1_1jaia"]
 [ext_resource type="Script" path="res://Scripts/Resource Scripts/Item Scripts/Placeable_Item.gd" id="2_08mpj"]
 
 [resource]

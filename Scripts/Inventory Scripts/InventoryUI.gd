@@ -1,20 +1,18 @@
 extends Control
 
-var isOpen = false
+class_name Inventory_UI
 
 func _ready():
 	close()
 
 func _process(delta):
 	if Input.is_action_just_pressed("e"):
-		if isOpen:
+		if visible:
 			close()
 		else:
 			open()
 func open():
-	isOpen = true 
-	self.visible = true
+	visible = true
 
 func close():
-	isOpen = false
 	visible = false
