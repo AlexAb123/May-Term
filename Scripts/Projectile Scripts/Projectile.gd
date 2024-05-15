@@ -7,8 +7,8 @@ var direction: Vector2
 @export var damage: int = 10
 @export var speed: int = 10
 
-@export var starting_pierce_count: int = 1
-@onready var current_pierce_count: int = starting_pierce_count
+@export var pierce_count: int = 1
+@onready var current_pierce_count: int = pierce_count
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

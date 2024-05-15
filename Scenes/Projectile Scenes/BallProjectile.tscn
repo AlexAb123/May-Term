@@ -6,8 +6,8 @@
 [node name="BallProjectile" instance=ExtResource("1_ruguw")]
 collision_layer = 0
 collision_mask = 0
-speed = 75
-starting_pierce_count = 2
+speed = 150
+pierce_count = 2
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_gajfj")
