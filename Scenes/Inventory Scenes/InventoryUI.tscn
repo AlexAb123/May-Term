@@ -1,0 +1,73 @@
+[gd_scene load_steps=3 format=3 uid="uid://xy2vr6tknt6g"]
+
+[ext_resource type="Script" path="res://Scripts/Inventory Scripts/InventoryUI.gd" id="1_mbsl2"]
+[ext_resource type="PackedScene" uid="uid://bxm3jiyoixyf0" path="res://Scenes/Inventory Scenes/InventoryUISlot.tscn" id="2_javjt"]
+
+[node name="InventoryUI" type="Control"]
+custom_minimum_size = Vector2(350, 350)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 350.0
+offset_bottom = 350.0
+script = ExtResource("1_mbsl2")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 1
+z_as_relative = false
+layout_mode = 0
+offset_right = 350.0
+offset_bottom = 350.0
+
+[node name="GridContainer" type="GridContainer" parent="ColorRect"]
+layout_mode = 0
+offset_right = 349.0
+offset_bottom = 349.0
+columns = 4
+
+[node name="InventoryUISlot" parent="ColorRect/GridContainer" instance=ExtResource("2_javjt")]
+layout_mode = 2
+
+[node name="InventoryUISlot2" parent="ColorRect/GridContainer" instance=ExtResource("2_javjt")]
+layout_mode = 2
+
+[node name="InventoryUISlot3" parent="ColorRect/GridContainer" instance=ExtResource("2_javjt")]
+layout_mode = 2
+
+[node name="InventoryUISlot4" parent="ColorRect/GridContainer" instance=ExtResource("2_javjt")]
+layout_mode = 2
+
+[node name="InventoryUISlot5" parent="ColorRect/GridContainer" instance=ExtResource("2_javjt")]
+layout_mode = 2
+
+[node name="InventoryUISlot6" parent="ColorRect/GridContainer" instance=ExtResource("2_javjt")]
+layout_mode = 2
+
+[node name="InventoryUISlot7" parent="ColorRect/GridContainer" instance=ExtResource("2_javjt")]
+layout_mode = 2
+
+[node name="InventoryUISlot8" parent="ColorRect/GridContainer" instance=ExtResource("2_javjt")]
+layout_mode = 2
+
+[node name="InventoryUISlot9" parent="ColorRect/GridContainer" instance=ExtResource("2_javjt")]
+layout_mode = 2
+
+[node name="InventoryUISlot10" parent="ColorRect/GridContainer" instance=ExtResource("2_javjt")]
+layout_mode = 2
+
+[node name="InventoryUISlot11" parent="ColorRect/GridContainer" instance=ExtResource("2_javjt")]
+layout_mode = 2
+
+[node name="InventoryUISlot12" parent="ColorRect/GridContainer" instance=ExtResource("2_javjt")]
+layout_mode = 2
+
+[node name="InventoryUISlot13" parent="ColorRect/GridContainer" instance=ExtResource("2_javjt")]
+layout_mode = 2
+
+[node name="InventoryUISlot14" parent="ColorRect/GridContainer" instance=ExtResource("2_javjt")]
+layout_mode = 2
+
+[node name="InventoryUISlot15" parent="ColorRect/GridContainer" instance=ExtResource("2_javjt")]
+layout_mode = 2
+
+[node name="InventoryUISlot16" parent="ColorRect/GridContainer" instance=ExtResource("2_javjt")]
+layout_mode = 2
