@@ -23,6 +23,7 @@ Global="*res://Scripts/Singletons/Global.gd"
 
 [display]
 
+window/stretch/mode="canvas_items"
 window/vsync/vsync_mode=0
 
 [input]

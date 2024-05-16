@@ -6,5 +6,5 @@
 [resource]
 script = ExtResource("1_7gkaj")
 name = "Iron Bar"
-stackSize = 100
 sprite = ExtResource("2_itc1b")
+id = 1

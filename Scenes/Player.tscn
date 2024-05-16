@@ -1,8 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://cqbjmjoub20yy"]
+[gd_scene load_steps=29 format=3 uid="uid://cqbjmjoub20yy"]
 
 [ext_resource type="Script" path="res://Scripts/Player Scripts/Player.gd" id="1_fb2bp"]
 [ext_resource type="Texture2D" uid="uid://c2ikd5at4f3jv" path="res://assets/sprites/knight.png" id="2_ljflb"]
 [ext_resource type="PackedScene" uid="uid://xy2vr6tknt6g" path="res://Scenes/Inventory Scenes/InventoryUI.tscn" id="3_cdftl"]
+[ext_resource type="Texture2D" uid="uid://dw3niubftv6cf" path="res://assets/health/bar.png" id="4_6qfgi"]
+[ext_resource type="Texture2D" uid="uid://mg6onenv8ktb" path="res://assets/health/health.png" id="5_sojft"]
+[ext_resource type="Script" path="res://Scripts/Health Bar Scripts/PlayerHealthBar.gd" id="6_sm484"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gwfyl"]
 radius = 3.0
@@ -182,6 +185,23 @@ offset = Vector2(2.08165e-12, -10)
 [node name="InventoryUI" parent="CanvasLayer" instance=ExtResource("3_cdftl")]
 light_mask = 0
 visibility_layer = 2
+
+[node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("player")]
+anchors_preset = -1
+anchor_left = 0.992
+anchor_right = 0.992
+offset_left = -413.784
+offset_top = 24.0
+offset_right = 380.216
+offset_bottom = 148.0
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture_under = ExtResource("4_6qfgi")
+texture_progress = ExtResource("5_sojft")
+script = ExtResource("6_sm484")
+player = NodePath("../..")
+metadata/_edit_use_anchors_ = true
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true

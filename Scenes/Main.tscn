@@ -19,18 +19,24 @@ position = Vector2(-45, -29)
 
 [node name="Camera2D" parent="." instance=ExtResource("3_nd7p8")]
 
-[node name="HealthBar" type="TextureProgressBar" parent="Camera2D" node_paths=PackedStringArray("player")]
-offset_left = 77.0
-offset_top = -67.0
-offset_right = 871.0
-offset_bottom = 57.0
+[node name="TileMap" parent="." instance=ExtResource("4_241aj")]
+
+[node name="Enemy" parent="." instance=ExtResource("6_120ga")]
+position = Vector2(61, -2)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("player")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1152.0
+offset_right = -358.0
+offset_bottom = 124.0
+grow_horizontal = 0
 scale = Vector2(0.0774108, -0.0725074)
 texture_under = ExtResource("5_7n2sy")
 texture_progress = ExtResource("6_o41ll")
 script = ExtResource("7_u84qr")
 player = NodePath("../../Player")
-
-[node name="TileMap" parent="." instance=ExtResource("4_241aj")]
-
-[node name="Enemy" parent="." instance=ExtResource("6_120ga")]
-position = Vector2(61, -2)
+metadata/_edit_use_anchors_ = true
