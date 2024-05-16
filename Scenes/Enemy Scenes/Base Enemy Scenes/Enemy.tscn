@@ -93,8 +93,9 @@ animations = [{
 "speed": 7.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_wef47"]
-radius = 7.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_evj7i"]
+radius = 1.99998
+height = 7.99994
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_io5ol"]
 radius = 47.0425
@@ -103,8 +104,8 @@ radius = 47.0425
 
 [node name="Enemy" type="CharacterBody2D"]
 y_sort_enabled = true
-collision_layer = 4
-collision_mask = 3
+collision_layer = 6
+collision_mask = 6
 script = ExtResource("1_8cx2i")
 attack_cooldown = 0.3
 max_health = 30
@@ -117,11 +118,11 @@ animation = &"death"
 autoplay = "idle"
 frame = 3
 frame_progress = 1.0
-offset = Vector2(2.08165e-12, -10)
+offset = Vector2(2.08165e-12, -14)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.57481
-shape = SubResource("CircleShape2D_wef47")
+shape = SubResource("CapsuleShape2D_evj7i")
 
 [node name="DetectionArea2D" type="Area2D" parent="."]
 collision_layer = 0
@@ -137,7 +138,7 @@ collision_mask = 2
 [node name="DamageCollisionShape2D" type="CollisionShape2D" parent="DamageArea2D"]
 shape = SubResource("CircleShape2D_6ctfx")
 
-[node name="HealthBar" type="TextureProgressBar" parent="." node_paths=PackedStringArray("enemy")]
+[node name="HealthBar" type="TextureProgressBar" parent="."]
 offset_left = -8.0
 offset_top = 4.0
 offset_right = 786.0
@@ -145,7 +146,8 @@ offset_bottom = 128.0
 scale = Vector2(0.0199957, -0.0331187)
 texture_progress = ExtResource("4_pkufp")
 script = ExtResource("4_egq4x")
-enemy = NodePath("..")
+enemy = Object(CharacterBody2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":true,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"disable_mode":0,"collision_layer":6,"collision_mask":6,"collision_priority":1.0,"input_pickable":false,"motion_mode":0,"up_direction":Vector2(0, -1),"velocity":Vector2(0, 0),"slide_on_ceiling":true,"max_slides":4,"wall_min_slide_angle":0.261799,"floor_stop_on_slope":true,"floor_constant_speed":false,"floor_block_on_wall":true,"floor_max_angle":0.785398,"floor_snap_length":1.0,"platform_on_leave":0,"platform_floor_layers":4294967295,"platform_wall_layers":0,"safe_margin":0.08,"script":ExtResource("1_8cx2i"),"speed":25,"damage":5,"attack_cooldown":0.3,"max_health":30,"armor":0,"detection_range":35,"damage_range":8)
+
 
 [connection signal="body_entered" from="DetectionArea2D" to="." method="_on_detection_area_2d_body_entered"]
 [connection signal="body_exited" from="DetectionArea2D" to="." method="_on_detection_area_2d_body_exited"]

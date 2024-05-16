@@ -20,9 +20,11 @@ config/icon="res://icon.svg"
 Database="*res://Scripts/Singletons/Database.gd"
 BuildingManager="*res://Scripts/Singletons/BuildingManager.gd"
 Global="*res://Scripts/Singletons/Global.gd"
+EnemySpawner="*res://Scenes/Enemy Spawner.tscn"
 
 [display]
 
+window/stretch/mode="viewport"
 window/vsync/vsync_mode=0
 
 [input]
