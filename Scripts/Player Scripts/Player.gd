@@ -86,7 +86,7 @@ func _process(delta):
 		set_item_stack(ItemStack.new(Database.item_database["Furnace"], 10))
 	if Input.is_action_just_pressed("g"):
 		set_item_stack(ItemStack.new(Database.item_database["Archer_Tower"], 10))
-	if Input.is_action_just_pressed("middle_click"):
+	if Input.is_action_just_pressed("y"):
 		var enemy = load("res://Scenes/Enemy Scenes/Base Enemy Scenes/Enemy.tscn").instantiate()
 		enemy.global_position = mouse_position
 		owner.add_child(enemy)
