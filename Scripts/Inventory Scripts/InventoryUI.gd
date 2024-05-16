@@ -49,17 +49,21 @@ func left_click_slot(slot_id):
 	#If slot is empty and holding item, place that item into the slot
 	if not item_stacks[slot_id] and selected_item:
 		item_stacks[slot_id] = selected_item_stack
-		Global.player.selected_item_stack = null
-		return
+		Global.player.set_item_stack(null)
 	
 	#If slot is not empty and holding same item, add that item into the slot
-	if item_stacks[slot_id] and item_stacks[slot_id].item == selected_item:
+	elif item_stacks[slot_id] and item_stacks[slot_id].item == selected_item:
 		var remainder = (item_stacks[slot_id].count + selected_item_count) % selected_item.stack_size
 		item_stacks[slot_id].count = item_stacks[slot_id].count + selected_item_count - remainder
 		if remainder > 0:
 			Global.player.selected_item_stack.count = remainder
 		else:
-			Global.player.selected_item_stack = null
+			Global.player.set_item_stack(null)
+			
+	#If slot is not empty and not holding item, pick up the item
+	elif item_stacks[slot_id] and not selected_item_stack:
+		Global.player.set_item_stack(item_stacks[slot_id])
+		item_stacks[slot_id] = null
 	
 	
 	update_slot(slot_id)
@@ -71,6 +75,7 @@ func right_click_slot(slot_id):
 func update_slot(slot_id):
 	
 	if item_stacks[slot_id]:
+		print("ASDSD")
 		slots[slot_id].set_sprite(item_stacks[slot_id].item.sprite)
 		slots[slot_id].set_count_label(str(item_stacks[slot_id].count))
 		

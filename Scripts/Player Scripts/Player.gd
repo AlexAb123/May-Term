@@ -9,12 +9,11 @@ signal healthChanged
 @onready var current_health: int = max_health
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var selected_item_sprite: Sprite2D = $SelectedItemSprite
+@onready var selected_item_label: Label = $SelectedItemSprite/SelectedItemCount
 
 @onready var inventory: Inventory_UI = $CanvasLayer/InventoryUI
 
-@export var selected_item: Item
-
-@export var selected_item_stack: ItemStack
+var selected_item_stack: ItemStack
 
 var is_deconstructing: bool = false
 
@@ -32,7 +31,6 @@ func take_damage(damage):
 		
 func death():
 	print("Player Died")
-
 
 func _physics_process(delta):
 	#Get inputs and move up down left and right.
@@ -73,8 +71,12 @@ func _process(delta):
 	
 	
 	if not inventory.visible and left_click_down:
-		if selected_item is PlaceableItem and not BuildingManager.check_position_occupied(get_global_mouse_position()):
-			var building: Building = selected_item.buildingScene.instantiate()
+		if selected_item_stack and selected_item_stack.item is PlaceableItem and not BuildingManager.check_position_occupied(get_global_mouse_position()):
+			var building: Building = selected_item_stack.item.buildingScene.instantiate()
+			selected_item_stack.count = selected_item_stack.count - 1
+			if selected_item_stack.count <= 0:
+				selected_item_stack = null
+			update_selected_item_sprite_and_label()
 			building.global_position = snapped(get_global_mouse_position(), Vector2(16, 16))
 			BuildingManager.add_building(building)
 			get_owner().add_child(building)
@@ -82,22 +84,16 @@ func _process(delta):
 		
 		
 	if Input.is_action_just_pressed("q"):
-		select_item(null)
+		set_item_stack(null)
 	if Input.is_action_just_pressed("x"):
-		select_item(Database.item_database["Furnace"])
+		set_item_stack(ItemStack.new(Database.item_database["Furnace"],1))
 	if Input.is_action_just_pressed("g"):
-		select_item(Database.item_database["Archer_Tower"])
+		set_item_stack(ItemStack.new(Database.item_database["Archer_Tower"],1))
 	if Input.is_action_just_pressed("middle_click"):
 		var enemy = load("res://Scenes/Enemy Scenes/Base Enemy Scenes/Enemy.tscn").instantiate()
 		enemy.global_position = mouse_position
 		owner.add_child(enemy)
 	
-func select_item(new_item: Item):
-	selected_item = new_item
-	if new_item:
-		selected_item_sprite.texture = selected_item.sprite
-	else:
-		selected_item_sprite.texture = null
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -126,3 +122,28 @@ func _on_right_click_pressed():
 
 func _on_right_click_released():
 	right_click_down = false
+
+
+func set_item_stack(item_stack: ItemStack):
+	selected_item_stack = item_stack
+	update_selected_item_sprite_and_label()
+
+func set_item_stack_count(count: int):
+	selected_item_stack.count = count
+	update_selected_item_sprite_and_label()
+	
+func update_selected_item_sprite_and_label():
+	if selected_item_stack:
+		selected_item_label.text = str(selected_item_stack.count)
+		selected_item_sprite.texture = selected_item_stack.item.sprite
+	else:
+		selected_item_sprite.texture = null
+		selected_item_label.text = ""
+
+func _on_timer_timeout():
+	if selected_item_stack:
+		print(selected_item_stack.item)
+		print(selected_item_stack.count)
+	else:
+		print("EMPTY")
+	print()
