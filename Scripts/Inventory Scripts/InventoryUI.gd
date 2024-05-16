@@ -37,7 +37,6 @@ func slot_input_event(slot_id, event):
 				right_click_slot(slot_id)
 
 func left_click_slot(slot_id):
-	print("left " + str(slot_id))
 	
 	var selected_item_stack: ItemStack = Global.player.selected_item_stack
 	var selected_item_count: int = 0
@@ -53,12 +52,21 @@ func left_click_slot(slot_id):
 	
 	#If slot is not empty and holding same item, add that item into the slot
 	elif item_stacks[slot_id] and item_stacks[slot_id].item == selected_item:
-		var remainder = (item_stacks[slot_id].count + selected_item_count) % selected_item.stack_size
-		item_stacks[slot_id].count = item_stacks[slot_id].count + selected_item_count - remainder
-		if remainder > 0:
-			Global.player.selected_item_stack.count = remainder
-		else:
+		var total_count: int = item_stacks[slot_id].count + selected_item_count
+		var remainder = total_count % selected_item.stack_size
+		
+		if total_count < selected_item.stack_size:
+			item_stacks[slot_id].count = remainder
 			Global.player.set_item_stack(null)
+			
+		elif total_count > selected_item.stack_size:
+			item_stacks[slot_id].count = total_count - remainder
+			Global.player.set_item_stack_count(remainder)
+		
+		elif total_count == selected_item.stack_size:
+			item_stacks[slot_id].count = total_count
+			Global.player.set_item_stack(null)
+		
 			
 	#If slot is not empty and not holding item, pick up the item
 	elif item_stacks[slot_id] and not selected_item_stack:
@@ -70,18 +78,21 @@ func left_click_slot(slot_id):
 	
 	
 func right_click_slot(slot_id):
-	print("right " + str(slot_id))
+	pass
 	
 func update_slot(slot_id):
 	
 	if item_stacks[slot_id]:
-		print("ASDSD")
 		slots[slot_id].set_sprite(item_stacks[slot_id].item.sprite)
 		slots[slot_id].set_count_label(str(item_stacks[slot_id].count))
 		
 	else:
 		slots[slot_id].set_sprite(null)
 		slots[slot_id].set_count_label("")
+		
+func add_item_stack(item_stack):
+	pass
+
 
 func _process(delta):
 	if Input.is_action_just_pressed("e"):

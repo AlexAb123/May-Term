@@ -20,7 +20,7 @@ var is_deconstructing: bool = false
 func _ready():
 	Global.set_player(self)
 	
-	selected_item_sprite.modulate.a = 0.5
+	selected_item_sprite.modulate.a = 0.8
 
 func take_damage(damage):
 	current_health -= damage
@@ -65,10 +65,9 @@ func _process(delta):
 	
 	var mouse_position: Vector2 = get_global_mouse_position()
 	
-	selected_item_sprite.global_position.x = snapped(get_global_mouse_position().x, 16)
-	selected_item_sprite.global_position.y = snapped(get_global_mouse_position().y, 16)
+	selected_item_sprite.global_position.x = get_global_mouse_position().x
+	selected_item_sprite.global_position.y = get_global_mouse_position().y
 
-	
 	
 	if not inventory.visible and left_click_down:
 		if selected_item_stack and selected_item_stack.item is PlaceableItem and not BuildingManager.check_position_occupied(get_global_mouse_position()):
@@ -86,9 +85,9 @@ func _process(delta):
 	if Input.is_action_just_pressed("q"):
 		set_item_stack(null)
 	if Input.is_action_just_pressed("x"):
-		set_item_stack(ItemStack.new(Database.item_database["Furnace"],1))
+		set_item_stack(ItemStack.new(Database.item_database["Furnace"], 10))
 	if Input.is_action_just_pressed("g"):
-		set_item_stack(ItemStack.new(Database.item_database["Archer_Tower"],1))
+		set_item_stack(ItemStack.new(Database.item_database["Archer_Tower"], 10))
 	if Input.is_action_just_pressed("middle_click"):
 		var enemy = load("res://Scenes/Enemy Scenes/Base Enemy Scenes/Enemy.tscn").instantiate()
 		enemy.global_position = mouse_position
@@ -139,11 +138,3 @@ func update_selected_item_sprite_and_label():
 	else:
 		selected_item_sprite.texture = null
 		selected_item_label.text = ""
-
-func _on_timer_timeout():
-	if selected_item_stack:
-		print(selected_item_stack.item)
-		print(selected_item_stack.count)
-	else:
-		print("EMPTY")
-	print()

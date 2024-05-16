@@ -8,5 +8,5 @@
 script = ExtResource("2_08mpj")
 buildingScene = ExtResource("1_gylp7")
 name = ""
-stackSize = 10
+stack_size = 50
 sprite = ExtResource("3_odwti")
