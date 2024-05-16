@@ -149,7 +149,7 @@ func right_click_slot(slot_id):
 	
 func update_slot(slot_id):
 	
-	if item_stacks[slot_id]:
+	if item_stacks[slot_id] and item_stacks[slot_id].count > 0:
 		slots[slot_id].set_sprite(item_stacks[slot_id].item.sprite)
 		slots[slot_id].set_count_label(str(item_stacks[slot_id].count))
 		
@@ -158,11 +158,9 @@ func update_slot(slot_id):
 		slots[slot_id].set_count_label("")
 		
 func add_item_stack(item_stack):
-	for i in item_stacks.size():
-		if item_stacks[i].item == item_stack.item:
-			item_stacks[i].count = item_stacks[i].count + item_stack.count
-			update_slot(i)
-			return
+	item_stacks[item_stack.item.id].count = item_stacks[item_stack.item.id].count + item_stack.count
+	update_slot(item_stack.item.id)
+	return
 
 func _process(delta):
 	if Input.is_action_just_pressed("e"):
