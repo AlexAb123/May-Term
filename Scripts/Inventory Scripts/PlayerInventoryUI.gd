@@ -1,13 +1,16 @@
 extends GridContainer
 
-class_name Inventory_UI
+class_name Player_Inventory_UI
 
-@export var slot_scene: PackedScene
+@onready var slot_scene: PackedScene = preload("res://Scenes/Inventory Scenes/InventoryUISlot.tscn")
 
 @export var slot_count: int = 9
 
 var slots: Array[Inventory_UI_Slot] = []
 var item_stacks: Array[ItemStack] = []
+
+
+var xshift = 0
 
 func _ready():
 	
@@ -25,6 +28,8 @@ func _ready():
 	var tempy = (int(float(slot_count)/columns))
 	pivot_offset.y = (16*tempy+get_theme_constant("v_separation")*(tempy-1))/2
 	anchors_preset = PRESET_CENTER
+	xshift = (16*columns+get_theme_constant("h_separation")*(columns-1))*3
+	position.x = position.x - xshift
 	
 	for i in Database.item_id_database.size():
 		item_stacks[i] = ItemStack.new(Database.item_id_database[i], 0)

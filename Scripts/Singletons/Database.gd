@@ -37,7 +37,7 @@ func read_files(directory: String, prefix: String, suffix: String):
 				#print("Found directory: " + file_name)
 				pass
 			else:
-				print("Found file: " + file_name)
+				#print("Found file: " + file_name)
 				var item: Item = load(directory + file_name)
 				database[file_name.trim_prefix(prefix).trim_suffix(suffix)] = [item, item.id]
 				id_database.append(load(directory + file_name))

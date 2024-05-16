@@ -6,6 +6,8 @@ class_name RecipeBuilding
 
 @export var on_sprite: Texture2D
 
+@onready var inventory: Recipe_Building_Inventory_UI = $CanvasLayer/InventoryUI
+
 var selectedRecipe : Recipe
 
 var inputInventoryItems : Array[Item]
@@ -21,29 +23,16 @@ var timeElapsed = 0
 func _physics_process(delta):
 	super(delta)
 	if left_click_down:
+		print("llll")
+		inventory.open()
+		
+		
+		
+		
+		
 		selectRecipe(0)
 		startCraft()
 
-	#timer += delta
-	#if timer > 1:
-		##DEBUGGING
-		#
-		#print("Input Items:", inputInventoryItems)
-		#print("Input Amounts:", inputInventoryAmounts)
-		#print()
-		#print("Output Items:", outputInventoryItems)
-		#print("Output Amounts:", outputInventoryAmounts)
-		#print()
-		#print("Selected Recipe:", selectedRecipe)
-		#print("In Progress:", inProgress)
-		#print()
-		#print("Have enough:", haveEnoughResources())
-		#print(left_click_down)
-		#print()
-		#print("------------------------------------------")
-		##DEBUGGING
-		#timer = 0
-	
 	if selectedRecipe == null:
 		return
 	

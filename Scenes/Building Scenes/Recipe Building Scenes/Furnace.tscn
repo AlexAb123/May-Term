@@ -10,3 +10,12 @@ recipes = Array[Resource("res://Scripts/Resource Scripts/Recipe Scripts/Recipe.g
 on_sprite = ExtResource("4_dmqp5")
 item_name = "Furnace"
 sprite = ExtResource("5_o64gn")
+
+[node name="InventoryUI" parent="CanvasLayer" index="0"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
