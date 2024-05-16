@@ -22,10 +22,11 @@ var timer = 0
 var timeElapsed = 0
 func _physics_process(delta):
 	super(delta)
-	if left_click_down:
-		print("llll")
+	
+	if right_click_down:
 		inventory.open()
-		
+		Global.player.inventory.open()
+	if left_click_down:
 		
 		
 		

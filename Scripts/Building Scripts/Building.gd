@@ -61,8 +61,8 @@ var right_click_down = false
 
 func _on_area_2d_input_event(viewport, event, shape_idx):
 	
-	if event:
-		if event.pressed and mouse_hover:
+	if event is InputEventMouseButton:
+		if event.pressed:
 			if event.button_index == 1:
 				left_click_down = true
 			if event.button_index == 2:

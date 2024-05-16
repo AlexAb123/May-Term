@@ -76,7 +76,7 @@ func _process(delta):
 		if visible:
 			close()
 		else:
-			open()
+			pass
 			
 func open():
 	print("ASD")
