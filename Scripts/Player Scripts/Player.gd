@@ -8,9 +8,8 @@ signal healthChanged
 @export var moveSpeed: int = 100
 @onready var current_health: int = max_health
 @onready var animated_sprite = $AnimatedSprite2D
-@onready var selected_item_sprite: Sprite2D = $SelectedItemSprite
-@onready var selected_item_label: Label = $SelectedItemSprite/SelectedItemCount
-
+@onready var selected_item_sprite: Sprite2D = $CanvasLayer2/SelectedItemSprite
+@onready var selected_item_label: Label = $CanvasLayer2/SelectedItemSprite/SelectedItemCount
 @onready var inventory: Inventory_UI = $CanvasLayer/InventoryUI
 
 var selected_item_stack: ItemStack
@@ -20,7 +19,7 @@ var is_deconstructing: bool = false
 func _ready():
 	Global.set_player(self)
 	
-	selected_item_sprite.modulate.a = 0.8
+	selected_item_sprite.modulate = Color(1, 1, 1, 0.8)
 
 func take_damage(damage):
 	current_health -= damage
@@ -67,7 +66,6 @@ func _process(delta):
 	
 	selected_item_sprite.global_position.x = get_global_mouse_position().x
 	selected_item_sprite.global_position.y = get_global_mouse_position().y
-
 	
 	if not inventory.visible and left_click_down:
 		if selected_item_stack and selected_item_stack.item is PlaceableItem and not BuildingManager.check_position_occupied(get_global_mouse_position()):

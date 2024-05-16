@@ -2,6 +2,7 @@ extends Node2D
 
 class_name Building
 
+@export var item_reference: Item
 @export var deconstruct_time : float = 0.1
 @export var size : Vector2 = Vector2(1,1)
 @export var sprite: Texture2D
@@ -10,15 +11,14 @@ class_name Building
 @onready var current_health: int = max_health
 @onready var health_bar: TextureProgressBar = $HealthBar
 
+
 signal healthChanged
-var player
 
 var deconstruct_timer = 0
 
 	
 func _ready():
 	sprite2D.texture = sprite
-	player = get_parent().get_node("Player")
 	
 	
 func _physics_process(delta):
@@ -30,16 +30,16 @@ func _physics_process(delta):
 	
 	if right_click_down:
 		deconstruct_timer += delta
-		player.is_deconstructing = true
+		Global.player.is_deconstructing = true
 		
 	elif deconstruct_timer > 0:
 		deconstruct_timer = 0
-		player.is_deconstructing = false
+		Global.player.is_deconstructing = false
 		
 	if deconstruct_timer >= deconstruct_time:
 		deconstruct_timer = 0
 		
-		player.is_deconstructing = false
+		Global.player.is_deconstructing = false
 		deconstruct()
 		
 var mouse_hover = false
@@ -85,5 +85,6 @@ func destroy():
 	
 func deconstruct():
 	print("Add item to player inventory")
+	Global.player.inventory.add_item_stack(ItemStack.new(item_reference, 1))
 	BuildingManager.remove_building(self)
 	queue_free()

@@ -1,9 +1,8 @@
-[gd_scene load_steps=27 format=3 uid="uid://cqbjmjoub20yy"]
+[gd_scene load_steps=26 format=3 uid="uid://cqbjmjoub20yy"]
 
 [ext_resource type="Script" path="res://Scripts/Player Scripts/Player.gd" id="1_fb2bp"]
 [ext_resource type="Texture2D" uid="uid://c2ikd5at4f3jv" path="res://assets/sprites/knight.png" id="2_ljflb"]
 [ext_resource type="PackedScene" uid="uid://xy2vr6tknt6g" path="res://Scenes/Inventory Scenes/InventoryUI.tscn" id="3_cdftl"]
-[ext_resource type="Texture2D" uid="uid://wuof8losfo5a" path="res://assets/Custom Sprites/Furnace.Off.png" id="4_4bvgj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gwfyl"]
 radius = 3.0
@@ -185,16 +184,14 @@ light_mask = 0
 visibility_layer = 2
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
-layer = 2
+follow_viewport_enabled = true
 
-[node name="SelectedItemSprite" type="Sprite2D" parent="."]
-texture = ExtResource("4_4bvgj")
+[node name="SelectedItemSprite" type="Sprite2D" parent="CanvasLayer2"]
 
-[node name="SelectedItemCount" type="Label" parent="SelectedItemSprite"]
-offset_left = -7.0
-offset_top = -8.0
-offset_right = 33.0
-offset_bottom = 15.0
+[node name="SelectedItemCount" type="Label" parent="CanvasLayer2/SelectedItemSprite"]
+offset_left = 1.0
+offset_right = 41.0
+offset_bottom = 23.0
 scale = Vector2(0.35, 0.35)
 horizontal_alignment = 2
 clip_text = true
