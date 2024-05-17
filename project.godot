@@ -20,7 +20,7 @@ config/icon="res://icon.svg"
 Database="*res://Scripts/Singletons/Database.gd"
 BuildingManager="*res://Scripts/Singletons/BuildingManager.gd"
 Global="*res://Scripts/Singletons/Global.gd"
-EnemySpawner="*res://Scenes/Enemy Spawner.tscn"
+EnemySpawner="*res://Scenes/WaveManager.tscn"
 
 [display]
 
