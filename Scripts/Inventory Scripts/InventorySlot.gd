@@ -1,6 +1,6 @@
 extends Control
 
-class_name Inventory_UI_Slot
+class_name InventorySlot
 
 var slot_id: int
 

@@ -22,36 +22,3 @@ func _physics_process(delta):
 	if left_click_down and not Global.player.selected_item_stack:
 		#inventory.open()
 		Global.player.inventory.open()
-		
-	
-	#if haveEnoughResources():
-		#for i in selectedRecipe.inputItems.size():
-			#inventory.remove_item_stack(ItemStack.new(selectedRecipe.inputItems[i], selectedRecipe.inputAmounts[i]))
-		#timer.start()
-		
-		
-func selectRecipe(recipeIndex : int):
-	
-	if recipeIndex == -1:
-		selectedRecipe = null
-		return
-	selectedRecipe = recipes[recipeIndex]
-	
-	#var sc = selectedRecipe.inputItems.size() + selectedRecipe.outputItems.size()
-	#inventory.columns = sc
-	#inventory.slot_count = sc
-	#inventory.initialize()
-	#
-	#for i in selectedRecipe.inputItems.size():
-		#inventory.add_item_stack(ItemStack.new(selectedRecipe.inputItems[i], 0))
-	#
-	#for i in inventory.slots.size():
-		#inventory.update_slot(i)
-
-
-func haveEnoughResources():
-	return true
-
-
-func _on_timer_timeout():
-	pass

@@ -1,22 +1,25 @@
 extends GridContainer
 
-class_name Player_Inventory_UI
+class_name Inventory
 
 @onready var slot_scene: PackedScene = preload("res://Scenes/Inventory Scenes/InventorySlot.tscn")
 
 @export var slot_count: int = 9
 
-var slots: Array[Inventory_UI_Slot] = []
+var slots: Array[InventorySlot] = []
 var item_stacks: Array[ItemStack] = []
 
 var xshift = 0
+
+@export var horizontal_shift : int = 0
+@export var vertical_shift: int = 0
 
 func _ready():
 	
 	for i in slot_count:
 		item_stacks.append(null)
 		
-		var new_slot: Inventory_UI_Slot = slot_scene.instantiate()
+		var new_slot: InventorySlot = slot_scene.instantiate()
 		new_slot.slot_id = i
 		add_child(new_slot)
 		
@@ -29,6 +32,9 @@ func _ready():
 	anchors_preset = PRESET_CENTER
 	xshift = (16*columns+get_theme_constant("h_separation")*(columns-1))*3
 	position.x = position.x - xshift
+	
+	position.x = position.x + horizontal_shift
+	position.y = position.y + vertical_shift
 	
 	
 	update_slots()
