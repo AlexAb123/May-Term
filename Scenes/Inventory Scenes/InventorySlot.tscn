@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bxm3jiyoixyf0"]
 
-[ext_resource type="Script" path="res://Scripts/Inventory Scripts/InventorySlot.gd" id="1_3ijyb"]
+[ext_resource type="Script" path="res://Scripts/Inventory Scripts/InventorySlot.gd" id="1_kuoyv"]
 [ext_resource type="Texture2D" uid="uid://dgep8w3f40ipy" path="res://assets/Custom Sprites/InventorySlot.png" id="2_a4e2e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n2nn8"]
@@ -16,7 +16,7 @@ offset_top = -8.0
 offset_right = 8.0
 offset_bottom = 8.0
 mouse_filter = 2
-script = ExtResource("1_3ijyb")
+script = ExtResource("1_kuoyv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(8, 8)

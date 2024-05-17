@@ -8,7 +8,6 @@ class_name RecipeBuilding
 
 @export var on_sprite: Texture2D
 
-@onready var inventory: Recipe_Building_Inventory_UI = $CanvasLayer/InventoryUI
 
 var selectedRecipe : Recipe
 
@@ -21,7 +20,7 @@ func _physics_process(delta):
 	if right_click_down:
 		pass
 	if left_click_down and not Global.player.selected_item_stack:
-		inventory.open()
+		#inventory.open()
 		Global.player.inventory.open()
 		
 	
@@ -38,16 +37,16 @@ func selectRecipe(recipeIndex : int):
 		return
 	selectedRecipe = recipes[recipeIndex]
 	
-	var sc = selectedRecipe.inputItems.size() + selectedRecipe.outputItems.size()
-	inventory.columns = sc
-	inventory.slot_count = sc
-	inventory.initialize()
-	
-	for i in selectedRecipe.inputItems.size():
-		inventory.add_item_stack(ItemStack.new(selectedRecipe.inputItems[i], 0))
-	
-	for i in inventory.slots.size():
-		inventory.update_slot(i)
+	#var sc = selectedRecipe.inputItems.size() + selectedRecipe.outputItems.size()
+	#inventory.columns = sc
+	#inventory.slot_count = sc
+	#inventory.initialize()
+	#
+	#for i in selectedRecipe.inputItems.size():
+		#inventory.add_item_stack(ItemStack.new(selectedRecipe.inputItems[i], 0))
+	#
+	#for i in inventory.slots.size():
+		#inventory.update_slot(i)
 
 
 func haveEnoughResources():
@@ -55,5 +54,4 @@ func haveEnoughResources():
 
 
 func _on_timer_timeout():
-	for i in selectedRecipe.outputItems.size():
-		inventory.add_item_stack(ItemStack.new(selectedRecipe.outputItems[i], selectedRecipe.outputAmounts[i]))
+	pass
