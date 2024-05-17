@@ -15,10 +15,8 @@ signal healthChanged
 
 var deconstruct_timer = 0
 
-	
 func _ready():
 	sprite2D.texture = sprite
-	
 	
 func _physics_process(delta):
 	

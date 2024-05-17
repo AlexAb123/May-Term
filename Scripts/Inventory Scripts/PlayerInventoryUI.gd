@@ -54,7 +54,7 @@ func right_click_slot(slot_id):
 
 func update_slots():
 	
-	sort_slots()
+	item_stacks.sort_custom(compare_item_stack_id)
 	
 	for slot_id in slot_count:
 		if item_stacks[slot_id] and item_stacks[slot_id].count > 0:
@@ -65,12 +65,9 @@ func update_slots():
 			slots[slot_id].set_sprite(null)
 			slots[slot_id].set_count_label("")
 			
-func sort_slots():
-	item_stacks.sort_custom(compare_item_stack_id)
-	
-func compare_item_stack_id(is1, is2):
+func compare_item_stack_id(is1: ItemStack, is2: ItemStack):
 	if is1 and is2:
-		return is1.item.id > is1.item.id
+		return is1.item.id < is2.item.id
 	elif is1 and not is2:
 		return true
 	elif not is1 and is2:
@@ -89,7 +86,6 @@ func add_item_stack(item_stack):
 				item_stacks[i] = item_stack
 				update_slots()
 				return
-		return
 				
 func remove_item_stack(item_stack):
 	var pos = position_in_inventory(item_stack.item)
