@@ -25,7 +25,6 @@ func _ready():
 	
 	inventory_xshift = (16*inventory.columns+inventory.get_theme_constant("h_separation")*(inventory.columns-1))*3
 	inventory.position.x = inventory.position.x - inventory_xshift
-	
 	selected_item_sprite.modulate = Color(1, 1, 1, 0.8)
 
 func take_damage(damage):
@@ -136,7 +135,6 @@ func _on_right_click_pressed():
 
 func _on_right_click_released():
 	right_click_down = false
-
 
 func set_item_stack(item_stack: ItemStack):
 	selected_item_stack = item_stack

@@ -44,19 +44,20 @@ func initialize_slots():
 	
 	var tempy = (int(float(slot_count)/columns))
 	pivot_offset.y = (16*tempy+get_theme_constant("v_separation")*(tempy-1))/2
-	
+
+signal slot_input
+
 func slot_input_event(slot_id, event):
-	if event is InputEventMouseButton:
-		if event.pressed:
-			if event.button_index == 1:
-				left_click_slot(slot_id)
-			if event.button_index == 2:
-				right_click_slot(slot_id)
+	slot_input.emit(slot_id, event)
+	if not Input.is_action_just_pressed("shift_left_click") and Input.is_action_just_pressed("left_click"): 
+		left_click_slot(slot_id)
+	if Input.is_action_just_pressed("right_click"):
+		right_click_slot(slot_id)
 
 func left_click_slot(slot_id):
-	
-	Global.player.selected_item_stack = item_stacks[slot_id]
-	Global.player.update_selected_item_sprite_and_label()
+	if owner is Player:
+		Global.player.selected_item_stack = item_stacks[slot_id]
+		Global.player.update_selected_item_sprite_and_label()
 	return
 	
 func right_click_slot(slot_id):
