@@ -14,7 +14,7 @@ var selectedRecipe : Recipe
 
 func _ready():
 	super()
-	selectRecipe(0)
+	#selectRecipe(0)
 func _physics_process(delta):
 	super(delta)
 	
