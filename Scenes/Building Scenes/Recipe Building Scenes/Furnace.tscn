@@ -9,4 +9,7 @@
 recipes = Array[Resource("res://Scripts/Resource Scripts/Recipe Scripts/Recipe.gd")]([ExtResource("3_t4pgb")])
 on_sprite = ExtResource("4_dmqp5")
 item_name = "Furnace"
+deconstruct_time = 0.1
+size = Vector2(1, 1)
 sprite = ExtResource("5_o64gn")
+max_health = 50

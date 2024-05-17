@@ -3,21 +3,28 @@ class_name Player
 
 signal healthChanged
 
-@export_category("Movement")
 @export var max_health = 100
 @export var moveSpeed: int = 100
 @onready var current_health: int = max_health
+@export var inventory_reach_distance: int = 10
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var selected_item_sprite: Sprite2D = $CanvasLayer2/SelectedItemSprite
 @onready var selected_item_label: Label = $CanvasLayer2/SelectedItemSprite/SelectedItemCount
 @onready var inventory: Inventory = $CanvasLayer/Inventory
 
+
 var selected_item_stack: ItemStack
 
 var is_deconstructing: bool = false
 
+var inventory_xshift
+
 func _ready():
+	
 	Global.set_player(self)
+	
+	inventory_xshift = (16*inventory.columns+inventory.get_theme_constant("h_separation")*(inventory.columns-1))*3
+	inventory.position.x = inventory.position.x - inventory_xshift
 	
 	selected_item_sprite.modulate = Color(1, 1, 1, 0.8)
 
@@ -79,8 +86,13 @@ func _process(delta):
 			BuildingManager.add_building(building)
 			get_owner().add_child(building)
 		
-		
-		
+	
+	if Input.is_action_just_pressed("e"):
+		if inventory.visible:
+			inventory.close()
+		else:
+			inventory.open()
+	
 	if Input.is_action_just_pressed("q"):
 		set_item_stack(null)
 	if Input.is_action_just_pressed("x"):

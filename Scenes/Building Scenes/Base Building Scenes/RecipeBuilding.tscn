@@ -1,15 +1,34 @@
-[gd_scene load_steps=3 format=3 uid="uid://klc1brlg3lae"]
+[gd_scene load_steps=5 format=3 uid="uid://klc1brlg3lae"]
 
 [ext_resource type="PackedScene" uid="uid://dbg5hg88ngfkg" path="res://Scenes/Building Scenes/Base Building Scenes/Building.tscn" id="1_36igq"]
 [ext_resource type="Script" path="res://Scripts/Building Scripts/RecipeBuilding.gd" id="2_rwhkc"]
+[ext_resource type="PackedScene" uid="uid://xy2vr6tknt6g" path="res://Scenes/Inventory Scenes/Inventory.tscn" id="3_djvtn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hrlnc"]
 
 [node name="RecipeBuilding" instance=ExtResource("1_36igq")]
 script = ExtResource("2_rwhkc")
 recipes = Array[Resource("res://Scripts/Resource Scripts/Recipe Scripts/Recipe.gd")]([])
 on_sprite = null
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." index="4"]
+[node name="InventoryReach" type="Area2D" parent="." index="3"]
+collision_layer = 0
+collision_mask = 8
 
-[node name="Timer" type="Timer" parent="." index="5"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InventoryReach" index="0"]
+scale = Vector2(7, 7)
+shape = SubResource("CircleShape2D_hrlnc")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="5"]
+
+[node name="InputInventory" parent="CanvasLayer" index="0" instance=ExtResource("3_djvtn")]
+columns = 1
+
+[node name="OutputInventory" parent="CanvasLayer" index="1" instance=ExtResource("3_djvtn")]
+columns = 1
+
+[node name="Timer" type="Timer" parent="." index="6"]
+
+[connection signal="body_entered" from="InventoryReach" to="." method="_on_inventory_reach_body_entered"]
+[connection signal="body_exited" from="InventoryReach" to="." method="_on_inventory_reach_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

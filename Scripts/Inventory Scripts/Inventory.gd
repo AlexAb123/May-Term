@@ -11,11 +11,27 @@ var item_stacks: Array[ItemStack] = []
 
 var xshift = 0
 
-@export var horizontal_shift : int = 0
-@export var vertical_shift: int = 0
-
 func _ready():
 	
+	initialize_slots()
+		
+	#CENTERING THE INVENTORY ON THE SCREEN
+	pivot_offset.x = (16*columns+get_theme_constant("h_separation")*(columns-1))/2
+	var tempy = (int(float(slot_count)/columns))
+	pivot_offset.y = (16*tempy+get_theme_constant("v_separation")*(tempy-1))/2
+	anchors_preset = PRESET_CENTER
+	
+	
+	close()
+	
+func initialize_slots():
+	
+	item_stacks = []
+	slots = []
+	for n in get_children():
+		remove_child(n)
+		n.queue_free()
+		
 	for i in slot_count:
 		item_stacks.append(null)
 		
@@ -24,22 +40,11 @@ func _ready():
 		add_child(new_slot)
 		
 		slots.append(new_slot)
-		
-	#CENTERING THE INVENTORY ON THE SCREEN
-	pivot_offset.x = (16*columns+get_theme_constant("h_separation")*(columns-1))/2
-	var tempy = (int(float(slot_count)/columns))
-	pivot_offset.y = (16*tempy+get_theme_constant("v_separation")*(tempy-1))/2
-	anchors_preset = PRESET_CENTER
-	xshift = (16*columns+get_theme_constant("h_separation")*(columns-1))*3
-	position.x = position.x - xshift
-	
-	position.x = position.x + horizontal_shift
-	position.y = position.y + vertical_shift
-	
 	
 	update_slots()
 	
-	close()
+	var tempy = (int(float(slot_count)/columns))
+	pivot_offset.y = (16*tempy+get_theme_constant("v_separation")*(tempy-1))/2
 	
 func slot_input_event(slot_id, event):
 	if event is InputEventMouseButton:
@@ -63,7 +68,7 @@ func update_slots():
 	item_stacks.sort_custom(compare_item_stack_id)
 	
 	for slot_id in slot_count:
-		if item_stacks[slot_id] and item_stacks[slot_id].count > 0:
+		if item_stacks[slot_id] and item_stacks[slot_id].count >= 0:
 			slots[slot_id].set_sprite(item_stacks[slot_id].item.sprite)
 			slots[slot_id].set_count_label(str(item_stacks[slot_id].count))
 			
@@ -115,13 +120,6 @@ func amount_in_inventory(item: Item) -> int:
 		return -1
 	return item_stacks[pos].count
 	
-func _process(delta):
-	if Input.is_action_just_pressed("e"):
-		if visible:
-			close()
-		else:
-			open()
-			
 func open():
 	visible = true
 
