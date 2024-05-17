@@ -13,9 +13,9 @@ func _ready():
 	var i = read_files(item_directory, "ITEM_", ".tres")
 	item_database = i[0]
 	item_id_database = i[1]
-	var e = read_files(enemy_directory, "", ".tscn")
-	enemy_database = e[0]
-	enemy_id_database = e[1]
+	#var e = read_files(enemy_directory, "", ".tscn")
+	#enemy_database = e[0]
+	#enemy_id_database = e[1]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
