@@ -23,7 +23,9 @@ func _ready():
 	input_inventory.position.x = input_inventory.position.x + Global.player.inventory_xshift*0.75
 	output_inventory.position.x = output_inventory.position.x + Global.player.inventory_xshift*1.25
 	select_recipe(0)
-	
+
+
+var time_elapsed: float = 0
 func _physics_process(delta):
 	super(delta)
 	
@@ -40,25 +42,42 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("e"):
 		input_inventory.close()
 		output_inventory.close()
+	
+	
+	if timer.is_stopped() and _has_enough_resources():
+		for item_stack in selected_recipe.input_item_stacks:
+			input_inventory.item_stacks[input_inventory.position_in_inventory(item_stack.item)].count -= item_stack.count
+		input_inventory.update_slots()
 
 func select_recipe(index: int):
+	print(recipes[0].name)
+	print(recipes[0].craftingTime)
 	selected_recipe = recipes[index]
-	
-	input_inventory.slot_count = selected_recipe.inputItems.size()
+	print(selected_recipe.input_item_stacks)
+	input_inventory.slot_count = selected_recipe.input_item_stacks.size()
 	input_inventory.initialize_slots()
 	
-	output_inventory.slot_count = selected_recipe.outputItems.size()
+	output_inventory.slot_count = selected_recipe.output_item_stacks.size()
 	output_inventory.initialize_slots()
 	
-	for item in selected_recipe.inputItems:
-		input_inventory.add_item_stack(ItemStack.new(item, 10))
+	for item_stack in selected_recipe.input_item_stacks:
+		input_inventory.add_item_stack(item_stack)
 
-	for item in selected_recipe.outputItems:
-		output_inventory.add_item_stack(ItemStack.new(item, 10))
+	for item_stack in selected_recipe.output_item_stacks:
+		output_inventory.add_item_stack(item_stack)
+		
+	timer.wait_time = selected_recipe.craftingTime
 
-var player_in_range: bool = false
+func _on_timer_timeout():
+	for item_stack in selected_recipe.output_item_stacks:
+		output_inventory.add_item_stack(item_stack)
 
-
+func _has_enough_resources():
+	for item_stack in selected_recipe.input_item_stacks:
+		if input_inventory.amount_in_inventory(item_stack.item) < item_stack.count:
+			return false
+	return true
+	
 
 func _on_input_inventory_slot_input(slot_id, event):
 	if Input.is_action_just_pressed("shift_left_click"):
@@ -82,6 +101,9 @@ func _on_player_inventory_slot_input(slot_id, event):
 			Global.player.inventory.item_stacks[slot_id] = null
 			Global.player.inventory.update_slots()
 
+
+var player_in_range: bool = false
+
 func _on_inventory_reach_body_entered(body):
 	player_in_range = true
 
@@ -89,3 +111,5 @@ func _on_inventory_reach_body_exited(body):
 	player_in_range = false
 	input_inventory.close()
 	output_inventory.close()
+
+
