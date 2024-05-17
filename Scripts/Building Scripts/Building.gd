@@ -4,7 +4,6 @@ class_name Building
 
 @export var item_name: String
 @export var deconstruct_time : float = 0.1
-@export var size : Vector2 = Vector2(1,1)
 @export var sprite: Texture2D
 @onready var sprite2D: Sprite2D = get_node("Sprite2D")
 @export var max_health: int = 50
@@ -82,6 +81,7 @@ func destroy():
 	
 func deconstruct():
 	print("Add item to player inventory")
-	#Global.player.inventory.add_item_stack(ItemStack.new(Database.item_database[item_name], 1))
+	Global.player.inventory.add_item_stack(ItemStack.new(Database.item_database[item_name][0], 1))
+	Global.player.update_selected_item_sprite_and_label()
 	BuildingManager.remove_building(self)
 	queue_free()
