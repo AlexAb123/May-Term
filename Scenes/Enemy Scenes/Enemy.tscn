@@ -1,9 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://b3xvsbpqeyd3s"]
+[gd_scene load_steps=16 format=3 uid="uid://cyfthgypurefg"]
 
-[ext_resource type="Script" path="res://Scripts/Enemy Scripts/Enemy.gd" id="1_8cx2i"]
 [ext_resource type="Texture2D" uid="uid://cspf1k2foi5dl" path="res://assets/sprites/slime_purple.png" id="1_pijau"]
-[ext_resource type="Script" path="res://Scripts/Health Bar Scripts/EnemyHealthBar.gd" id="4_egq4x"]
-[ext_resource type="Texture2D" uid="uid://mg6onenv8ktb" path="res://assets/health/health.png" id="4_pkufp"]
+[ext_resource type="Script" path="res://Scripts/Enemy Scripts/Enemy.gd" id="1_v6bkh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_etw0v"]
 atlas = ExtResource("1_pijau")
@@ -93,63 +91,32 @@ animations = [{
 "speed": 7.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_evj7i"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ku6fp"]
 radius = 1.99998
-height = 7.99994
+height = 11.9999
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_io5ol"]
 radius = 47.0425
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_6ctfx"]
-
 [node name="Enemy" type="CharacterBody2D"]
 y_sort_enabled = true
-collision_layer = 6
-collision_mask = 6
-
-script = ExtResource("1_8cx2i")
-attack_cooldown = 0.3
-max_health = 30
-detection_range = 35
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_v6bkh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, 3)
 sprite_frames = SubResource("SpriteFrames_mfmcn")
 animation = &"death"
 autoplay = "idle"
 frame = 3
 frame_progress = 1.0
-offset = Vector2(2.08165e-12, -14)
+offset = Vector2(2.08165e-12, -10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.57481
-shape = SubResource("CapsuleShape2D_evj7i")
+shape = SubResource("CapsuleShape2D_ku6fp")
 
-[node name="DetectionArea2D" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
+[node name="detection_area" type="Area2D" parent="."]
 
-[node name="DetectionArea2DCollisionShape2D" type="CollisionShape2D" parent="DetectionArea2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
 shape = SubResource("CircleShape2D_io5ol")
-
-[node name="DamageArea2D" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
-
-[node name="DamageCollisionShape2D" type="CollisionShape2D" parent="DamageArea2D"]
-shape = SubResource("CircleShape2D_6ctfx")
-
-[node name="HealthBar" type="TextureProgressBar" parent="." node_paths=PackedStringArray("enemy")]
-offset_left = -8.0
-offset_top = 4.0
-offset_right = 786.0
-offset_bottom = 128.0
-scale = Vector2(0.0199957, -0.0331187)
-texture_progress = ExtResource("4_pkufp")
-script = ExtResource("4_egq4x")
-enemy = NodePath("..")
-
-[connection signal="body_entered" from="DetectionArea2D" to="." method="_on_detection_area_2d_body_entered"]
-[connection signal="body_exited" from="DetectionArea2D" to="." method="_on_detection_area_2d_body_exited"]
-[connection signal="body_entered" from="DamageArea2D" to="." method="_on_damage_area_2d_body_entered"]
-[connection signal="body_exited" from="DamageArea2D" to="." method="_on_damage_area_2d_body_exited"]
