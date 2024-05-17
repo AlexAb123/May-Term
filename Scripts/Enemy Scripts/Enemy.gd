@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 class_name Enemy
 
+signal healthChanged
 @onready var animated_sprite = get_node("AnimatedSprite2D")
 @onready var detection_shape = $DetectionArea2D/DetectionArea2DCollisionShape2D
 @onready var damage_shape = $DamageArea2D/DamageCollisionShape2D
@@ -20,7 +21,7 @@ var target
 var detection_targets: Array
 var damage_targets: Array
 
-signal healthChanged
+
 
 func _ready():
 	detection_shape.shape.radius = detection_range
@@ -46,8 +47,8 @@ func _on_damage_area_2d_body_exited(body):
 var attack_cooldown_timer = 0
 var is_attacking: bool = false
 
-func take_damage(damage):
-	current_health -= damage
+func take_damage(dmg):
+	current_health -= dmg
 	healthChanged.emit()
 	if current_health <= 0:
 		current_health = max_health
