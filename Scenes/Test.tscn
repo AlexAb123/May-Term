@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=3 uid="uid://bwiphvlchyy5"]
+
+[ext_resource type="PackedScene" uid="uid://hmabq20jju6k" path="res://Scenes/WaveManager.tscn" id="1_sdnx3"]
+[ext_resource type="PackedScene" uid="uid://cqbjmjoub20yy" path="res://Scenes/Player.tscn" id="2_pubjj"]
+[ext_resource type="PackedScene" uid="uid://x1y5wk4ik7t2" path="res://Scenes/Camera.tscn" id="3_blal2"]
+[ext_resource type="PackedScene" uid="uid://b3xvsbpqeyd3s" path="res://Scenes/Enemy Scenes/Base Enemy Scenes/Enemy.tscn" id="4_5v13v"]
+[ext_resource type="Texture2D" uid="uid://dw3niubftv6cf" path="res://assets/health/bar.png" id="5_1r30v"]
+[ext_resource type="Texture2D" uid="uid://mg6onenv8ktb" path="res://assets/health/health.png" id="6_bqg8j"]
+[ext_resource type="Script" path="res://Scripts/Health Bar Scripts/PlayerHealthBar.gd" id="7_pxbr8"]
+
+[node name="Test" type="Node2D"]
+y_sort_enabled = true
+
+[node name="EnemySpawner" parent="." instance=ExtResource("1_sdnx3")]
+
+[node name="Player" parent="." instance=ExtResource("2_pubjj")]
+position = Vector2(-45, -29)
+
+[node name="Camera2D" parent="." instance=ExtResource("3_blal2")]
+
+[node name="Enemy" parent="." instance=ExtResource("4_5v13v")]
+position = Vector2(61, -2)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("player")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1152.0
+offset_right = -358.0
+offset_bottom = 124.0
+grow_horizontal = 0
+scale = Vector2(0.0774108, -0.0725074)
+texture_under = ExtResource("5_1r30v")
+texture_progress = ExtResource("6_bqg8j")
+script = ExtResource("7_pxbr8")
+player = NodePath("../../Player")
+metadata/_edit_use_anchors_ = true
