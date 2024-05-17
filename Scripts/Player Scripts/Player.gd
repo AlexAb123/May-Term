@@ -10,7 +10,7 @@ signal healthChanged
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var selected_item_sprite: Sprite2D = $CanvasLayer2/SelectedItemSprite
 @onready var selected_item_label: Label = $CanvasLayer2/SelectedItemSprite/SelectedItemCount
-@onready var inventory: Player_Inventory_UI = $CanvasLayer/InventoryUI
+@onready var inventory: Inventory = $CanvasLayer/Inventory
 
 var selected_item_stack: ItemStack
 
