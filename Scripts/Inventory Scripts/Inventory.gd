@@ -2,7 +2,7 @@ extends GridContainer
 
 class_name Player_Inventory_UI
 
-@onready var slot_scene: PackedScene = preload("res://Scenes/Inventory Scenes/InventoryUISlot.tscn")
+@onready var slot_scene: PackedScene = preload("res://Scenes/Inventory Scenes/InventorySlot.tscn")
 
 @export var slot_count: int = 9
 

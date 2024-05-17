@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dbg5hg88ngfkg" path="res://Scenes/Building Scenes/Base Building Scenes/Building.tscn" id="1_36igq"]
 [ext_resource type="Script" path="res://Scripts/Building Scripts/RecipeBuilding.gd" id="2_rwhkc"]
-[ext_resource type="PackedScene" uid="uid://xy2vr6tknt6g" path="res://Scenes/Inventory Scenes/InventoryUI.tscn" id="3_tbe46"]
+[ext_resource type="PackedScene" uid="uid://xy2vr6tknt6g" path="res://Scenes/Inventory Scenes/Inventory.tscn" id="3_djvtn"]
 [ext_resource type="Script" path="res://Scripts/Inventory Scripts/RecipeBuildingInventoryUI.gd" id="4_18efm"]
 
 [node name="RecipeBuilding" instance=ExtResource("1_36igq")]
@@ -12,7 +12,7 @@ on_sprite = null
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." index="4"]
 
-[node name="InventoryUI" parent="CanvasLayer" index="0" instance=ExtResource("3_tbe46")]
+[node name="InventoryUI" parent="CanvasLayer" index="0" instance=ExtResource("3_djvtn")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
