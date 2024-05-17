@@ -2,7 +2,7 @@ extends Node2D
 
 class_name Building
 
-@export var item_reference: Item
+@export var item_name: String
 @export var deconstruct_time : float = 0.1
 @export var size : Vector2 = Vector2(1,1)
 @export var sprite: Texture2D
@@ -10,7 +10,6 @@ class_name Building
 @export var max_health: int = 50
 @onready var current_health: int = max_health
 @onready var health_bar: TextureProgressBar = $HealthBar
-
 
 signal healthChanged
 
@@ -85,6 +84,6 @@ func destroy():
 	
 func deconstruct():
 	print("Add item to player inventory")
-	Global.player.inventory.add_item_stack(ItemStack.new(item_reference, 1))
+	Global.player.inventory.add_item_stack(ItemStack.new(Database.item_database[item_name], 1))
 	BuildingManager.remove_building(self)
 	queue_free()

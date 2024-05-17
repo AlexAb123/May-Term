@@ -6,5 +6,5 @@
 [resource]
 script = ExtResource("1_2aiqf")
 name = "Iron Ore"
-stackSize = 100
 sprite = ExtResource("2_65qyh")
+id = 0

@@ -68,9 +68,10 @@ func _process(delta):
 	selected_item_sprite.global_position.y = get_global_mouse_position().y
 	
 	if not inventory.visible and left_click_down:
-		if selected_item_stack and selected_item_stack.item is PlaceableItem and not BuildingManager.check_position_occupied(get_global_mouse_position()):
+		if selected_item_stack and selected_item_stack.item is PlaceableItem and selected_item_stack.count > 0 and not BuildingManager.check_position_occupied(get_global_mouse_position()):
 			var building: Building = selected_item_stack.item.buildingScene.instantiate()
 			selected_item_stack.count = selected_item_stack.count - 1
+			inventory.update_slot(inventory.current_slot)
 			if selected_item_stack.count <= 0:
 				selected_item_stack = null
 			update_selected_item_sprite_and_label()
@@ -83,9 +84,10 @@ func _process(delta):
 	if Input.is_action_just_pressed("q"):
 		set_item_stack(null)
 	if Input.is_action_just_pressed("x"):
-		set_item_stack(ItemStack.new(Database.item_database["Furnace"], 10))
+		inventory.add_item_stack(ItemStack.new(Database.item_database["Furnace"][0], 10))
 	if Input.is_action_just_pressed("g"):
-		set_item_stack(ItemStack.new(Database.item_database["Archer_Tower"], 10))
+		inventory.add_item_stack(ItemStack.new(Database.item_database["Archer_Tower"][0], 10))
+		#set_item_stack(ItemStack.new(Database.item_database["Archer_Tower"][0], 10))
 	if Input.is_action_just_pressed("y"):
 		var enemy = load("res://Scenes/Enemy Scenes/Base Enemy Scenes/Enemy.tscn").instantiate()
 		enemy.global_position = mouse_position
