@@ -37,8 +37,6 @@ texture_progress = ExtResource("6_o41ll")
 script = ExtResource("7_u84qr")
 player = NodePath("../../Player")
 
-[node name="Enemy" parent="." instance=ExtResource("6_120ga")]
-position = Vector2(61, -2)
 
 [node name="TileMap2" type="TileMap" parent="."]
 z_index = -1
