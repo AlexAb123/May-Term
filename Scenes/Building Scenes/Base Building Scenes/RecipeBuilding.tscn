@@ -22,3 +22,7 @@ grow_horizontal = 2
 grow_vertical = 2
 columns = 3
 script = ExtResource("4_18efm")
+
+[node name="Timer" type="Timer" parent="." index="5"]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

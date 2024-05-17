@@ -10,13 +10,18 @@ var slots: Array[Inventory_UI_Slot] = []
 var item_stacks: Array[ItemStack] = []
 
 func _ready():
+	initialize()
+	close()
+	return
+
+func initialize():
 	for i in slot_count:
 		item_stacks.append(null)
-		
+	
 		var new_slot: Inventory_UI_Slot = slot_scene.instantiate()
 		new_slot.slot_id = i
 		add_child(new_slot)
-		
+	
 		slots.append(new_slot)
 		
 	#CENTERING THE INVENTORY ON THE SCREEN
@@ -26,16 +31,6 @@ func _ready():
 	pivot_offset.y = (16*tempy+get_theme_constant("v_separation")*(tempy-1))/2
 	anchors_preset = PRESET_CENTER
 	position.x = position.x + Global.player.inventory.xshift
-	close()
-	return
-	#
-	#for i in Database.item_id_database.size():
-		#item_stacks[i] = ItemStack.new(Database.item_id_database[i], 0)
-	#
-	#for i in slot_count:
-		#update_slot(i)
-		#
-	#close()
 	
 func slot_input_event(slot_id, event):
 	if event is InputEventMouseButton:
@@ -70,6 +65,11 @@ func add_item_stack(item_stack):
 	item_stacks[item_stack.item.id].count = item_stacks[item_stack.item.id].count + item_stack.count
 	update_slot(item_stack.item.id)
 	return
+	
+func remove_item_stack(item_stack):
+	item_stacks[item_stack.item.id].count = item_stacks[item_stack.item.id].count - item_stack.count
+	update_slot(item_stack.item.id)
+	return
 
 func _process(delta):
 	if Input.is_action_just_pressed("e"):
@@ -79,7 +79,6 @@ func _process(delta):
 			pass
 			
 func open():
-	print("ASD")
 	visible = true
 
 func close():

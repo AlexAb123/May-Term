@@ -184,8 +184,6 @@ offset = Vector2(2.08165e-12, -10)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="InventoryUI" parent="CanvasLayer" instance=ExtResource("3_cdftl")]
-theme_override_constants/h_separation = 1
-theme_override_constants/v_separation = 1
 script = ExtResource("4_xi14y")
 slot_count = 25
 
