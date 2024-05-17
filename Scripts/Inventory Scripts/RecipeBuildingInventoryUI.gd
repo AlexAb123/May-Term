@@ -28,14 +28,14 @@ func _ready():
 	position.x = position.x + Global.player.inventory.xshift
 	close()
 	return
-	
-	for i in Database.item_id_database.size():
-		item_stacks[i] = ItemStack.new(Database.item_id_database[i], 0)
-	
-	for i in slot_count:
-		update_slot(i)
-		
-	close()
+	#
+	#for i in Database.item_id_database.size():
+		#item_stacks[i] = ItemStack.new(Database.item_id_database[i], 0)
+	#
+	#for i in slot_count:
+		#update_slot(i)
+		#
+	#close()
 	
 func slot_input_event(slot_id, event):
 	if event is InputEventMouseButton:
