@@ -18,24 +18,6 @@ position = Vector2(-40, -30)
 
 [node name="TileMap" parent="." instance=ExtResource("4_241aj")]
 
-[node name="Enemy" parent="." instance=ExtResource("6_120ga")]
-position = Vector2(61, -2)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("player")]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -1152.0
-offset_right = -358.0
-offset_bottom = 124.0
-grow_horizontal = 0
-scale = Vector2(0.0774108, -0.0725074)
-texture_under = ExtResource("5_7n2sy")
-texture_progress = ExtResource("6_o41ll")
-script = ExtResource("7_u84qr")
-player = NodePath("../../Player")
 
 
 [node name="TileMap2" type="TileMap" parent="."]
