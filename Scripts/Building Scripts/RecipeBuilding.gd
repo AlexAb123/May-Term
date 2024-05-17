@@ -20,8 +20,8 @@ func _ready():
 	select_recipe(0)
 	
 func _physics_process(delta):
-	
 	super(delta)
+	
 	
 	if right_click_down:
 		pass
@@ -31,7 +31,7 @@ func _physics_process(delta):
 			input_inventory.open()
 			output_inventory.open()
 			Global.player.inventory.open()
-		
+	
 	if Input.is_action_just_pressed("e"):
 		input_inventory.close()
 		output_inventory.close()
@@ -51,7 +51,6 @@ func select_recipe(index: int):
 	for item in selected_recipe.outputItems:
 		output_inventory.add_item_stack(ItemStack.new(item, 0))
 
-
 var player_in_range: bool = false
 
 func _on_inventory_reach_body_entered(body):
@@ -61,4 +60,3 @@ func _on_inventory_reach_body_exited(body):
 	player_in_range = false
 	input_inventory.close()
 	output_inventory.close()
-	Global.player.inventory.close()

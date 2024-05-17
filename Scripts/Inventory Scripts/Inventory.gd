@@ -21,7 +21,6 @@ func _ready():
 	pivot_offset.y = (16*tempy+get_theme_constant("v_separation")*(tempy-1))/2
 	anchors_preset = PRESET_CENTER
 	
-	
 	close()
 	
 func initialize_slots():
