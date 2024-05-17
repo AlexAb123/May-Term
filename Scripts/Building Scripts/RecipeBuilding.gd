@@ -4,115 +4,56 @@ class_name RecipeBuilding
 
 @export var recipes : Array[Recipe]
 
+@onready var timer: Timer = $Timer
+
 @export var on_sprite: Texture2D
+
+@onready var inventory: Recipe_Building_Inventory_UI = $CanvasLayer/InventoryUI
 
 var selectedRecipe : Recipe
 
-var inputInventoryItems : Array[Item]
-var inputInventoryAmounts : Array[int]
-
-var outputInventoryItems : Array[Item]
-var outputInventoryAmounts : Array[int]
-
-var inProgress = false
-
-var timer = 0
-var timeElapsed = 0
+func _ready():
+	super()
+	#selectRecipe(0)
 func _physics_process(delta):
 	super(delta)
-	if left_click_down:
-		selectRecipe(0)
-		startCraft()
-
-	#timer += delta
-	#if timer > 1:
-		##DEBUGGING
-		#
-		#print("Input Items:", inputInventoryItems)
-		#print("Input Amounts:", inputInventoryAmounts)
-		#print()
-		#print("Output Items:", outputInventoryItems)
-		#print("Output Amounts:", outputInventoryAmounts)
-		#print()
-		#print("Selected Recipe:", selectedRecipe)
-		#print("In Progress:", inProgress)
-		#print()
-		#print("Have enough:", haveEnoughResources())
-		#print(left_click_down)
-		#print()
-		#print("------------------------------------------")
-		##DEBUGGING
-		#timer = 0
 	
-	if selectedRecipe == null:
-		return
-	
-	#If we are currently crafting then either add to elapsed time or finish crafting if time is up.
-	if inProgress:
-		sprite2D.texture = on_sprite
-			
-		if timeElapsed > selectedRecipe.craftingTime:
-			endCraft()
-		else:
-			timeElapsed += delta
+	if right_click_down:
+		pass
+	if left_click_down and not Global.player.selected_item_stack:
+		inventory.open()
+		Global.player.inventory.open()
 		
-	else:
-		sprite2D.texture = sprite
-	if !inProgress and haveEnoughResources():
-		startCraft()
 	
-	
+	#if haveEnoughResources():
+		#for i in selectedRecipe.inputItems.size():
+			#inventory.remove_item_stack(ItemStack.new(selectedRecipe.inputItems[i], selectedRecipe.inputAmounts[i]))
+		#timer.start()
+		
+		
 func selectRecipe(recipeIndex : int):
-	
-	#HAVE TO MOVE WHAT WAS IN INVENTORY TO THE PLAYERS INVENTORY
-	# OR KEEP THE ITEMS IF YOU SELECT A RECIPE THAT TAKES SAME ITEMS
-	# CANT JUST CLEAR THE INVENTORY, THIS IS TEMPORARY SOLUTION
-
-	inputInventoryItems.clear()
-	inputInventoryAmounts.clear()
-	
-	outputInventoryItems.clear()
-	outputInventoryAmounts.clear()
-	
-	#------------------------------
 	
 	if recipeIndex == -1:
 		selectedRecipe = null
 		return
-		
 	selectedRecipe = recipes[recipeIndex]
 	
-	for item in selectedRecipe.inputItems:
-		inputInventoryItems.append(item)
-		inputInventoryAmounts.append(0)
-		
-	for item in selectedRecipe.outputItems:
-		outputInventoryItems.append(item)
-		outputInventoryAmounts.append(0)
+	var sc = selectedRecipe.inputItems.size() + selectedRecipe.outputItems.size()
+	inventory.columns = sc
+	inventory.slot_count = sc
+	inventory.initialize()
+	
+	for i in selectedRecipe.inputItems.size():
+		inventory.add_item_stack(ItemStack.new(selectedRecipe.inputItems[i], 0))
+	
+	for i in inventory.slots.size():
+		inventory.update_slot(i)
 
-func startCraft():
-	inProgress = true
-	for i in len(inputInventoryAmounts):
-		inputInventoryAmounts[i] = inputInventoryAmounts[i] - selectedRecipe.inputAmounts[i]
-	
-func endCraft():
-	inProgress = false
-	for i in len(outputInventoryAmounts):
-		outputInventoryAmounts[i] = outputInventoryAmounts[i] + selectedRecipe.outputAmounts[i]
-	timeElapsed = 0
-	
-func addItems(newItem : Item, count : int):
-	#Add items into the building.
-	print("add: ", newItem)
-	for i in len(inputInventoryItems):
-		if inputInventoryItems[i] == newItem:
-			inputInventoryAmounts[i] = inputInventoryAmounts[i] + count
-	
-func haveEnoughResources() -> bool:
-	#Checks if there are enough resources in inputInventory to satisfy the recipe one time
-	for i in len(inputInventoryItems):
-		if inputInventoryAmounts[i] < selectedRecipe.inputAmounts[i]:
-			return false
+
+func haveEnoughResources():
 	return true
-	
 
+
+func _on_timer_timeout():
+	for i in selectedRecipe.outputItems.size():
+		inventory.add_item_stack(ItemStack.new(selectedRecipe.outputItems[i], selectedRecipe.outputAmounts[i]))

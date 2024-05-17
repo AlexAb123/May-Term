@@ -84,6 +84,6 @@ func destroy():
 	
 func deconstruct():
 	print("Add item to player inventory")
-	Global.player.inventory.add_item_stack(ItemStack.new(Database.item_database[item_name], 1))
+	#Global.player.inventory.add_item_stack(ItemStack.new(Database.item_database[item_name], 1))
 	BuildingManager.remove_building(self)
 	queue_free()

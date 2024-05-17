@@ -10,7 +10,7 @@ signal healthChanged
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var selected_item_sprite: Sprite2D = $CanvasLayer2/SelectedItemSprite
 @onready var selected_item_label: Label = $CanvasLayer2/SelectedItemSprite/SelectedItemCount
-@onready var inventory: Inventory_UI = $CanvasLayer/InventoryUI
+@onready var inventory: Player_Inventory_UI = $CanvasLayer/InventoryUI
 
 var selected_item_stack: ItemStack
 
@@ -71,7 +71,7 @@ func _process(delta):
 		if selected_item_stack and selected_item_stack.item is PlaceableItem and selected_item_stack.count > 0 and not BuildingManager.check_position_occupied(get_global_mouse_position()):
 			var building: Building = selected_item_stack.item.buildingScene.instantiate()
 			selected_item_stack.count = selected_item_stack.count - 1
-			inventory.update_slot(inventory.current_slot)
+			inventory.update_slots()
 			if selected_item_stack.count <= 0:
 				selected_item_stack = null
 			update_selected_item_sprite_and_label()
@@ -87,6 +87,10 @@ func _process(delta):
 		inventory.add_item_stack(ItemStack.new(Database.item_database["Furnace"][0], 10))
 	if Input.is_action_just_pressed("g"):
 		inventory.add_item_stack(ItemStack.new(Database.item_database["Archer_Tower"][0], 10))
+	if Input.is_action_just_pressed("v"):
+		inventory.add_item_stack(ItemStack.new(Database.item_database["Iron_Ore"][0], 10))
+	if Input.is_action_just_pressed("c"):
+		inventory.add_item_stack(ItemStack.new(Database.item_database["Coal"][0], 10))
 		#set_item_stack(ItemStack.new(Database.item_database["Archer_Tower"][0], 10))
 	if Input.is_action_just_pressed("y"):
 		var enemy = load("res://Scenes/Enemy Scenes/Base Enemy Scenes/Enemy.tscn").instantiate()

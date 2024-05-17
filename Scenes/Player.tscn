@@ -1,9 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://cqbjmjoub20yy"]
+[gd_scene load_steps=30 format=3 uid="uid://cqbjmjoub20yy"]
 
 [ext_resource type="Script" path="res://Scripts/Player Scripts/Player.gd" id="1_fb2bp"]
 [ext_resource type="Texture2D" uid="uid://c2ikd5at4f3jv" path="res://assets/sprites/knight.png" id="2_ljflb"]
 [ext_resource type="PackedScene" uid="uid://xy2vr6tknt6g" path="res://Scenes/Inventory Scenes/InventoryUI.tscn" id="3_cdftl"]
 [ext_resource type="Texture2D" uid="uid://dw3niubftv6cf" path="res://assets/health/bar.png" id="4_6qfgi"]
+[ext_resource type="Script" path="res://Scripts/Inventory Scripts/PlayerInventoryUI.gd" id="4_xi14y"]
 [ext_resource type="Texture2D" uid="uid://mg6onenv8ktb" path="res://assets/health/health.png" id="5_sojft"]
 [ext_resource type="Script" path="res://Scripts/Health Bar Scripts/PlayerHealthBar.gd" id="6_sm484"]
 
@@ -183,8 +184,8 @@ offset = Vector2(2.08165e-12, -10)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="InventoryUI" parent="CanvasLayer" instance=ExtResource("3_cdftl")]
-light_mask = 0
-visibility_layer = 2
+script = ExtResource("4_xi14y")
+slot_count = 25
 
 [node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("player")]
 anchors_preset = -1
