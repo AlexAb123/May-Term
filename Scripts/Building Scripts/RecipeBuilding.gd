@@ -71,7 +71,6 @@ func select_recipe(index: int):
 func _on_timer_timeout():
 	timer.stop()
 	for item_stack in selected_recipe.output_item_stacks:
-		print(item_stack)
 		output_inventory.add_item_stack(item_stack)
 
 func _has_enough_resources():
@@ -86,28 +85,43 @@ func _on_input_inventory_slot_input(slot_id, event):
 		Global.player.inventory.add_item_stack(input_inventory.item_stacks[slot_id])
 		input_inventory.remove_at(slot_id)
 	
-	# Add one item to the input inventory
+	# Remove one item
 	elif Input.is_action_just_pressed("right_click"):
-		if Global.player.selected_item_stack and input_inventory.position_in_inventory(Global.player.selected_item_stack.item) != -1 and Global.player.selected_item_stack.count > 0:
-			input_inventory.add_item_stack(ItemStack.new(Global.player.selected_item_stack.item, 1))
-			Global.player.inventory.remove_item_stack(ItemStack.new(Global.player.selected_item_stack.item, 1))
-			Global.player.update_selected_item_sprite_and_label()
-			
+		if input_inventory.item_stacks[slot_id] and input_inventory.item_stacks[slot_id].count > 0:
+			Global.player.inventory.add_item_stack(ItemStack.new(input_inventory.item_stacks[slot_id].item, 1))
+			input_inventory.item_stacks[slot_id].count -= 1
+			input_inventory.update_slots()
 		
 func _on_output_inventory_slot_input(slot_id, event):
 	if Input.is_action_just_pressed("shift_left_click"):
-		Global.player.inventory.add_item_stack(output_inventory.item_stacks[slot_id])
+		Global.player.inventory.add_item_stack(ItemStack.new(output_inventory.item_stacks[slot_id].item, output_inventory.item_stacks[slot_id].count))
 		output_inventory.remove_at(slot_id)
+		
+	# Remove one item
+	elif Input.is_action_just_pressed("right_click"):
+		if output_inventory.item_stacks[slot_id] and output_inventory.item_stacks[slot_id].count > 0:
+			Global.player.inventory.add_item_stack(ItemStack.new(output_inventory.item_stacks[slot_id].item, 1))
+			output_inventory.item_stacks[slot_id].count -= 1
+			output_inventory.update_slots()
 
 func _on_player_inventory_slot_input(slot_id, event):
 	#If inventories are not open, don't take any input from the player
 	if not input_inventory.visible and not output_inventory.visible:
 		return
+		
+	# Ad the full stack to the input inventory
 	var clicked_item_stack = Global.player.inventory.item_stacks[slot_id]
 	if clicked_item_stack and Input.is_action_just_pressed("shift_left_click"):
 		if input_inventory.position_in_inventory(clicked_item_stack.item) != -1:
 			input_inventory.add_item_stack(clicked_item_stack)
 			Global.player.inventory.remove_at(slot_id)
+			Global.player.update_selected_item_sprite_and_label()
+	
+	# Add one item to the input inventory
+	elif Input.is_action_just_pressed("right_click"):
+		if clicked_item_stack and clicked_item_stack.count > 0 and input_inventory.position_in_inventory(clicked_item_stack.item) != -1:
+			input_inventory.add_item_stack(ItemStack.new(clicked_item_stack.item, 1))
+			Global.player.inventory.remove_item_stack(ItemStack.new(clicked_item_stack.item, 1))
 			Global.player.update_selected_item_sprite_and_label()
 			
 	
