@@ -63,19 +63,31 @@ func left_click_slot(slot_id):
 func right_click_slot(slot_id):
 	pass
 
+func z_pressed(slot_id):
+	slot_input.emit(slot_id, null)
+
 func update_slots():
 	
 	item_stacks.sort_custom(compare_item_stack_id)
 	
 	for slot_id in slot_count:
-		if item_stacks[slot_id] and item_stacks[slot_id].count >= 0:
-			slots[slot_id].set_sprite(item_stacks[slot_id].item.sprite)
-			slots[slot_id].set_count_label(str(item_stacks[slot_id].count))
+		if Global.player and self == Global.player.inventory: 
+			if item_stacks[slot_id] and item_stacks[slot_id].count > 0:
+				slots[slot_id].set_sprite(item_stacks[slot_id].item.sprite)
+				slots[slot_id].set_count_label(str(item_stacks[slot_id].count))
 			
+			else:
+				slots[slot_id].set_sprite(null)
+				slots[slot_id].set_count_label("")
 		else:
-			slots[slot_id].set_sprite(null)
-			slots[slot_id].set_count_label("")
+			if item_stacks[slot_id] and item_stacks[slot_id].count >= 0:
+				slots[slot_id].set_sprite(item_stacks[slot_id].item.sprite)
+				slots[slot_id].set_count_label(str(item_stacks[slot_id].count))
 			
+			else:
+				slots[slot_id].set_sprite(null)
+				slots[slot_id].set_count_label("")
+				
 func compare_item_stack_id(is1: ItemStack, is2: ItemStack):
 	if is1 and is2:
 		return is1.item.id < is2.item.id
@@ -106,6 +118,10 @@ func remove_item_stack(item_stack):
 	item_stacks[pos].count -= item_stack.count
 	update_slots()
 	return
+func remove_at(slot_id):
+	item_stacks[slot_id].count = 0
+	update_slots()
+	return
 	
 	
 func position_in_inventory(item: Item) -> int:
@@ -125,3 +141,9 @@ func open():
 
 func close():
 	visible = false
+
+func mouse_hovering_slot() -> int:
+	for i in slots.size():
+		if slots[i].mouse_hover:
+			return i
+	return -1

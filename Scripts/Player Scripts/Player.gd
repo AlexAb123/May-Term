@@ -145,7 +145,7 @@ func set_item_stack_count(count: int):
 	update_selected_item_sprite_and_label()
 	
 func update_selected_item_sprite_and_label():
-	if selected_item_stack:
+	if selected_item_stack and selected_item_stack.count > 0:
 		selected_item_label.text = str(selected_item_stack.count)
 		selected_item_sprite.texture = selected_item_stack.item.sprite
 	else:

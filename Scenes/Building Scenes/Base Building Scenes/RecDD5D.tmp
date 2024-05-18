@@ -20,7 +20,6 @@ scale = Vector2(7, 7)
 shape = SubResource("CircleShape2D_hrlnc")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." index="5"]
-layer = 0
 
 [node name="InputInventory" parent="CanvasLayer" index="0" instance=ExtResource("3_djvtn")]
 columns = 1

@@ -16,8 +16,6 @@ var selected_recipe : Recipe
 func _ready():
 	super()
 	
-	input_inventory.slot_input.connect(_on_input_inventory_slot_input)
-	output_inventory.slot_input.connect(_on_output_inventory_slot_input)
 	Global.player.inventory.slot_input.connect(_on_player_inventory_slot_input)
 	
 	input_inventory.position.x = input_inventory.position.x + Global.player.inventory_xshift*0.75
@@ -25,7 +23,6 @@ func _ready():
 	select_recipe(0)
 
 
-var time_elapsed: float = 0
 func _physics_process(delta):
 
 	super(delta)
@@ -87,14 +84,20 @@ func _has_enough_resources():
 func _on_input_inventory_slot_input(slot_id, event):
 	if Input.is_action_just_pressed("shift_left_click"):
 		Global.player.inventory.add_item_stack(input_inventory.item_stacks[slot_id])
-		input_inventory.item_stacks[slot_id].count = 0
-		input_inventory.update_slots()
+		input_inventory.remove_at(slot_id)
+	
+	# Add one item to the input inventory
+	elif Input.is_action_just_pressed("right_click"):
+		if Global.player.selected_item_stack and input_inventory.position_in_inventory(Global.player.selected_item_stack.item) != -1 and Global.player.selected_item_stack.count > 0:
+			input_inventory.add_item_stack(ItemStack.new(Global.player.selected_item_stack.item, 1))
+			Global.player.inventory.remove_item_stack(ItemStack.new(Global.player.selected_item_stack.item, 1))
+			Global.player.update_selected_item_sprite_and_label()
+			
 		
 func _on_output_inventory_slot_input(slot_id, event):
 	if Input.is_action_just_pressed("shift_left_click"):
 		Global.player.inventory.add_item_stack(output_inventory.item_stacks[slot_id])
-		output_inventory.item_stacks[slot_id].count = 0
-		output_inventory.update_slots()
+		output_inventory.remove_at(slot_id)
 
 func _on_player_inventory_slot_input(slot_id, event):
 	#If inventories are not open, don't take any input from the player
@@ -104,9 +107,9 @@ func _on_player_inventory_slot_input(slot_id, event):
 	if clicked_item_stack and Input.is_action_just_pressed("shift_left_click"):
 		if input_inventory.position_in_inventory(clicked_item_stack.item) != -1:
 			input_inventory.add_item_stack(clicked_item_stack)
-			input_inventory.update_slots()
-			Global.player.inventory.item_stacks[slot_id] = null
-			Global.player.inventory.update_slots()
+			Global.player.inventory.remove_at(slot_id)
+			Global.player.update_selected_item_sprite_and_label()
+			
 	
 
 var player_in_range: bool = false
@@ -119,4 +122,15 @@ func _on_inventory_reach_body_exited(body):
 	input_inventory.close()
 	output_inventory.close()
 
+func destroy():
+	input_inventory.close()
+	output_inventory.close()
+	BuildingManager.close_all_open_inventories()
+	super()
+	
+func deconstruct():
+	input_inventory.close()
+	output_inventory.close()
+	BuildingManager.close_all_open_inventories()
+	super()
 
