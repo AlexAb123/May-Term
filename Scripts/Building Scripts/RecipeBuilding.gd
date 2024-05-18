@@ -27,33 +27,36 @@ func _ready():
 
 var time_elapsed: float = 0
 func _physics_process(delta):
+
 	super(delta)
-	
+	input_inventory.update_slots()
+	output_inventory.update_slots()
 	
 	if right_click_down:
 		pass
 		
 	if player_in_range:
 		if left_click_down and not Global.player.selected_item_stack:
+			BuildingManager.close_all_open_inventories()
 			input_inventory.open()
+			BuildingManager.open_inventories.append(input_inventory)
 			output_inventory.open()
+			BuildingManager.open_inventories.append(output_inventory)
 			Global.player.inventory.open()
 	
 	if Input.is_action_just_pressed("e"):
 		input_inventory.close()
 		output_inventory.close()
-	
+		BuildingManager.close_all_open_inventories()
 	
 	if timer.is_stopped() and _has_enough_resources():
-		for item_stack in selected_recipe.input_item_stacks:
-			input_inventory.item_stacks[input_inventory.position_in_inventory(item_stack.item)].count -= item_stack.count
+		timer.start()
+		for its in selected_recipe.input_item_stacks:
+			input_inventory.item_stacks[input_inventory.position_in_inventory(its.item)].count = input_inventory.item_stacks[input_inventory.position_in_inventory(its.item)].count - its.count
 		input_inventory.update_slots()
 
 func select_recipe(index: int):
-	print(recipes[0].name)
-	print(recipes[0].craftingTime)
 	selected_recipe = recipes[index]
-	print(selected_recipe.input_item_stacks)
 	input_inventory.slot_count = selected_recipe.input_item_stacks.size()
 	input_inventory.initialize_slots()
 	
@@ -61,15 +64,17 @@ func select_recipe(index: int):
 	output_inventory.initialize_slots()
 	
 	for item_stack in selected_recipe.input_item_stacks:
-		input_inventory.add_item_stack(item_stack)
+		input_inventory.add_item_stack(ItemStack.new(item_stack.item, 0))
 
 	for item_stack in selected_recipe.output_item_stacks:
-		output_inventory.add_item_stack(item_stack)
+		output_inventory.add_item_stack(ItemStack.new(item_stack.item, 0))
 		
 	timer.wait_time = selected_recipe.craftingTime
 
 func _on_timer_timeout():
+	timer.stop()
 	for item_stack in selected_recipe.output_item_stacks:
+		print(item_stack)
 		output_inventory.add_item_stack(item_stack)
 
 func _has_enough_resources():
@@ -81,26 +86,28 @@ func _has_enough_resources():
 
 func _on_input_inventory_slot_input(slot_id, event):
 	if Input.is_action_just_pressed("shift_left_click"):
-		Global.player.inventory.add_item_stack(ItemStack.new(input_inventory.item_stacks[slot_id].item, input_inventory.item_stacks[slot_id].count))
+		Global.player.inventory.add_item_stack(input_inventory.item_stacks[slot_id])
 		input_inventory.item_stacks[slot_id].count = 0
 		input_inventory.update_slots()
 		
 func _on_output_inventory_slot_input(slot_id, event):
 	if Input.is_action_just_pressed("shift_left_click"):
-		Global.player.inventory.add_item_stack(ItemStack.new(output_inventory.item_stacks[slot_id].item, output_inventory.item_stacks[slot_id].count))
+		Global.player.inventory.add_item_stack(output_inventory.item_stacks[slot_id])
 		output_inventory.item_stacks[slot_id].count = 0
 		output_inventory.update_slots()
-		
-func _on_player_inventory_slot_input(slot_id, event):
-	var clicked_item_stack = Global.player.inventory.item_stacks[slot_id]
 
+func _on_player_inventory_slot_input(slot_id, event):
+	#If inventories are not open, don't take any input from the player
+	if not input_inventory.visible and not output_inventory.visible:
+		return
+	var clicked_item_stack = Global.player.inventory.item_stacks[slot_id]
 	if clicked_item_stack and Input.is_action_just_pressed("shift_left_click"):
 		if input_inventory.position_in_inventory(clicked_item_stack.item) != -1:
 			input_inventory.add_item_stack(clicked_item_stack)
 			input_inventory.update_slots()
 			Global.player.inventory.item_stacks[slot_id] = null
 			Global.player.inventory.update_slots()
-
+	
 
 var player_in_range: bool = false
 
