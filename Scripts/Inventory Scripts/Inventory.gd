@@ -63,6 +63,7 @@ func update_slots():
 			slots[slot_id].set_count_label("")
 
 func compare_item_stack_id(is1: ItemStack, is2: ItemStack):
+	
 	if is1 and is2:
 		return is1.item.id < is2.item.id
 	elif is1 and not is2:
@@ -97,7 +98,6 @@ func remove_at(slot_id):
 	item_stacks[slot_id].count = 0
 	update_slots()
 	return
-	
 	
 func position_in_inventory(item: Item) -> int:
 	for i in item_stacks.size():

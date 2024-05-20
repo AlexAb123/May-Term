@@ -50,8 +50,6 @@ func _physics_process(delta):
 			BuildingManager.open_inventories.append(output_inventory)
 			Global.player.inventory.open()
 			open_recipe_selector_button.visible = true
-			
-			
 	
 	if Input.is_action_just_pressed("e"):
 		input_inventory.close()
@@ -67,13 +65,21 @@ func _physics_process(delta):
 		input_inventory.update_slots()
 
 func select_recipe(recipe: Recipe):
-	selected_recipe = recipe
+	
+	
 	
 	for stack in input_inventory.reset_and_return_stacks():
 		Global.player.inventory.add_item_stack(stack)
 		
 	for stack in output_inventory.reset_and_return_stacks():
 		Global.player.inventory.add_item_stack(stack)
+		
+	if not timer.is_stopped():
+		timer.stop()
+		for item_stack in selected_recipe.input_item_stacks:
+			Global.player.inventory.add_item_stack(item_stack)
+			
+	selected_recipe = recipe
 	
 	input_inventory.slot_count = selected_recipe.input_item_stacks.size()
 	input_inventory.initialize_slots()
@@ -156,6 +162,7 @@ func _on_inventory_reach_body_exited(body):
 	player_in_range = false
 	input_inventory.close()
 	output_inventory.close()
+	recipe_selector.close()
 	open_recipe_selector_button.visible = false
 	
 	
@@ -186,6 +193,7 @@ func _on_recipe_selector_slot_input(slot_id, event):
 func _on_open_recipe_selector_pressed():
 	
 	if input_inventory.visible:
+		BuildingManager.open_inventories.append(recipe_selector)
 		recipe_selector.open()
 		input_inventory.close()
 		output_inventory.close()
