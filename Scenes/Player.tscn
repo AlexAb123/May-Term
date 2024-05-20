@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Player Scripts/Player.gd" id="1_fb2bp"]
 [ext_resource type="Texture2D" uid="uid://c2ikd5at4f3jv" path="res://assets/sprites/knight.png" id="2_ljflb"]
-[ext_resource type="PackedScene" uid="uid://svhyana707rj" path="res://Scenes/Inventory Scenes/Inventory.tscn" id="3_cdftl"]
+[ext_resource type="PackedScene" uid="uid://xy2vr6tknt6g" path="res://Scenes/Inventory Scenes/Inventory.tscn" id="3_cdftl"]
 [ext_resource type="Texture2D" uid="uid://dw3niubftv6cf" path="res://assets/health/bar.png" id="4_6qfgi"]
 [ext_resource type="Texture2D" uid="uid://mg6onenv8ktb" path="res://assets/health/health.png" id="5_sojft"]
 [ext_resource type="Script" path="res://Scripts/Health Bar Scripts/PlayerHealthBar.gd" id="6_sm484"]
@@ -208,9 +208,10 @@ follow_viewport_enabled = true
 [node name="SelectedItemSprite" type="Sprite2D" parent="CanvasLayer2"]
 
 [node name="SelectedItemCount" type="Label" parent="CanvasLayer2/SelectedItemSprite"]
-offset_left = 1.0
-offset_right = 41.0
-offset_bottom = 23.0
+offset_left = -7.0
+offset_top = -8.0
+offset_right = 33.0
+offset_bottom = 15.0
 scale = Vector2(0.35, 0.35)
 horizontal_alignment = 2
 clip_text = true
