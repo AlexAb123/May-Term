@@ -17,9 +17,3 @@ light_mask = 1
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("5_o64gn")
-
-[node name="HealthBar" parent="." index="4"]
-offset_left = -8.0
-offset_top = 8.0
-offset_right = 786.0
-offset_bottom = 132.0

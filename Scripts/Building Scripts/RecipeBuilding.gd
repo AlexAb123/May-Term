@@ -58,15 +58,12 @@ func _physics_process(delta):
 		open_recipe_selector_button.visible = false
 		
 	
-	if selected_recipe and timer.is_stopped() and _has_enough_resources():
-		timer.start()
-		sprite2D.texture = on_sprite
-		for its in selected_recipe.input_item_stacks:
-			input_inventory.item_stacks[input_inventory.position_in_inventory(its.item)].count = input_inventory.item_stacks[input_inventory.position_in_inventory(its.item)].count - its.count
-		input_inventory.update_slots()
-
+	if selected_recipe and timer.is_stopped() and has_enough_resources():
+		start_craft()
+		
 func select_recipe(recipe: Recipe):
-	
+	if recipe == selected_recipe:
+		return
 	for stack in input_inventory.reset_and_return_stacks():
 		Global.player.inventory.add_item_stack(stack)
 		
@@ -95,13 +92,24 @@ func select_recipe(recipe: Recipe):
 		
 	timer.wait_time = selected_recipe.craftingTime
 
+func start_craft():
+	timer.start()
+	sprite2D.texture = on_sprite
+	for its in selected_recipe.input_item_stacks:
+		input_inventory.item_stacks[input_inventory.position_in_inventory(its.item)].count = input_inventory.item_stacks[input_inventory.position_in_inventory(its.item)].count - its.count
+	input_inventory.update_slots()
+
 func _on_timer_timeout():
-	timer.stop()
-	sprite2D.texture = sprite
 	for item_stack in selected_recipe.output_item_stacks:
 		output_inventory.add_item_stack(item_stack)
+	if not has_enough_resources():
+		timer.stop()
+		sprite2D.texture = sprite
+	else:
+		start_craft()
 
-func _has_enough_resources():
+
+func has_enough_resources():
 	for item_stack in selected_recipe.input_item_stacks:
 		if input_inventory.amount_in_inventory(item_stack.item) < item_stack.count:
 			return false

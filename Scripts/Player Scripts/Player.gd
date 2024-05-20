@@ -71,6 +71,7 @@ func _process(delta):
 	var mouse_position: Vector2 = get_global_mouse_position() - Vector2(8,8)
 	
 	selected_item_sprite.global_position = mouse_position + Vector2(8,8)
+	
 	if not inventory.visible and left_click_down:
 		if selected_item_stack and selected_item_stack.item is PlaceableItem and selected_item_stack.count > 0 and not BuildingManager.check_position_occupied(mouse_position):
 			var building: Building = selected_item_stack.item.buildingScene.instantiate()
@@ -80,7 +81,6 @@ func _process(delta):
 				selected_item_stack = null
 			update_selected_item_sprite_and_label()
 			building.global_position = snapped(mouse_position, Vector2(16, 16))
-			print(building.global_position)
 			BuildingManager.add_building(building)
 			get_owner().add_child(building)
 		
