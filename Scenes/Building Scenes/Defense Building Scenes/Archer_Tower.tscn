@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://b5e5o2ikcqtdc"]
+[gd_scene load_steps=5 format=3 uid="uid://b5e5o2ikcqtdc"]
 
 [ext_resource type="PackedScene" uid="uid://ctqwwuvbd0b7c" path="res://Scenes/Building Scenes/Base Building Scenes/RangedDefenseBuilding.tscn" id="1_61d6q"]
 [ext_resource type="Texture2D" uid="uid://dagi4vl6yv08" path="res://assets/Custom Sprites/Archer Tower.png" id="2_dy8nd"]
 [ext_resource type="PackedScene" uid="uid://bobon6vvg73i3" path="res://Scenes/Projectile Scenes/BallProjectile.tscn" id="2_jrcpx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_55d75"]
 
 [node name="ArcherTower" instance=ExtResource("1_61d6q")]
 projectile = ExtResource("2_jrcpx")
@@ -11,3 +13,33 @@ detection_range = 75
 attack_cooldown = 0.5
 item_name = "Archer_Tower"
 sprite = ExtResource("2_dy8nd")
+
+[node name="CollisionShape2D" parent="." index="0"]
+light_mask = 1
+
+[node name="DetectionArea2D2" type="Area2D" parent="." index="4"]
+position = Vector2(8, 8)
+collision_layer = 0
+collision_mask = 4
+
+[node name="DetectionArea2DCollisionShape2D" type="CollisionShape2D" parent="DetectionArea2D2" index="0"]
+shape = SubResource("CircleShape2D_55d75")
+
+[node name="DetectionArea2D3" type="Area2D" parent="." index="5"]
+position = Vector2(8, 8)
+collision_layer = 0
+collision_mask = 4
+
+[node name="DetectionArea2DCollisionShape2D" type="CollisionShape2D" parent="DetectionArea2D3" index="0"]
+shape = SubResource("CircleShape2D_55d75")
+
+[node name="HealthBar" parent="." index="6"]
+offset_left = -8.0
+offset_top = 8.0
+offset_right = 786.0
+offset_bottom = 132.0
+
+[connection signal="body_entered" from="DetectionArea2D2" to="." method="_on_detection_area_2d_body_entered"]
+[connection signal="body_exited" from="DetectionArea2D2" to="." method="_on_detection_area_2d_body_exited"]
+[connection signal="body_entered" from="DetectionArea2D3" to="." method="_on_detection_area_2d_body_entered"]
+[connection signal="body_exited" from="DetectionArea2D3" to="." method="_on_detection_area_2d_body_exited"]

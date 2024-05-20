@@ -12,6 +12,7 @@ recipes = Array[Resource("res://Scripts/Resource Scripts/Recipe Scripts/Recipe.g
 on_sprite = null
 
 [node name="InventoryReach" type="Area2D" parent="." index="3"]
+position = Vector2(8, 8)
 collision_layer = 0
 collision_mask = 8
 
@@ -21,6 +22,8 @@ shape = SubResource("CircleShape2D_hrlnc")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." index="5"]
 layer = 0
+offset = Vector2(8, 8)
+transform = Transform2D(1, 0, 0, 1, 8, 8)
 
 [node name="InputInventory" parent="CanvasLayer" index="0" instance=ExtResource("3_djvtn")]
 offset_left = 757.0

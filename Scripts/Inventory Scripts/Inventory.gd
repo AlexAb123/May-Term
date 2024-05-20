@@ -12,7 +12,6 @@ var item_stacks: Array[ItemStack] = []
 func _ready():
 	
 	initialize_slots()
-	
 	# Center the inventory on the screen
 	pivot_offset.x = (16*columns+get_theme_constant("h_separation")*(columns-1))/2
 	var tempy = (int(float(slot_count)/columns))

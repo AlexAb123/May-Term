@@ -60,13 +60,12 @@ func _physics_process(delta):
 	
 	if selected_recipe and timer.is_stopped() and _has_enough_resources():
 		timer.start()
+		sprite2D.texture = on_sprite
 		for its in selected_recipe.input_item_stacks:
 			input_inventory.item_stacks[input_inventory.position_in_inventory(its.item)].count = input_inventory.item_stacks[input_inventory.position_in_inventory(its.item)].count - its.count
 		input_inventory.update_slots()
 
 func select_recipe(recipe: Recipe):
-	
-	
 	
 	for stack in input_inventory.reset_and_return_stacks():
 		Global.player.inventory.add_item_stack(stack)
@@ -76,6 +75,7 @@ func select_recipe(recipe: Recipe):
 		
 	if not timer.is_stopped():
 		timer.stop()
+		sprite2D.texture = sprite
 		for item_stack in selected_recipe.input_item_stacks:
 			Global.player.inventory.add_item_stack(item_stack)
 			
@@ -97,6 +97,7 @@ func select_recipe(recipe: Recipe):
 
 func _on_timer_timeout():
 	timer.stop()
+	sprite2D.texture = sprite
 	for item_stack in selected_recipe.output_item_stacks:
 		output_inventory.add_item_stack(item_stack)
 
