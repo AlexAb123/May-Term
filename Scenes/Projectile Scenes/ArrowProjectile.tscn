@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://dq4laui0ar6qh"]
+
+[ext_resource type="PackedScene" uid="uid://bobon6vvg73i3" path="res://Scenes/Projectile Scenes/BallProjectile.tscn" id="1_rmwe0"]
+[ext_resource type="Texture2D" uid="uid://chqwo6mghjhwn" path="res://assets/Custom Sprites/pixil-frame-0.png" id="2_ocaao"]
+[ext_resource type="Script" path="res://Scripts/Projectile Scripts/RotatingProjectile.gd" id="2_vec12"]
+
+[node name="ArrowProjectile" instance=ExtResource("1_rmwe0")]
+script = ExtResource("2_vec12")
+speed = 200
+pierce_count = 1
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(10, 10)
+texture = ExtResource("2_ocaao")
