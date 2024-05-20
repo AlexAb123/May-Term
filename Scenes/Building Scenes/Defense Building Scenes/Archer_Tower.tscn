@@ -3,6 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://ctqwwuvbd0b7c" path="res://Scenes/Building Scenes/Base Building Scenes/RangedDefenseBuilding.tscn" id="1_61d6q"]
 [ext_resource type="PackedScene" uid="uid://dq4laui0ar6qh" path="res://Scenes/Projectile Scenes/ArrowProjectile.tscn" id="2_8vl7l"]
 [ext_resource type="Texture2D" uid="uid://dagi4vl6yv08" path="res://assets/Custom Sprites/Archer Tower.png" id="2_dy8nd"]
+<<<<<<< Updated upstream
+=======
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_55d75"]
+>>>>>>> Stashed changes
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_55d75"]
 
