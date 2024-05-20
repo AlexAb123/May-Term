@@ -1,8 +1,6 @@
-extends Resource
+extends Item
 
 class_name Recipe
-
-@export var name : String
 
 @export var craftingTime : float
 

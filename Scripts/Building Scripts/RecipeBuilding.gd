@@ -10,6 +10,8 @@ class_name RecipeBuilding
 
 @onready var input_inventory: Inventory = $CanvasLayer/InputInventory
 @onready var output_inventory: Inventory = $CanvasLayer/OutputInventory
+@onready var recipe_selector = $CanvasLayer/RecipeSelector
+@onready var open_recipe_selector_button = $CanvasLayer/OpenRecipeSelector
 
 var selected_recipe : Recipe
 
@@ -20,9 +22,16 @@ func _ready():
 	
 	input_inventory.position.x = input_inventory.position.x + Global.player.inventory_xshift*0.75
 	output_inventory.position.x = output_inventory.position.x + Global.player.inventory_xshift*1.25
-	select_recipe(0)
-
-
+	
+	recipe_selector.position.x = recipe_selector.position.x +  Global.player.inventory_xshift*1
+	recipe_selector.slot_count = recipes.size()
+	recipe_selector.initialize_slots()
+	for recipe in recipes:
+		recipe_selector.add_item_stack(ItemStack.new(recipe, 1))
+		
+	for slot in recipe_selector.slots:
+		slot.itemCountLabel.visible = false
+		
 func _physics_process(delta):
 
 	super(delta)
@@ -40,20 +49,32 @@ func _physics_process(delta):
 			output_inventory.open()
 			BuildingManager.open_inventories.append(output_inventory)
 			Global.player.inventory.open()
+			open_recipe_selector_button.visible = true
+			
+			
 	
 	if Input.is_action_just_pressed("e"):
 		input_inventory.close()
 		output_inventory.close()
 		BuildingManager.close_all_open_inventories()
+		open_recipe_selector_button.visible = false
+		
 	
-	if timer.is_stopped() and _has_enough_resources():
+	if selected_recipe and timer.is_stopped() and _has_enough_resources():
 		timer.start()
 		for its in selected_recipe.input_item_stacks:
 			input_inventory.item_stacks[input_inventory.position_in_inventory(its.item)].count = input_inventory.item_stacks[input_inventory.position_in_inventory(its.item)].count - its.count
 		input_inventory.update_slots()
 
-func select_recipe(index: int):
-	selected_recipe = recipes[index]
+func select_recipe(recipe: Recipe):
+	selected_recipe = recipe
+	
+	for stack in input_inventory.reset_and_return_stacks():
+		Global.player.inventory.add_item_stack(stack)
+		
+	for stack in output_inventory.reset_and_return_stacks():
+		Global.player.inventory.add_item_stack(stack)
+	
 	input_inventory.slot_count = selected_recipe.input_item_stacks.size()
 	input_inventory.initialize_slots()
 	
@@ -135,16 +156,44 @@ func _on_inventory_reach_body_exited(body):
 	player_in_range = false
 	input_inventory.close()
 	output_inventory.close()
+	open_recipe_selector_button.visible = false
+	
+	
 
 func destroy():
 	input_inventory.close()
 	output_inventory.close()
 	BuildingManager.close_all_open_inventories()
+	open_recipe_selector_button.visible = false
 	super()
 	
 func deconstruct():
 	input_inventory.close()
 	output_inventory.close()
 	BuildingManager.close_all_open_inventories()
+	open_recipe_selector_button.visible = false
 	super()
 
+
+func _on_recipe_selector_slot_input(slot_id, event):
+	if Input.is_action_just_pressed("left_click"):
+		select_recipe(recipe_selector.item_stacks[slot_id].item)
+		recipe_selector.close()
+		input_inventory.open()
+		output_inventory.open()
+		open_recipe_selector_button.visible = true
+
+func _on_open_recipe_selector_pressed():
+	
+	if input_inventory.visible:
+		recipe_selector.open()
+		input_inventory.close()
+		output_inventory.close()
+		open_recipe_selector_button.visible = false
+		
+	elif not input_inventory.visible:
+		recipe_selector.close()
+		input_inventory.open()
+		output_inventory.open()
+		open_recipe_selector_button.visible = true
+		

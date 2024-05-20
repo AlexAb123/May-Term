@@ -9,3 +9,4 @@ theme_override_constants/h_separation = 1
 theme_override_constants/v_separation = 1
 columns = 5
 script = ExtResource("1_5gsdb")
+slot_count = 0

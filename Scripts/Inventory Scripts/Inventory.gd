@@ -9,7 +9,6 @@ class_name Inventory
 var slots: Array[InventorySlot] = []
 var item_stacks: Array[ItemStack] = []
 
-var xshift = 0
 
 func _ready():
 	
@@ -22,7 +21,7 @@ func _ready():
 	anchors_preset = PRESET_CENTER
 	
 	close()
-	
+
 func initialize_slots():
 	
 	item_stacks = []
@@ -33,9 +32,9 @@ func initialize_slots():
 		
 	for i in slot_count:
 		item_stacks.append(null)
-		
 		var new_slot: InventorySlot = slot_scene.instantiate()
 		new_slot.slot_id = i
+		new_slot.slot_input.connect(slot_input_event)
 		add_child(new_slot)
 		
 		slots.append(new_slot)
@@ -45,26 +44,9 @@ func initialize_slots():
 	var tempy = (int(float(slot_count)/columns))
 	pivot_offset.y = (16*tempy+get_theme_constant("v_separation")*(tempy-1))/2
 
-signal slot_input
-
+signal slot_input(slot_id, event)
 func slot_input_event(slot_id, event):
 	slot_input.emit(slot_id, event)
-	if not Input.is_action_just_pressed("shift_left_click") and Input.is_action_just_pressed("left_click"): 
-		left_click_slot(slot_id)
-	if Input.is_action_just_pressed("right_click"):
-		right_click_slot(slot_id)
-
-func left_click_slot(slot_id):
-	if owner is Player:
-		Global.player.selected_item_stack = item_stacks[slot_id]
-		Global.player.update_selected_item_sprite_and_label()
-	return
-	
-func right_click_slot(slot_id):
-	pass
-
-func z_pressed(slot_id):
-	slot_input.emit(slot_id, null)
 
 func update_slots():
 
@@ -79,9 +61,7 @@ func update_slots():
 		else:
 			slots[slot_id].set_sprite(null)
 			slots[slot_id].set_count_label("")
-				
-				
-		
+
 func compare_item_stack_id(is1: ItemStack, is2: ItemStack):
 	if is1 and is2:
 		return is1.item.id < is2.item.id
@@ -112,6 +92,7 @@ func remove_item_stack(item_stack):
 	item_stacks[pos].count -= item_stack.count
 	update_slots()
 	return
+	
 func remove_at(slot_id):
 	item_stacks[slot_id].count = 0
 	update_slots()
@@ -135,7 +116,16 @@ func open():
 
 func close():
 	visible = false
-
+	
+func reset_and_return_stacks():
+	
+	var stacks: Array[ItemStack] = []
+	for stack in item_stacks:
+		if stack.count > 0:
+			stacks.append(stack)
+	item_stacks = []
+	return stacks
+	
 func mouse_hovering_slot() -> int:
 	for i in slots.size():
 		if slots[i].mouse_hover:

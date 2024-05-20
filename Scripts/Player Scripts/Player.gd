@@ -140,10 +140,6 @@ func set_item_stack(item_stack: ItemStack):
 	selected_item_stack = item_stack
 	update_selected_item_sprite_and_label()
 
-func set_item_stack_count(count: int):
-	selected_item_stack.count = count
-	update_selected_item_sprite_and_label()
-	
 func update_selected_item_sprite_and_label():
 	if selected_item_stack and selected_item_stack.count >= 0:
 		selected_item_label.text = str(selected_item_stack.count)
@@ -151,3 +147,7 @@ func update_selected_item_sprite_and_label():
 	else:
 		selected_item_sprite.texture = null
 		selected_item_label.text = ""
+
+func _on_inventory_slot_input(slot_id, event):
+	if Input.is_action_just_pressed("left_click") and not Input.is_action_just_pressed("shift_left_click"):
+		set_item_stack(inventory.item_stacks[slot_id])
