@@ -13,6 +13,7 @@ signal healthChanged
 @onready var inventory: Inventory = $CanvasLayer/Inventory
 
 
+
 var selected_item_stack: ItemStack
 
 var is_deconstructing: bool = false

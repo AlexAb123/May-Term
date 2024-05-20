@@ -18,7 +18,7 @@ func _ready():
 	pivot_offset.y = (16*tempy+get_theme_constant("v_separation")*(tempy-1))/2
 	anchors_preset = PRESET_CENTER
 	
-	close()
+	visible = false
 
 func initialize_slots():
 	
@@ -109,11 +109,14 @@ func amount_in_inventory(item: Item) -> int:
 		return -1
 	return item_stacks[pos].count
 	
+signal opened
 func open():
 	visible = true
-
+	opened.emit()
+signal closed
 func close():
 	visible = false
+	closed.emit()
 	
 func reset_and_return_stacks():
 	

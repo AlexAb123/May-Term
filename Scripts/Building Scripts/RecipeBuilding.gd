@@ -12,6 +12,7 @@ class_name RecipeBuilding
 @onready var output_inventory: Inventory = $CanvasLayer/OutputInventory
 @onready var recipe_selector = $CanvasLayer/RecipeSelector
 @onready var open_recipe_selector_button = $CanvasLayer/OpenRecipeSelector
+@onready var canvas_layer = $CanvasLayer
 
 var selected_recipe : Recipe
 
@@ -214,3 +215,8 @@ func _on_open_recipe_selector_pressed():
 		output_inventory.open()
 		open_recipe_selector_button.visible = true
 		
+
+
+func _on_input_inventory_closed():
+	open_recipe_selector_button.visible = false
+	
