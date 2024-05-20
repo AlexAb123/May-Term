@@ -1,12 +1,33 @@
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+[gd_scene load_steps=4 format=3 uid="uid://clwu8xcimx41c"]
+
+[ext_resource type="PackedScene" uid="uid://bobon6vvg73i3" path="res://Scenes/Projectile Scenes/BallProjectile.tscn" id="1_rmwe0"]
+[ext_resource type="Texture2D" path="res://assets/Custom Sprites/pixil-frame-0.png" id="2_ocaao"]
+=======
+>>>>>>> Stashed changes
 [gd_scene load_steps=4 format=3 uid="uid://dq4laui0ar6qh"]
 
 [ext_resource type="PackedScene" uid="uid://bobon6vvg73i3" path="res://Scenes/Projectile Scenes/BallProjectile.tscn" id="1_rmwe0"]
 [ext_resource type="Texture2D" uid="uid://chqwo6mghjhwn" path="res://assets/Custom Sprites/pixil-frame-0.png" id="2_ocaao"]
+<<<<<<< Updated upstream
+=======
+>>>>>>> 502fe342a6943796b0a31ce7dcb923e4c05e3d5c
+>>>>>>> Stashed changes
 [ext_resource type="Script" path="res://Scripts/Projectile Scripts/RotatingProjectile.gd" id="2_vec12"]
 
 [node name="ArrowProjectile" instance=ExtResource("1_rmwe0")]
 script = ExtResource("2_vec12")
+<<<<<<< Updated upstream
 speed = 200
+=======
+<<<<<<< HEAD
+speed = 10
+=======
+speed = 200
+>>>>>>> 502fe342a6943796b0a31ce7dcb923e4c05e3d5c
+>>>>>>> Stashed changes
 pierce_count = 1
 
 [node name="Sprite2D" parent="." index="0"]
