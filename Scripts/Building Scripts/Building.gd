@@ -24,7 +24,7 @@ func _physics_process(delta):
 	else:
 		health_bar.visible = true
 	
-	if right_click_down:
+	if right_click_down and not Global.player.inventory.visible:
 		deconstruct_timer += delta
 		Global.player.is_deconstructing = true
 		
