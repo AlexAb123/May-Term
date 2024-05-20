@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://b5e5o2ikcqtdc"]
 
 [ext_resource type="PackedScene" uid="uid://ctqwwuvbd0b7c" path="res://Scenes/Building Scenes/Base Building Scenes/RangedDefenseBuilding.tscn" id="1_61d6q"]
+[ext_resource type="PackedScene" uid="uid://dq4laui0ar6qh" path="res://Scenes/Projectile Scenes/ArrowProjectile.tscn" id="2_8vl7l"]
 [ext_resource type="Texture2D" uid="uid://dagi4vl6yv08" path="res://assets/Custom Sprites/Archer Tower.png" id="2_dy8nd"]
-[ext_resource type="PackedScene" uid="uid://bobon6vvg73i3" path="res://Scenes/Projectile Scenes/BallProjectile.tscn" id="2_jrcpx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_55d75"]
 
 [node name="ArcherTower" instance=ExtResource("1_61d6q")]
-projectile = ExtResource("2_jrcpx")
+projectile = ExtResource("2_8vl7l")
 health = 50
 detection_range = 75
 attack_cooldown = 0.5
