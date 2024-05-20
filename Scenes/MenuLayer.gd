@@ -3,14 +3,6 @@ extends CanvasLayer
 @onready var pause_button = $pause
 @onready var options_menu = $OptionsMenu
 
-signal play
-
-func _physics_process(delta):
-	if options_menu.play == true:
-		print("playing")
-		play.emit()
-		playview()
-		get_tree().paused = false
 	
 func pauseview():
 	pause_button.visible = false
@@ -30,3 +22,9 @@ func _on_main_menu_in_game():
 
 func _on_main_menu_in_menu():
 	hide()
+
+
+func _on_options_menu_play():
+	print("playing")
+	playview()
+	get_tree().paused = false

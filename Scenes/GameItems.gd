@@ -4,9 +4,9 @@ extends Node2D
 
 # deletes all enemies when going to main menu
 func _on_main_menu_in_menu():
-	for n in get_children():
-			remove_child(n)
-			n.queue_free()
+	for n in levels.get_children():
+		levels.remove_child(n)
+		n.queue_free()
 	wave_manager.manageQuit()
 
 func _on_pause_pressed():
@@ -18,6 +18,6 @@ func _on_main_menu_instantiate_level(currlevel):
 func _on_main_menu_in_game():
 	wave_manager.playTimer()
 
-func _on_menu_layer_play():
+func _on_options_menu_play():
 	print("PLAY")
 	wave_manager.playTimer()
