@@ -22,6 +22,7 @@ var inventory_xshift
 func _ready():
 	
 	Global.set_player(self)
+	healthChanged.emit()
 	
 	inventory_xshift = (16*inventory.columns+inventory.get_theme_constant("h_separation")*(inventory.columns-1))*3
 	inventory.position.x = inventory.position.x - inventory_xshift
@@ -68,6 +69,7 @@ func _physics_process(delta):
 	
 func _process(delta):
 	
+
 	var mouse_position: Vector2 = get_global_mouse_position() - Vector2(8,8)
 	
 	selected_item_sprite.global_position = mouse_position + Vector2(8,8)

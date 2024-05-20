@@ -53,6 +53,7 @@ func take_damage(dmg):
 	if current_health <= 0:
 		current_health = max_health
 		death()
+
 func death():
 	queue_free()
 	
