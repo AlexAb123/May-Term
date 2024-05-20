@@ -12,12 +12,14 @@ signal healthChanged
 @onready var selected_item_label: Label = $CanvasLayer2/SelectedItemSprite/SelectedItemCount
 @onready var inventory: Inventory = $CanvasLayer/Inventory
 
+
 var selected_item_stack: ItemStack
 
 var is_deconstructing: bool = false
 
 func _ready():
 	Global.set_player(self)
+	healthChanged.emit()
 	
 	selected_item_sprite.modulate = Color(1, 1, 1, 0.8)
 
@@ -62,6 +64,8 @@ func _physics_process(delta):
 	
 func _process(delta):
 	
+
+		
 	var mouse_position: Vector2 = get_global_mouse_position()
 	
 	selected_item_sprite.global_position.x = get_global_mouse_position().x
@@ -141,3 +145,6 @@ func update_selected_item_sprite_and_label():
 	else:
 		selected_item_sprite.texture = null
 		selected_item_label.text = ""
+		
+
+
