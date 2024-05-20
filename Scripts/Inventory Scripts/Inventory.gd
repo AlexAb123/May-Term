@@ -9,69 +9,59 @@ class_name Inventory
 var slots: Array[InventorySlot] = []
 var item_stacks: Array[ItemStack] = []
 
-var xshift = 0
-
-@export var horizontal_shift : int = 0
-@export var vertical_shift: int = 0
-
 func _ready():
 	
-	for i in slot_count:
-		item_stacks.append(null)
-		
-		var new_slot: InventorySlot = slot_scene.instantiate()
-		new_slot.slot_id = i
-		add_child(new_slot)
-		
-		slots.append(new_slot)
-		
-	#CENTERING THE INVENTORY ON THE SCREEN
+	initialize_slots()
+	# Center the inventory on the screen
 	pivot_offset.x = (16*columns+get_theme_constant("h_separation")*(columns-1))/2
 	var tempy = (int(float(slot_count)/columns))
 	pivot_offset.y = (16*tempy+get_theme_constant("v_separation")*(tempy-1))/2
 	anchors_preset = PRESET_CENTER
-	xshift = (16*columns+get_theme_constant("h_separation")*(columns-1))*3
-	position.x = position.x - xshift
 	
-	position.x = position.x + horizontal_shift
-	position.y = position.y + vertical_shift
+	close()
+
+func initialize_slots():
 	
+	item_stacks = []
+	slots = []
+	for n in get_children():
+		remove_child(n)
+		n.queue_free()
+		
+	for i in slot_count:
+		item_stacks.append(null)
+		var new_slot: InventorySlot = slot_scene.instantiate()
+		new_slot.slot_id = i
+		new_slot.slot_input.connect(slot_input_event)
+		add_child(new_slot)
+		
+		slots.append(new_slot)
 	
 	update_slots()
 	
-	close()
-	
-func slot_input_event(slot_id, event):
-	if event is InputEventMouseButton:
-		if event.pressed:
-			if event.button_index == 1:
-				left_click_slot(slot_id)
-			if event.button_index == 2:
-				right_click_slot(slot_id)
+	var tempy = (int(float(slot_count)/columns))
+	pivot_offset.y = (16*tempy+get_theme_constant("v_separation")*(tempy-1))/2
 
-func left_click_slot(slot_id):
-	
-	Global.player.selected_item_stack = item_stacks[slot_id]
-	Global.player.update_selected_item_sprite_and_label()
-	return
-	
-func right_click_slot(slot_id):
-	pass
+signal slot_input(slot_id, event)
+func slot_input_event(slot_id, event):
+	slot_input.emit(slot_id, event)
 
 func update_slots():
-	
+
 	item_stacks.sort_custom(compare_item_stack_id)
 	
 	for slot_id in slot_count:
-		if item_stacks[slot_id] and item_stacks[slot_id].count > 0:
+	
+		if item_stacks[slot_id] and item_stacks[slot_id].count >= 0:
 			slots[slot_id].set_sprite(item_stacks[slot_id].item.sprite)
 			slots[slot_id].set_count_label(str(item_stacks[slot_id].count))
-			
+		
 		else:
 			slots[slot_id].set_sprite(null)
 			slots[slot_id].set_count_label("")
-			
+
 func compare_item_stack_id(is1: ItemStack, is2: ItemStack):
+	
 	if is1 and is2:
 		return is1.item.id < is2.item.id
 	elif is1 and not is2:
@@ -102,6 +92,10 @@ func remove_item_stack(item_stack):
 	update_slots()
 	return
 	
+func remove_at(slot_id):
+	item_stacks[slot_id].count = 0
+	update_slots()
+	return
 	
 func position_in_inventory(item: Item) -> int:
 	for i in item_stacks.size():
@@ -115,15 +109,23 @@ func amount_in_inventory(item: Item) -> int:
 		return -1
 	return item_stacks[pos].count
 	
-func _process(delta):
-	if Input.is_action_just_pressed("e"):
-		if visible:
-			close()
-		else:
-			open()
-			
 func open():
 	visible = true
 
 func close():
 	visible = false
+	
+func reset_and_return_stacks():
+	
+	var stacks: Array[ItemStack] = []
+	for stack in item_stacks:
+		if stack.count > 0:
+			stacks.append(stack)
+	item_stacks = []
+	return stacks
+	
+func mouse_hovering_slot() -> int:
+	for i in slots.size():
+		if slots[i].mouse_hover:
+			return i
+	return -1

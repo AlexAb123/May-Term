@@ -12,7 +12,6 @@ recipes = Array[Resource("res://Scripts/Resource Scripts/Recipe Scripts/Recipe.g
 on_sprite = null
 
 [node name="InventoryReach" type="Area2D" parent="." index="3"]
-position = Vector2(8, 8)
 collision_layer = 0
 collision_mask = 8
 
@@ -21,30 +20,12 @@ scale = Vector2(7, 7)
 shape = SubResource("CircleShape2D_hrlnc")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." index="5"]
-layer = 0
-offset = Vector2(8, 8)
-transform = Transform2D(1, 0, 0, 1, 8, 8)
 
 [node name="InputInventory" parent="CanvasLayer" index="0" instance=ExtResource("3_djvtn")]
-offset_left = 757.0
-offset_right = 757.0
 columns = 1
 
 [node name="OutputInventory" parent="CanvasLayer" index="1" instance=ExtResource("3_djvtn")]
-offset_left = 883.0
-offset_right = 883.0
 columns = 1
-
-[node name="RecipeSelector" parent="CanvasLayer" index="2" instance=ExtResource("3_djvtn")]
-
-[node name="OpenRecipeSelector" type="Button" parent="CanvasLayer" index="3"]
-visible = false
-offset_left = 635.0
-offset_top = 76.0
-offset_right = 745.0
-offset_bottom = 107.0
-scale = Vector2(2.5, 2.5)
-text = "Select Recipe"
 
 [node name="Timer" type="Timer" parent="." index="6"]
 
@@ -52,6 +33,4 @@ text = "Select Recipe"
 [connection signal="body_exited" from="InventoryReach" to="." method="_on_inventory_reach_body_exited"]
 [connection signal="slot_input" from="CanvasLayer/InputInventory" to="." method="_on_input_inventory_slot_input"]
 [connection signal="slot_input" from="CanvasLayer/OutputInventory" to="." method="_on_output_inventory_slot_input"]
-[connection signal="slot_input" from="CanvasLayer/RecipeSelector" to="." method="_on_recipe_selector_slot_input"]
-[connection signal="pressed" from="CanvasLayer/OpenRecipeSelector" to="." method="_on_open_recipe_selector_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -16,20 +16,23 @@ collision_mask = 0
 script = ExtResource("1_e7ngb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 65
+position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_e6rv2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, 8)
 
 [node name="MouseArea2D" type="Area2D" parent="."]
+position = Vector2(8, 8)
 
 [node name="AreaCollisionShape2D" type="CollisionShape2D" parent="MouseArea2D"]
 shape = SubResource("RectangleShape2D_3j7wk")
 
 [node name="HealthBar" type="TextureProgressBar" parent="." node_paths=PackedStringArray("building")]
-offset_left = -8.0
-offset_top = 8.0
-offset_right = 786.0
-offset_bottom = 132.0
+offset_top = 16.0
+offset_right = 794.0
+offset_bottom = 140.0
 scale = Vector2(0.0199957, -0.0331187)
 texture_progress = ExtResource("3_66sok")
 script = ExtResource("3_1ehi7")

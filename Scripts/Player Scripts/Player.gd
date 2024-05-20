@@ -3,10 +3,10 @@ class_name Player
 
 signal healthChanged
 
-@export_category("Movement")
 @export var max_health = 100
 @export var moveSpeed: int = 100
 @onready var current_health: int = max_health
+@export var inventory_reach_distance: int = 10
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var selected_item_sprite: Sprite2D = $CanvasLayer2/SelectedItemSprite
 @onready var selected_item_label: Label = $CanvasLayer2/SelectedItemSprite/SelectedItemCount
@@ -17,10 +17,15 @@ var selected_item_stack: ItemStack
 
 var is_deconstructing: bool = false
 
+var inventory_xshift
+
 func _ready():
+	
 	Global.set_player(self)
 	healthChanged.emit()
 	
+	inventory_xshift = (16*inventory.columns+inventory.get_theme_constant("h_separation")*(inventory.columns-1))*3
+	inventory.position.x = inventory.position.x - inventory_xshift
 	selected_item_sprite.modulate = Color(1, 1, 1, 0.8)
 
 func take_damage(damage):
@@ -65,26 +70,29 @@ func _physics_process(delta):
 func _process(delta):
 	
 
-		
-	var mouse_position: Vector2 = get_global_mouse_position()
+	var mouse_position: Vector2 = get_global_mouse_position() - Vector2(8,8)
 	
-	selected_item_sprite.global_position.x = get_global_mouse_position().x
-	selected_item_sprite.global_position.y = get_global_mouse_position().y
+	selected_item_sprite.global_position = mouse_position + Vector2(8,8)
 	
 	if not inventory.visible and left_click_down:
-		if selected_item_stack and selected_item_stack.item is PlaceableItem and selected_item_stack.count > 0 and not BuildingManager.check_position_occupied(get_global_mouse_position()):
+		if selected_item_stack and selected_item_stack.item is PlaceableItem and selected_item_stack.count > 0 and not BuildingManager.check_position_occupied(mouse_position):
 			var building: Building = selected_item_stack.item.buildingScene.instantiate()
 			selected_item_stack.count = selected_item_stack.count - 1
 			inventory.update_slots()
 			if selected_item_stack.count <= 0:
 				selected_item_stack = null
 			update_selected_item_sprite_and_label()
-			building.global_position = snapped(get_global_mouse_position(), Vector2(16, 16))
+			building.global_position = snapped(mouse_position, Vector2(16, 16))
 			BuildingManager.add_building(building)
 			get_owner().add_child(building)
 		
-		
-		
+	
+	if Input.is_action_just_pressed("e"):
+		if inventory.visible:
+			inventory.close()
+		else:
+			inventory.open()
+	
 	if Input.is_action_just_pressed("q"):
 		set_item_stack(null)
 	if Input.is_action_just_pressed("x"):
@@ -92,9 +100,9 @@ func _process(delta):
 	if Input.is_action_just_pressed("g"):
 		inventory.add_item_stack(ItemStack.new(Database.item_database["Archer_Tower"][0], 10))
 	if Input.is_action_just_pressed("v"):
-		inventory.add_item_stack(ItemStack.new(Database.item_database["Iron_Ore"][0], 10))
+		inventory.add_item_stack(ItemStack.new(Database.item_database["Iron_Ore"][0], 2))
 	if Input.is_action_just_pressed("c"):
-		inventory.add_item_stack(ItemStack.new(Database.item_database["Coal"][0], 10))
+		inventory.add_item_stack(ItemStack.new(Database.item_database["Coal"][0], 1))
 	if Input.is_action_just_pressed("y"):
 		var enemy = load("res://Scenes/Enemy Scenes/Base Enemy Scenes/Enemy.tscn").instantiate()
 		enemy.global_position = mouse_position
@@ -129,22 +137,18 @@ func _on_right_click_pressed():
 func _on_right_click_released():
 	right_click_down = false
 
-
 func set_item_stack(item_stack: ItemStack):
 	selected_item_stack = item_stack
 	update_selected_item_sprite_and_label()
 
-func set_item_stack_count(count: int):
-	selected_item_stack.count = count
-	update_selected_item_sprite_and_label()
-	
 func update_selected_item_sprite_and_label():
-	if selected_item_stack:
+	if selected_item_stack and selected_item_stack.count >= 0:
 		selected_item_label.text = str(selected_item_stack.count)
 		selected_item_sprite.texture = selected_item_stack.item.sprite
 	else:
 		selected_item_sprite.texture = null
 		selected_item_label.text = ""
-		
 
-
+func _on_inventory_slot_input(slot_id, event):
+	if Input.is_action_just_pressed("left_click") and not Input.is_action_just_pressed("shift_left_click"):
+		set_item_stack(inventory.item_stacks[slot_id])

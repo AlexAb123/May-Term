@@ -164,7 +164,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
-collision_layer = 3
+collision_layer = 8
 motion_mode = 1
 script = ExtResource("1_fb2bp")
 
@@ -181,10 +181,6 @@ autoplay = "idle"
 offset = Vector2(2.08165e-12, -10)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Inventory" parent="CanvasLayer" instance=ExtResource("3_cdftl")]
-slot_count = 25
-metadata/_edit_use_anchors_ = true
 
 [node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("player")]
 anchors_preset = -1
@@ -203,6 +199,9 @@ script = ExtResource("6_sm484")
 player = NodePath("../..")
 metadata/_edit_use_anchors_ = true
 
+[node name="Inventory" parent="CanvasLayer" instance=ExtResource("3_cdftl")]
+slot_count = 25
+
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
@@ -215,3 +214,5 @@ offset_bottom = 23.0
 scale = Vector2(0.35, 0.35)
 horizontal_alignment = 2
 clip_text = true
+
+[connection signal="slot_input" from="CanvasLayer/Inventory" to="." method="_on_inventory_slot_input"]
