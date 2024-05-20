@@ -24,11 +24,9 @@ metadata/_edit_use_anchors_ = true
 [node name="InGame" type="Node2D" parent="."]
 script = ExtResource("4_0m3lu")
 
-[node name="MenuLayer" type="CanvasLayer" parent="InGame" node_paths=PackedStringArray("OptionsMenu", "Main")]
+[node name="MenuLayer" type="CanvasLayer" parent="InGame"]
 visible = false
 script = ExtResource("5_cypep")
-OptionsMenu = NodePath("OptionsMenu")
-Main = NodePath("../..")
 
 [node name="OptionsMenu" parent="InGame/MenuLayer" instance=ExtResource("3_ey0cq")]
 process_mode = 2

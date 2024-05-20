@@ -4,7 +4,6 @@ extends Control
 # also handles level selection 
 
 @onready var levels = [preload("res://Scenes/Levels/Level_1.tscn")]
-@onready var level_folder = $"../InGame/GameItems/Levels"
 @onready var currlevel
 #@onready var options_menu = $"../InGame/MenuLayer/OptionsMenu"
 

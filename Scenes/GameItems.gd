@@ -20,4 +20,5 @@ func _on_main_menu_instantiate_level(currlevel):
 func _on_main_menu_in_game():
 	wave_manager.playTimer()
 
-
+func onplay():
+	wave_manager.playTimer()

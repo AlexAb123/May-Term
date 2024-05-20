@@ -1,16 +1,12 @@
 extends CanvasLayer
 
-@export var OptionsMenu : Control
-@export var Main : Node
 @onready var pause_button = $pause
 @onready var options_menu = $OptionsMenu
-@onready var main_menu = $"../../MainMenu"
-
 
 signal pause
+signal play
 
 func _ready():
-	#OptionsMenu.play.connect(playview)
 	pass
 	
 func pauseview():
@@ -21,14 +17,10 @@ func playview():
 	pause_button.visible = true
 	options_menu.visible = false
 
-func process(delta):
-	pass
-
 func _on_pause_pressed():
 	pauseview()
 	pause.emit()
 	print("PAUSE")
-
 
 func _on_options_menu_play():
 	playview()
