@@ -5,7 +5,6 @@ extends Control
 
 @onready var levels = [preload("res://Scenes/Levels/Level_1.tscn")]
 @onready var currlevel
-#@onready var options_menu = $"../InGame/MenuLayer/OptionsMenu"
 
 signal in_game
 signal in_menu
@@ -27,16 +26,20 @@ func _on_level_1_pressed():
 	print("INGAME")
 
 func _on_level_2_pressed():
-	get_tree().change_scene_to_file("res://Scenes/Level_2.tscn")
+	print("LEVEL 2")
 	currlevel = levels[1].instantiate()
-	level_folder.add_child(currlevel)
+	instantiate_level.emit(currlevel)
 	in_game.emit()
+	visible = false
+	print("INGAME")
 
 func _on_level_3_pressed():
-	get_tree().change_scene_to_file("res://Scenes/Level_3.tscn")
+	print("LEVEL 3")
 	currlevel = levels[2].instantiate()
-	level_folder.add_child(currlevel)
+	instantiate_level.emit(currlevel)
 	in_game.emit()
+	visible = false
+	print("INGAME")
 
 func _on_quit_game_pressed():
 	print("QUIT GAME")

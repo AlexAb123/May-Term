@@ -12,13 +12,12 @@ func _on_main_menu_in_menu():
 func _on_pause_pressed():
 	wave_manager.pauseTimer()
 
-
 func _on_main_menu_instantiate_level(currlevel):
 	levels.add_child(currlevel)
-
 
 func _on_main_menu_in_game():
 	wave_manager.playTimer()
 
-func onplay():
+func _on_menu_layer_play():
+	print("PLAY")
 	wave_manager.playTimer()
