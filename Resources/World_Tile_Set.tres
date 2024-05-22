@@ -1125,4 +1125,6 @@ texture = ExtResource("1_r5b4l")
 
 [resource]
 physics_layer_0/collision_layer = 1
+custom_data_layer_0/name = "Iron_Ore"
+custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_3sgma")
