@@ -69,6 +69,8 @@ func destroy():
 	super()
 	
 func deconstruct():
+	for item_stack in output_inventory.item_stacks:
+		Global.player.inventory.add_item_stack(item_stack)
 	output_inventory.close()
 	BuildingManager.close_all_open_inventories()
 	super()
