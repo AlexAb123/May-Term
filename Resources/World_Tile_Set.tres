@@ -680,7 +680,6 @@ texture = ExtResource("1_r5b4l")
 9:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 9:8/0/physics_layer_0/angular_velocity = 0.0
 10:8/0 = 0
-10:8/0/z_index = 1
 10:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 10:8/0/physics_layer_0/angular_velocity = 0.0
 10:8/0/custom_data_0 = ExtResource("1_1stuu")
