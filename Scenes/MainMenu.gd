@@ -23,7 +23,7 @@ func _on_level_1_pressed():
 	instantiate_level.emit(currlevel)
 	in_game.emit()
 	visible = false
-	print("INGAME")
+	#print("INGAME")
 
 func _on_level_2_pressed():
 	print("LEVEL 2")
@@ -31,7 +31,7 @@ func _on_level_2_pressed():
 	instantiate_level.emit(currlevel)
 	in_game.emit()
 	visible = false
-	print("INGAME")
+	#print("INGAME")
 
 func _on_level_3_pressed():
 	print("LEVEL 3")
@@ -39,7 +39,7 @@ func _on_level_3_pressed():
 	instantiate_level.emit(currlevel)
 	in_game.emit()
 	visible = false
-	print("INGAME")
+	#print("INGAME")
 
 func _on_quit_game_pressed():
 	print("QUIT GAME")
