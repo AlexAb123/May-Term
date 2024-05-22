@@ -11,7 +11,7 @@ var selected_recipe: Recipe
 func _ready():
 	super()
 	output_inventory.position.x = output_inventory.position.x + Global.player.inventory_xshift*1
-	print(output_inventory)
+	# have to select here so that its instiatied before trying to call select recipe
 	select_recipe(recipe)
 	
 func _physics_process(delta):

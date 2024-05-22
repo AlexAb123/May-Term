@@ -84,7 +84,6 @@ func _process(delta):
 				if not cell:
 					return
 				var ore = cell.get_custom_data("Ore")
-				print(ore)
 				if not ore:
 					return
 				var new_recipe = Recipe.new("Mining", drill_mining_time, [], [ItemStack.new(ore, 1)])
