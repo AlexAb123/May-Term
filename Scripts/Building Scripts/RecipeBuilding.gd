@@ -6,7 +6,6 @@ class_name RecipeBuilding
 
 @onready var timer: Timer = $Timer
 
-@export var on_sprite: Texture2D
 
 @onready var input_inventory: Inventory = $CanvasLayer/InputInventory
 @onready var output_inventory: Inventory = $CanvasLayer/OutputInventory
@@ -32,6 +31,8 @@ func _ready():
 		
 	for slot in recipe_selector.slots:
 		slot.itemCountLabel.visible = false
+		
+	print(global_position)
 		
 func _physics_process(delta):
 
@@ -95,7 +96,6 @@ func select_recipe(recipe: Recipe):
 
 func start_craft():
 	timer.start()
-	sprite2D.texture = on_sprite
 	for its in selected_recipe.input_item_stacks:
 		input_inventory.item_stacks[input_inventory.position_in_inventory(its.item)].count = input_inventory.item_stacks[input_inventory.position_in_inventory(its.item)].count - its.count
 	input_inventory.update_slots()
@@ -103,11 +103,7 @@ func start_craft():
 func _on_timer_timeout():
 	for item_stack in selected_recipe.output_item_stacks:
 		output_inventory.add_item_stack(item_stack)
-	if not has_enough_resources():
-		timer.stop()
-		sprite2D.texture = sprite
-	else:
-		start_craft()
+	start_craft()
 
 
 func has_enough_resources():
@@ -115,7 +111,6 @@ func has_enough_resources():
 		if input_inventory.amount_in_inventory(item_stack.item) < item_stack.count:
 			return false
 	return true
-	
 
 func _on_input_inventory_slot_input(slot_id, event):
 	if Input.is_action_just_pressed("shift_left_click"):
@@ -128,7 +123,7 @@ func _on_input_inventory_slot_input(slot_id, event):
 			Global.player.inventory.add_item_stack(ItemStack.new(input_inventory.item_stacks[slot_id].item, 1))
 			input_inventory.item_stacks[slot_id].count -= 1
 			input_inventory.update_slots()
-		
+			
 func _on_output_inventory_slot_input(slot_id, event):
 	if Input.is_action_just_pressed("shift_left_click"):
 		Global.player.inventory.add_item_stack(ItemStack.new(output_inventory.item_stacks[slot_id].item, output_inventory.item_stacks[slot_id].count))

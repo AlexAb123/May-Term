@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://w7k2pju40kxb"]
+
+[ext_resource type="PackedScene" uid="uid://dbg5hg88ngfkg" path="res://Scenes/Building Scenes/Base Building Scenes/Building.tscn" id="1_l0d1t"]
+[ext_resource type="Script" path="res://Scripts/Building Scripts/Drill.gd" id="2_wm6we"]
+[ext_resource type="Texture2D" uid="uid://dgep8w3f40ipy" path="res://assets/Custom Sprites/InventorySlot.png" id="3_qn0aj"]
+[ext_resource type="PackedScene" uid="uid://xy2vr6tknt6g" path="res://Scenes/Inventory Scenes/Inventory.tscn" id="3_tibmx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a0hv6"]
+
+[node name="Drill" instance=ExtResource("1_l0d1t")]
+script = ExtResource("2_wm6we")
+item_name = "Drill"
+sprite = ExtResource("3_qn0aj")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="4"]
+layer = 0
+offset = Vector2(8, 8)
+transform = Transform2D(1, 0, 0, 1, 8, 8)
+
+[node name="OutputInventory" parent="CanvasLayer" index="0" instance=ExtResource("3_tibmx")]
+offset_left = 883.0
+offset_right = 883.0
+columns = 1
+slot_count = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="." index="5"]
+
+[node name="InventoryReach" type="Area2D" parent="." index="6"]
+position = Vector2(8, 8)
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InventoryReach" index="0"]
+scale = Vector2(7, 7)
+shape = SubResource("CircleShape2D_a0hv6")
+
+[connection signal="slot_input" from="CanvasLayer/OutputInventory" to="." method="_on_output_inventory_slot_input"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="InventoryReach" to="." method="_on_inventory_reach_body_entered"]
+[connection signal="body_exited" from="InventoryReach" to="." method="_on_inventory_reach_body_exited"]

@@ -1,5 +1,6 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://cbd5w3q2paigl"]
+[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://cbd5w3q2paigl"]
 
+[ext_resource type="Resource" uid="uid://y3y7pjfvyfnd" path="res://Resources/Items/ITEM_Iron_Ore.tres" id="1_1stuu"]
 [ext_resource type="Texture2D" uid="uid://ds5p6d23xpleh" path="res://assets/Test/16x16/Tilesets/New/Solaria Demo Tiles.png" id="1_r5b4l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3sgma"]
@@ -679,8 +680,10 @@ texture = ExtResource("1_r5b4l")
 9:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 9:8/0/physics_layer_0/angular_velocity = 0.0
 10:8/0 = 0
+10:8/0/z_index = 1
 10:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 10:8/0/physics_layer_0/angular_velocity = 0.0
+10:8/0/custom_data_0 = ExtResource("1_1stuu")
 12:8/0 = 0
 12:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 12:8/0/physics_layer_0/angular_velocity = 0.0
@@ -1125,6 +1128,6 @@ texture = ExtResource("1_r5b4l")
 
 [resource]
 physics_layer_0/collision_layer = 1
-custom_data_layer_0/name = "Iron_Ore"
-custom_data_layer_0/type = 1
+custom_data_layer_0/name = "Ore"
+custom_data_layer_0/type = 24
 sources/0 = SubResource("TileSetAtlasSource_3sgma")

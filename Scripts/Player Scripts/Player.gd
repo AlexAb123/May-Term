@@ -11,7 +11,9 @@ signal healthChanged
 @onready var selected_item_sprite: Sprite2D = $CanvasLayer2/SelectedItemSprite
 @onready var selected_item_label: Label = $CanvasLayer2/SelectedItemSprite/SelectedItemCount
 @onready var inventory: Inventory = $CanvasLayer/Inventory
+@onready var tile_map: TileMap = $"../TileMap"
 
+@export var drill_mining_time: int = 2
 
 var selected_item_stack: ItemStack
 
@@ -20,7 +22,6 @@ var is_deconstructing: bool = false
 var inventory_xshift
 
 func _ready():
-	
 	Global.set_player(self)
 	healthChanged.emit()
 	
@@ -77,15 +78,25 @@ func _process(delta):
 	if not inventory.visible and left_click_down:
 		if selected_item_stack and selected_item_stack.item is PlaceableItem and selected_item_stack.count > 0 and not BuildingManager.check_position_occupied(mouse_position):
 			var building: Building = selected_item_stack.item.buildingScene.instantiate()
-			selected_item_stack.count = selected_item_stack.count - 1
-			inventory.update_slots()
-			if selected_item_stack.count <= 0:
-				selected_item_stack = null
-			update_selected_item_sprite_and_label()
 			building.global_position = snapped(mouse_position, Vector2(16, 16))
+			if building is Drill:
+				var cell = tile_map.get_cell_tile_data(1, building.global_position/16)
+				if not cell:
+					return
+				var ore = cell.get_custom_data("Ore")
+				print(ore)
+				if not ore:
+					return
+				var new_recipe = Recipe.new("Mining", drill_mining_time, [], [ItemStack.new(ore, 1)])
+				building.recipe = new_recipe
+				
 			BuildingManager.add_building(building)
 			get_owner().add_child(building)
-		
+			selected_item_stack.count = selected_item_stack.count - 1
+			if selected_item_stack.count <= 0:
+				selected_item_stack = null
+			inventory.update_slots()
+			update_selected_item_sprite_and_label()
 	
 	if Input.is_action_just_pressed("e"):
 		if inventory.visible:
@@ -96,7 +107,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("q"):
 		set_item_stack(null)
 	if Input.is_action_just_pressed("x"):
-		inventory.add_item_stack(ItemStack.new(Database.item_database["Furnace"][0], 10))
+		inventory.add_item_stack(ItemStack.new(Database.item_database["Drill"][0], 10))
 	if Input.is_action_just_pressed("g"):
 		inventory.add_item_stack(ItemStack.new(Database.item_database["Archer_Tower"][0], 10))
 	if Input.is_action_just_pressed("v"):
