@@ -74,28 +74,8 @@ func _process(delta):
 	var mouse_position: Vector2 = get_global_mouse_position() - Vector2(8,8)
 	
 	selected_item_sprite.global_position = mouse_position + Vector2(8,8)
-	
-	if not inventory.visible and left_click_down:
-		if selected_item_stack and selected_item_stack.item is PlaceableItem and selected_item_stack.count > 0 and not BuildingManager.check_position_occupied(mouse_position):
-			var building: Building = selected_item_stack.item.buildingScene.instantiate()
-			building.global_position = snapped(mouse_position, Vector2(16, 16))
-			if building is Drill:
-				var cell = tile_map.get_cell_tile_data(1, building.global_position/16)
-				if not cell:
-					return
-				var ore = cell.get_custom_data("Ore")
-				if not ore:
-					return
-				var new_recipe = Recipe.new("Mining", drill_mining_time, [], [ItemStack.new(ore, 1)])
-				building.recipe = new_recipe
-				
-			BuildingManager.add_building(building)
-			get_owner().add_child(building)
-			selected_item_stack.count = selected_item_stack.count - 1
-			if selected_item_stack.count <= 0:
-				selected_item_stack = null
-			inventory.update_slots()
-			update_selected_item_sprite_and_label()
+
+	attempt_place_building()
 	
 	if Input.is_action_just_pressed("e"):
 		if inventory.visible:
@@ -118,6 +98,37 @@ func _process(delta):
 		enemy.global_position = mouse_position
 		owner.add_child(enemy)
 	
+func attempt_place_building():
+	var mouse_position: Vector2 = get_global_mouse_position() - Vector2(8,8)
+	if not inventory.visible and left_click_down:
+		if selected_item_stack and selected_item_stack.item is PlaceableItem and selected_item_stack.count > 0 and not BuildingManager.check_position_occupied(mouse_position):
+			var building: Building = selected_item_stack.item.buildingScene.instantiate()
+			building.global_position = snapped(mouse_position, Vector2(16, 16))
+			var cell_layer_0 = tile_map.get_cell_tile_data(0, building.global_position/16)
+			var cell_layer_1 = tile_map.get_cell_tile_data(1, building.global_position/16)
+
+			if cell_layer_0 == null:
+				return
+			var is_placeable_tile = cell_layer_0.get_custom_data("Placeable")
+			if not is_placeable_tile:
+				return
+				
+			if building is Drill:
+				if cell_layer_1 == null:
+					return
+				var ore = cell_layer_1.get_custom_data("Ore")
+				if not ore:
+					return
+				var new_recipe = Recipe.new("Mining", drill_mining_time, [], [ItemStack.new(ore, 1)])
+				building.recipe = new_recipe
+				
+			BuildingManager.add_building(building)
+			get_owner().add_child(building)
+			selected_item_stack.count = selected_item_stack.count - 1
+			if selected_item_stack.count <= 0:
+				selected_item_stack = null
+			inventory.update_slots()
+			update_selected_item_sprite_and_label()
 
 func _input(event):
 	if event is InputEventMouseButton:

@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var enemies = [preload("res://Scenes/Enemy Scenes/Base Enemy Scenes/Enemy.tscn")]
-@onready var wavelist = [1, 2, 0, 2, 0] 
+@onready var wavelist = [0, 0, 0, 0, 1, 2, 7, 10, 0] 
 var wave : int = 0
 # must edit when adding more enemies
 @onready var OptionsMenu : Control = $"../../MenuLayer/OptionsMenu"
@@ -9,12 +9,14 @@ var wave : int = 0
 @onready var main_menu = $"../../../MainMenu"
 
 
+
 func getRandPosition():
 	#var node = positions[randi() % positions.size()]
 	#return node.global_position
 	var node = Marker2D.new()
-	node.position.x = randi() % 200 * ((randi() % 1)* 2 - 1)
-	node.position.y = pow( (pow(200, 2)   -   pow(node.position.x, 2)),    0.5) * ((randi() % 1)* 2 - 1)
+	node.position.x = randi() % 200 * (((randi() % 2) * 2) - 1)
+	node.position.y = pow( (pow(200, 2)   -   pow(node.position.x, 2)),    0.5) * ((randi() % 2)* 2 - 1)
+	print(node.global_position)
 	return node.global_position
 	
 
@@ -42,6 +44,13 @@ func spawner():
 	#pass # Replace with function body.
 
 func _on_spawn_timer_timeout():
-	if wave < wavelist.size() - 1:
+	if wave < wavelist.size():
 		wave += 1
 		spawner()
+
+
+func _on_levels_child_entered_tree(node):
+	await get_tree().process_frame
+	print(node.wavelist)
+	wavelist = node.wavelist
+

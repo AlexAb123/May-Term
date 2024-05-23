@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cod3136me76mx"]
 
-[ext_resource type="Script" path="res://Scenes/OptionsMenu.gd" id="1_m6q31"]
+[ext_resource type="Script" path="res://Scripts/MainMenu Scripts/OptionsMenu.gd" id="1_m6q31"]
 
 [node name="OptionsMenu" type="Control"]
 custom_minimum_size = Vector2(1152, 648)
