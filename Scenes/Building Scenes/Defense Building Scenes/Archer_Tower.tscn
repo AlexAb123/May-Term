@@ -1,7 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://b5e5o2ikcqtdc"]
 
-[ext_resource type="PackedScene" path="res://Scenes/Building Scenes/Base Building Scenes/RangedDefenseBuilding.tscn" id="1_61d6q"]
-[ext_resource type="PackedScene" uid="uid://chgq5gx0k20kt" path="res://Scenes/Projectile Scenes/Arrow.tscn" id="2_3djgy"]
+
+[ext_resource type="PackedScene" uid="uid://ctqwwuvbd0b7c" path="res://Scenes/Building Scenes/Base Building Scenes/RangedDefenseBuilding.tscn" id="1_61d6q"]
+[ext_resource type="PackedScene" uid="uid://c2goi0el32ljb" path="res://Scenes/Projectile Scenes/Arrow.tscn" id="2_3djgy"]
 [ext_resource type="Texture2D" uid="uid://dagi4vl6yv08" path="res://assets/Custom Sprites/Archer Tower.png" id="2_dy8nd"]
 
 [node name="Archer_Tower" instance=ExtResource("1_61d6q")]

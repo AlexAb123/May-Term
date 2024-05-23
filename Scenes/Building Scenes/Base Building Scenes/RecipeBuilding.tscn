@@ -9,6 +9,7 @@
 [node name="RecipeBuilding" instance=ExtResource("1_36igq")]
 script = ExtResource("2_rwhkc")
 recipes = Array[Resource("res://Scripts/Resource Scripts/Recipe Scripts/Recipe.gd")]([])
+on_sprite = null
 
 [node name="InventoryReach" type="Area2D" parent="." index="3"]
 position = Vector2(8, 8)

@@ -9,10 +9,14 @@ var direction: Vector2
 @export var pierce_count: int = 1
 @onready var current_pierce_count: int = pierce_count
 
+@onready var despawn_timer = $DespawnTimer
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	global_position = start_position
 	velocity = direction.normalized() * speed
+	despawn_timer.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

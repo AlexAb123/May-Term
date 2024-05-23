@@ -11,7 +11,6 @@ var target: Enemy
 @onready var detection_area: Area2D = $DetectionArea2D
 @onready var detection_shape: CollisionShape2D = $DetectionArea2D/DetectionArea2DCollisionShape2D
 
-
 func _ready():
 	super()
 	detection_shape.shape.radius = detection_range
