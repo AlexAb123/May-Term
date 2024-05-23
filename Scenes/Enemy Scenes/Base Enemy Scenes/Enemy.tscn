@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b3xvsbpqeyd3s"]
+[gd_scene load_steps=20 format=3 uid="uid://b3xvsbpqeyd3s"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy Scripts/Enemy.gd" id="1_8cx2i"]
 [ext_resource type="Texture2D" uid="uid://cspf1k2foi5dl" path="res://assets/sprites/slime_purple.png" id="1_pijau"]
@@ -94,13 +94,15 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_evj7i"]
-radius = 1.99998
-height = 7.99994
+radius = 2.99998
+height = 9.99992
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_io5ol"]
 radius = 47.0425
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6ctfx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5751c"]
 
 [node name="Enemy" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -121,6 +123,7 @@ frame_progress = 1.0
 offset = Vector2(2.08165e-12, -14)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.66043e-10, -1)
 rotation = 1.57481
 shape = SubResource("CapsuleShape2D_evj7i")
 
@@ -147,6 +150,15 @@ scale = Vector2(0.0199957, -0.0331187)
 texture_progress = ExtResource("4_pkufp")
 script = ExtResource("4_egq4x")
 enemy = NodePath("..")
+
+[node name="HitBoxArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="HitBox" type="CollisionShape2D" parent="HitBoxArea"]
+position = Vector2(0, -3)
+rotation = 1.57149
+shape = SubResource("CapsuleShape2D_5751c")
 
 [connection signal="body_entered" from="DetectionArea2D" to="." method="_on_detection_area_2d_body_entered"]
 [connection signal="body_exited" from="DetectionArea2D" to="." method="_on_detection_area_2d_body_exited"]

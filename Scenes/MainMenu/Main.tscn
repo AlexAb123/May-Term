@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://m4gcdu32icpw"]
+[gd_scene load_steps=9 format=3 uid="uid://m4gcdu32icpw"]
 
-[ext_resource type="Script" path="res://Scenes/Main.gd" id="1_p8irn"]
+[ext_resource type="Script" path="res://Scripts/MainMenu Scripts/Main.gd" id="1_p8irn"]
 [ext_resource type="PackedScene" uid="uid://hmabq20jju6k" path="res://Scenes/WaveManager.tscn" id="2_qp5if"]
-[ext_resource type="PackedScene" uid="uid://cod3136me76mx" path="res://Scenes/OptionsMenu.tscn" id="3_ey0cq"]
-[ext_resource type="Script" path="res://Scenes/InGame.gd" id="4_0m3lu"]
-[ext_resource type="PackedScene" uid="uid://bjexkidu8kax5" path="res://Scenes/MainMenu.tscn" id="4_3xufo"]
-[ext_resource type="Script" path="res://Scenes/MenuLayer.gd" id="5_cypep"]
-[ext_resource type="Script" path="res://Scenes/GameItems.gd" id="6_apovs"]
+[ext_resource type="PackedScene" uid="uid://cod3136me76mx" path="res://Scenes/MainMenu/OptionsMenu.tscn" id="3_ey0cq"]
+[ext_resource type="Script" path="res://Scripts/MainMenu Scripts/InGame.gd" id="4_0m3lu"]
+[ext_resource type="PackedScene" uid="uid://bjexkidu8kax5" path="res://Scenes/MainMenu/MainMenu.tscn" id="4_3xufo"]
+[ext_resource type="Script" path="res://Scripts/MainMenu Scripts/MenuLayer.gd" id="5_cypep"]
+[ext_resource type="Script" path="res://Scripts/MainMenu Scripts/GameItems.gd" id="6_apovs"]
+[ext_resource type="Script" path="res://Scenes/MainMenu/Levels.gd" id="7_c4qsh"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_p8irn")
@@ -40,6 +41,7 @@ process_mode = 2
 script = ExtResource("6_apovs")
 
 [node name="Levels" type="Node2D" parent="InGame/GameItems"]
+script = ExtResource("7_c4qsh")
 
 [node name="WaveManager" parent="InGame/GameItems" instance=ExtResource("2_qp5if")]
 
@@ -56,3 +58,4 @@ script = ExtResource("6_apovs")
 [connection signal="play" from="InGame/MenuLayer/OptionsMenu" to="InGame" method="_on_options_menu_play"]
 [connection signal="play" from="InGame/MenuLayer/OptionsMenu" to="InGame/MenuLayer" method="_on_options_menu_play"]
 [connection signal="play" from="InGame/MenuLayer/OptionsMenu" to="InGame/GameItems" method="_on_options_menu_play"]
+[connection signal="child_entered_tree" from="InGame/GameItems/Levels" to="InGame/GameItems/WaveManager" method="_on_levels_child_entered_tree"]

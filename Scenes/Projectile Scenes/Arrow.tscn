@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://83cdqnkqmdm6"]
+[gd_scene load_steps=3 format=3 uid="uid://chgq5gx0k20kt"]
 
-[ext_resource type="PackedScene" uid="uid://br24xesgry74s" path="res://Scenes/Projectile Scenes/RotatingProjectile.tscn" id="1_6hqy8"]
+[ext_resource type="PackedScene" path="res://Scenes/Projectile Scenes/RotatingProjectile.tscn" id="1_6hqy8"]
 [ext_resource type="Texture2D" uid="uid://chqwo6mghjhwn" path="res://assets/Custom Sprites/Arrow.png" id="2_73nal"]
 
 [node name="Arrow" instance=ExtResource("1_6hqy8")]
@@ -11,3 +11,7 @@ texture = ExtResource("2_73nal")
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(6, 0)
+
+[node name="Timer" parent="." index="2"]
+wait_time = 0.3
+one_shot = true

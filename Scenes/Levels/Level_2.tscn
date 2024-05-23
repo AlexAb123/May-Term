@@ -1,10 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://cvgd6pvnaywh0"]
+[gd_scene load_steps=5 format=3 uid="uid://dldw4d8cwcth1"]
 
 [ext_resource type="TileSet" uid="uid://cbd5w3q2paigl" path="res://Resources/World_Tile_Set.tres" id="1_vvorq"]
 [ext_resource type="PackedScene" uid="uid://cqbjmjoub20yy" path="res://Scenes/Player.tscn" id="2_320gn"]
 [ext_resource type="PackedScene" uid="uid://x1y5wk4ik7t2" path="res://Scenes/Camera.tscn" id="3_nq4ts"]
 
+[sub_resource type="GDScript" id="GDScript_nfi18"]
+script/source = "extends Node2D
+
+@onready var wavelist = [1,0,1,1,5]
+"
+
 [node name="Level_2" type="Node2D"]
+script = SubResource("GDScript_nfi18")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_vvorq")

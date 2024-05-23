@@ -3,8 +3,12 @@ extends Control
 #this file handles the signals checking if the player is in game or not
 # also handles level selection 
 
-@onready var levels = [preload("res://Scenes/Levels/Level_1.tscn")]
+@onready var levels = [	preload("res://Scenes/Levels/Level_1.tscn"),
+						preload("res://Scenes/Levels/Level_2.tscn"),]
+						#preload("res://Scenes/Levels/Level_3.tscn")]
+
 @onready var currlevel
+
 
 signal in_game
 signal in_menu
