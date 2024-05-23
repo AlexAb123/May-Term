@@ -1,9 +1,10 @@
-[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://cbd5w3q2paigl"]
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://cbd5w3q2paigl"]
 
 [ext_resource type="Resource" uid="uid://y3y7pjfvyfnd" path="res://Resources/Items/ITEM_Iron_Ore.tres" id="1_1stuu"]
 [ext_resource type="Texture2D" uid="uid://ds5p6d23xpleh" path="res://assets/Test/16x16/Tilesets/New/Solaria Demo Tiles.png" id="1_r5b4l"]
-[ext_resource type="Resource" uid="uid://3ax2dp4kv63q" path="res://Resources/Items/ITEM_Gold_Ore.tres" id="2_2ele0"]
-[ext_resource type="Resource" uid="uid://pl5aig4uuqis" path="res://Resources/Items/ITEM_Coal.tres" id="3_lacv0"]
+[ext_resource type="Resource" path="res://Resources/Items/ITEM_Stone.tres" id="2_nbyba"]
+[ext_resource type="Resource" uid="uid://3ax2dp4kv63q" path="res://Resources/Items/ITEM_Gold_Ore.tres" id="2_r3diy"]
+[ext_resource type="Resource" uid="uid://pl5aig4uuqis" path="res://Resources/Items/ITEM_Coal.tres" id="3_dwlbh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3sgma"]
 texture = ExtResource("1_r5b4l")
@@ -1125,18 +1126,6 @@ texture = ExtResource("1_r5b4l")
 12:14/0 = 0
 12:14/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 12:14/0/physics_layer_0/angular_velocity = 0.0
-18:13/0 = 0
-18:13/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-18:13/0/physics_layer_0/angular_velocity = 0.0
-18:13/0/custom_data_0 = ExtResource("1_1stuu")
-19:13/0 = 0
-19:13/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-19:13/0/physics_layer_0/angular_velocity = 0.0
-19:13/0/custom_data_0 = ExtResource("2_2ele0")
-20:13/0 = 0
-20:13/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-20:13/0/physics_layer_0/angular_velocity = 0.0
-20:13/0/custom_data_0 = ExtResource("3_lacv0")
 18:14/0 = 0
 18:14/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 18:14/0/physics_layer_0/angular_velocity = 0.0
@@ -1144,11 +1133,15 @@ texture = ExtResource("1_r5b4l")
 19:14/0 = 0
 19:14/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 19:14/0/physics_layer_0/angular_velocity = 0.0
-19:14/0/custom_data_0 = ExtResource("2_2ele0")
+19:14/0/custom_data_0 = ExtResource("2_r3diy")
 20:14/0 = 0
 20:14/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 20:14/0/physics_layer_0/angular_velocity = 0.0
-20:14/0/custom_data_0 = ExtResource("3_lacv0")
+20:14/0/custom_data_0 = ExtResource("3_dwlbh")
+21:14/0 = 0
+21:14/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+21:14/0/physics_layer_0/angular_velocity = 0.0
+21:14/0/custom_data_0 = ExtResource("2_nbyba")
 
 [resource]
 physics_layer_0/collision_layer = 1

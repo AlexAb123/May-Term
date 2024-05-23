@@ -6,12 +6,14 @@ class_name RecipeBuilding
 
 @onready var timer: Timer = $Timer
 
-
+@onready var sprite_2d = $Sprite2D
 @onready var input_inventory: Inventory = $CanvasLayer/InputInventory
 @onready var output_inventory: Inventory = $CanvasLayer/OutputInventory
 @onready var recipe_selector = $CanvasLayer/RecipeSelector
 @onready var open_recipe_selector_button = $CanvasLayer/OpenRecipeSelector
 @onready var canvas_layer = $CanvasLayer
+
+@export var on_sprite: Texture2D
 
 var selected_recipe : Recipe
 
@@ -32,7 +34,6 @@ func _ready():
 	for slot in recipe_selector.slots:
 		slot.itemCountLabel.visible = false
 		
-	print(global_position)
 		
 func _physics_process(delta):
 
@@ -64,8 +65,10 @@ func _physics_process(delta):
 		start_craft()
 		
 func select_recipe(recipe: Recipe):
+	
 	if recipe == selected_recipe:
 		return
+		
 	for stack in input_inventory.reset_and_return_stacks():
 		Global.player.inventory.add_item_stack(stack)
 		
@@ -95,16 +98,21 @@ func select_recipe(recipe: Recipe):
 	timer.wait_time = selected_recipe.craftingTime
 
 func start_craft():
+	sprite_2d.texture = on_sprite
 	timer.start()
 	for its in selected_recipe.input_item_stacks:
-		input_inventory.item_stacks[input_inventory.position_in_inventory(its.item)].count = input_inventory.item_stacks[input_inventory.position_in_inventory(its.item)].count - its.count
+		input_inventory.remove_item_stack(its)
+		#item_stacks[input_inventory.position_in_inventory(its.item)].count = input_inventory.item_stacks[input_inventory.position_in_inventory(its.item)].count - its.count
 	input_inventory.update_slots()
 
 func _on_timer_timeout():
 	for item_stack in selected_recipe.output_item_stacks:
 		output_inventory.add_item_stack(item_stack)
-	start_craft()
-
+	if has_enough_resources():
+		start_craft()
+	else:
+		sprite_2d.texture = sprite
+		timer.stop()
 
 func has_enough_resources():
 	for item_stack in selected_recipe.input_item_stacks:
@@ -155,8 +163,6 @@ func _on_player_inventory_slot_input(slot_id, event):
 			input_inventory.add_item_stack(ItemStack.new(clicked_item_stack.item, 1))
 			Global.player.inventory.remove_item_stack(ItemStack.new(clicked_item_stack.item, 1))
 			Global.player.update_selected_item_sprite_and_label()
-			
-	
 
 var player_in_range: bool = false
 
@@ -169,8 +175,6 @@ func _on_inventory_reach_body_exited(body):
 	output_inventory.close()
 	recipe_selector.close()
 	open_recipe_selector_button.visible = false
-	
-	
 
 func destroy():
 	input_inventory.close()
@@ -189,7 +193,6 @@ func deconstruct():
 	BuildingManager.close_all_open_inventories()
 	open_recipe_selector_button.visible = false
 	super()
-
 
 func _on_recipe_selector_slot_input(slot_id, event):
 	if Input.is_action_just_pressed("left_click"):
@@ -214,8 +217,5 @@ func _on_open_recipe_selector_pressed():
 		output_inventory.open()
 		open_recipe_selector_button.visible = true
 		
-
-
 func _on_input_inventory_closed():
 	open_recipe_selector_button.visible = false
-	

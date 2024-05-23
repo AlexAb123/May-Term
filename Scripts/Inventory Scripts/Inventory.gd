@@ -19,7 +19,7 @@ func _ready():
 	anchors_preset = PRESET_CENTER
 	
 	visible = false
-
+	
 func initialize_slots():
 	
 	item_stacks = []
@@ -52,7 +52,7 @@ func update_slots():
 	
 	for slot_id in slot_count:
 	
-		if item_stacks[slot_id] and item_stacks[slot_id].count >= 0:
+		if item_stacks[slot_id] and item_stacks[slot_id].count > 0:
 			slots[slot_id].set_sprite(item_stacks[slot_id].item.sprite)
 			slots[slot_id].set_count_label(str(item_stacks[slot_id].count))
 		
