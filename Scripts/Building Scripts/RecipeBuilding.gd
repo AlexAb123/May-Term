@@ -102,8 +102,6 @@ func start_craft():
 	timer.start()
 	for its in selected_recipe.input_item_stacks:
 		input_inventory.remove_item_stack(its)
-		#item_stacks[input_inventory.position_in_inventory(its.item)].count = input_inventory.item_stacks[input_inventory.position_in_inventory(its.item)].count - its.count
-	input_inventory.update_slots()
 
 func _on_timer_timeout():
 	for item_stack in selected_recipe.output_item_stacks:
