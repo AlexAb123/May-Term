@@ -1,4 +1,4 @@
-extends Projectile
+extends RotatingProjectile
 
 class_name PoisonProjectile
 # Called when the node enters the scene tree for the first time.
