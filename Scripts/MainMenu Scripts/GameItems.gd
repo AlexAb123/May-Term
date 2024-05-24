@@ -19,5 +19,4 @@ func _on_main_menu_in_game():
 	wave_manager.playTimer()
 
 func _on_options_menu_play():
-	print("PLAY")
 	wave_manager.playTimer()

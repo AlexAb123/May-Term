@@ -14,7 +14,6 @@ func playview():
 
 func _on_pause_pressed():
 	pauseview()
-	print("PAUSE")
 
 func _on_main_menu_in_game():
 	visible = true
@@ -25,6 +24,5 @@ func _on_main_menu_in_menu():
 
 
 func _on_options_menu_play():
-	print("playing")
 	playview()
 	get_tree().paused = false

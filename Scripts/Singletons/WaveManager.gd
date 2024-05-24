@@ -1,5 +1,7 @@
 extends Node2D
 
+signal win
+
 @onready var enemies = [preload("res://Scenes/Enemy Scenes/Base Enemy Scenes/Enemy.tscn")]
 @onready var wavelist = [0, 0, 0, 0, 1, 2, 7, 10, 0] 
 var wave : int = 0
@@ -9,6 +11,8 @@ var wave : int = 0
 @onready var main_menu = $"../../../MainMenu"
 
 
+func _process(_delta):
+	checkWin()
 
 func getRandPosition():
 	#var node = positions[randi() % positions.size()]
@@ -41,7 +45,11 @@ func spawner():
 		#print("enemy spawned")
 		enemy_instance.position = getRandPosition()
 
-	#pass # Replace with function body.
+func checkWin():
+	if wave == wavelist.size():
+		if get_node("enemies").get_child_count() == 0:
+			print("YOU PASSED")
+			win.emit()
 
 func _on_spawn_timer_timeout():
 	if wave < wavelist.size():
