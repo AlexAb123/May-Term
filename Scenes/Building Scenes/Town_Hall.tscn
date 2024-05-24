@@ -37,3 +37,4 @@ offset_left = 1.0
 offset_top = 33.0
 offset_right = 1501.0
 offset_bottom = 157.0
+nine_patch_stretch = true
