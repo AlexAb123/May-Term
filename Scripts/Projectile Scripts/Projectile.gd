@@ -4,8 +4,8 @@ class_name Projectile
 
 var start_position: Vector2
 var direction: Vector2
-@export var damage: int = 2
-@export var speed: int = 200
+@export var damage: int = 50
+@export var speed: int = 50
 @export var pierce_count: int = 1
 @onready var current_pierce_count: int = pierce_count
 
