@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://xy2vr6tknt6g" path="res://Scenes/Inventory Scenes/Inventory.tscn" id="3_djvtn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hrlnc"]
-radius = 80.0
+radius = 22.8576
 
 [node name="RecipeBuilding" instance=ExtResource("1_36igq")]
 script = ExtResource("2_rwhkc")

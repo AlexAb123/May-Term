@@ -39,6 +39,8 @@ func _ready():
 	for slot in recipe_selector.slots:
 		slot.itemCountLabel.visible = false
 		
+	
+		
 		
 func _physics_process(delta):
 
