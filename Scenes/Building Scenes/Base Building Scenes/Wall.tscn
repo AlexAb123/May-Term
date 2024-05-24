@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://ceap0346ym7eu"]
+
+[ext_resource type="PackedScene" uid="uid://dbg5hg88ngfkg" path="res://Scenes/Building Scenes/Base Building Scenes/Building.tscn" id="1_mgwip"]
+[ext_resource type="Texture2D" uid="uid://cu2y4ywjlioab" path="res://assets/Custom Sprites/pixil-frame-0 copy 2.png" id="2_1cj68"]
+
+[node name="Wall" instance=ExtResource("1_mgwip")]
+item_name = "Wall"
+sprite = ExtResource("2_1cj68")
+max_health = 100

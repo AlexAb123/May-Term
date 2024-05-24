@@ -93,6 +93,8 @@ func _process(delta):
 		inventory.add_item_stack(ItemStack.new(Database.item_database["Drill"][0], 10))
 	if Input.is_action_just_pressed("c"):
 		inventory.add_item_stack(ItemStack.new(Database.item_database["Drill"][0], 10))
+	if Input.is_action_just_pressed("z"):
+		inventory.add_item_stack(ItemStack.new(Database.item_database["Wall"][0], 10))
 	if Input.is_action_just_pressed("y"):
 		var enemy = load("res://Scenes/Enemy Scenes/Base Enemy Scenes/Enemy.tscn").instantiate()
 		enemy.global_position = mouse_position
