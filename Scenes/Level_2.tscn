@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ifm40npxobyg"]
+[gd_scene load_steps=5 format=3 uid="uid://bujphbnu47dn"]
 
 [ext_resource type="TileSet" uid="uid://cbd5w3q2paigl" path="res://Resources/World_Tile_Set.tres" id="1_vvorq"]
 [ext_resource type="PackedScene" uid="uid://cqbjmjoub20yy" path="res://Scenes/Player.tscn" id="2_320gn"]
 [ext_resource type="PackedScene" uid="uid://x1y5wk4ik7t2" path="res://Scenes/Camera.tscn" id="3_nq4ts"]
+[ext_resource type="PackedScene" uid="uid://cjdan8i7k2l0t" path="res://Scenes/Building Scenes/Town_Hall.tscn" id="4_lswqf"]
 
 [node name="Level_2" type="Node2D"]
 
@@ -15,3 +16,6 @@ layer_0/tile_data = PackedInt32Array(-65536, 65536, 7, -1, 65536, 7, 65535, 6553
 [node name="Player" parent="." instance=ExtResource("2_320gn")]
 
 [node name="Camera2D" parent="." instance=ExtResource("3_nq4ts")]
+
+[node name="TownHall" parent="." instance=ExtResource("4_lswqf")]
+position = Vector2(-64, -32)

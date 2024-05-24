@@ -7,6 +7,6 @@
 [resource]
 script = ExtResource("2_xn103")
 buildingScene = ExtResource("1_51pv8")
-name = "Archer_Tower"
+name = "Archer Tower"
 sprite = ExtResource("2_yaem1")
 id = 4

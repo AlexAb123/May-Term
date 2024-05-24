@@ -86,7 +86,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("q"):
 		set_item_stack(null)
 	if Input.is_action_just_pressed("x"):
-		inventory.add_item_stack(ItemStack.new(Database.item_database["Archer_Tower"][0], 10))
+		inventory.add_item_stack(ItemStack.new(Database.item_database["Iron_Ore"][0], 10))
 	if Input.is_action_just_pressed("g"):
 		inventory.add_item_stack(ItemStack.new(Database.item_database["Coal"][0], 10))
 	if Input.is_action_just_pressed("v"):
