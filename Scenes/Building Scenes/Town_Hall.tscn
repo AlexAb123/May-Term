@@ -15,6 +15,7 @@ sprite = ExtResource("2_x6vin")
 size = Vector2(32, 32)
 
 [node name="CollisionShape2D" parent="." index="0"]
+z_index = 0
 position = Vector2(15.75, 16)
 
 [node name="Sprite2D" parent="." index="1"]

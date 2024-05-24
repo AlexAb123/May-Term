@@ -18,6 +18,7 @@ script = ExtResource("1_e7ngb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 65
+z_index = 1
 position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_e6rv2")
 
