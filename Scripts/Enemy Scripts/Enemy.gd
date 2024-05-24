@@ -71,8 +71,8 @@ func _physics_process(delta):
 		attack_cooldown_timer -= delta
 	
 	if target:
-		if target is TownHall:
-			velocity = (target.global_position + Vector2(8,8) - global_position).normalized() * speed
+		if target is Building:
+			velocity = (target.global_position +  target.size/2 - global_position).normalized() * speed
 		else:
 			velocity = (target.global_position - global_position).normalized() * speed
 	else:
