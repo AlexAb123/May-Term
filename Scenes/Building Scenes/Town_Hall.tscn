@@ -14,11 +14,14 @@ item_name = "Town Hall"
 sprite = ExtResource("2_x6vin")
 
 [node name="CollisionShape2D" parent="." index="0"]
-position = Vector2(17.5, 20)
+position = Vector2(1.5, 1)
 
 [node name="Sprite2D" parent="." index="1"]
-position = Vector2(16, 19)
+position = Vector2(0, 0)
 texture = ExtResource("2_x6vin")
+
+[node name="CurrentOutputSprite" parent="." index="2"]
+position = Vector2(-8, -11)
 
 [node name="MouseArea2D" parent="." index="3"]
 visible = false
@@ -33,8 +36,26 @@ visible = false
 position = Vector2(8, 8)
 
 [node name="HealthBar" parent="." index="5"]
-offset_left = 1.0
-offset_top = 33.0
-offset_right = 1501.0
-offset_bottom = 157.0
+offset_left = -15.0
+offset_top = 14.0
+offset_right = 1485.0
+offset_bottom = 138.0
 nine_patch_stretch = true
+
+[node name="InputInventory" parent="CanvasLayer" index="1"]
+offset_left = 741.0
+offset_top = -19.0
+offset_right = 741.0
+offset_bottom = -19.0
+
+[node name="OutputInventory" parent="CanvasLayer" index="2"]
+offset_left = 867.0
+offset_top = -19.0
+offset_right = 867.0
+offset_bottom = -19.0
+
+[node name="RecipeSelector" parent="CanvasLayer" index="3"]
+offset_left = -16.0
+offset_top = -19.0
+offset_right = -16.0
+offset_bottom = -19.0
