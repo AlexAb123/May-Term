@@ -42,9 +42,9 @@ var mouse_hover = false
 
 func _on_area_2d_mouse_entered():
 	mouse_hover = true
-	if Input.is_action_just_pressed("left_click"):
+	if Input.is_action_pressed("left_click"):
 		left_click_down = true
-	if Input.is_action_just_pressed("right_click"):
+	if Input.is_action_pressed("right_click"):
 		right_click_down = true
 		
 

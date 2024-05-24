@@ -24,7 +24,7 @@ func _physics_process(delta):
 		pass
 		
 	if player_in_range:
-		if left_click_down and Input.is_action_just_pressed("shift_left_click"):
+		if left_click_down and Input.is_action_pressed("shift_left_click"):
 			if output_inventory.item_stacks and output_inventory.item_stacks[0].count > 0:
 				Global.player.inventory.add_item_stack(ItemStack.new(output_inventory.item_stacks[0].item, output_inventory.item_stacks[0].count))
 				output_inventory.remove_at(0)
@@ -62,12 +62,8 @@ func _on_inventory_reach_body_exited(_body):
 	player_in_range = false
 	output_inventory.close()
 
-<<<<<<< HEAD
-func _on_output_inventory_slot_input(slot_id, _event):
-=======
 func _on_output_inventory_slot_input(slot_id, event):
 	
->>>>>>> alex-branch
 	if Input.is_action_just_pressed("shift_left_click"):
 		Global.player.inventory.add_item_stack(ItemStack.new(output_inventory.item_stacks[slot_id].item, output_inventory.item_stacks[slot_id].count))
 		output_inventory.remove_at(slot_id)

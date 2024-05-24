@@ -50,7 +50,7 @@ func _physics_process(delta):
 		pass
 		
 	if player_in_range:
-		if left_click_down and Input.is_action_just_pressed("shift_left_click"):
+		if left_click_down and Input.is_action_pressed("shift_left_click"):
 			if output_inventory.item_stacks and output_inventory.item_stacks[0].count > 0:
 				Global.player.inventory.add_item_stack(ItemStack.new(output_inventory.item_stacks[0].item, output_inventory.item_stacks[0].count))
 				output_inventory.remove_at(0)
