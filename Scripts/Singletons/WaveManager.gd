@@ -9,10 +9,12 @@ var wave : int = 0
 @onready var OptionsMenu : Control = $"../../MenuLayer/OptionsMenu"
 @onready var spawn_timer = $SpawnTimer
 @onready var main_menu = $"../../../MainMenu"
+@onready var game_over = true
 
 
 func _process(_delta):
-	checkWin()
+	if not game_over:
+		checkWin()
 
 func getRandPosition():
 	#var node = positions[randi() % positions.size()]
@@ -50,6 +52,7 @@ func checkWin():
 		if get_node("enemies").get_child_count() == 0:
 			print("YOU PASSED")
 			win.emit()
+			game_over = true
 
 func _on_spawn_timer_timeout():
 	if wave < wavelist.size():
@@ -58,7 +61,9 @@ func _on_spawn_timer_timeout():
 
 
 func _on_levels_child_entered_tree(node):
+	game_over = false
 	await get_tree().process_frame
+
 	#print(node.wavelist)
 	wavelist = node.wavelist
 

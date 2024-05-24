@@ -56,7 +56,3 @@ func _on_continue_button_pressed():
 	get_tree().paused = false
 	visible = true
 
-
-func _on_wave_manager_win():
-	in_menu.emit()
-
