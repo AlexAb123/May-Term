@@ -12,6 +12,9 @@ script = ExtResource("2_wm6we")
 item_name = "Drill"
 sprite = ExtResource("3_gymkn")
 
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("3_gymkn")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." index="4"]
 layer = 0
 offset = Vector2(8, 8)
