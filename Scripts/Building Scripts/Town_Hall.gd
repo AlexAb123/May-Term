@@ -1,6 +1,7 @@
 class_name TownHall
 
 extends RecipeBuilding
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 func _ready():
 	super()
