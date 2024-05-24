@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://y3y7pjfvyfnd" path="res://Resources/Items/ITEM_Iron_Ore.tres" id="1_1stuu"]
 [ext_resource type="Texture2D" uid="uid://ds5p6d23xpleh" path="res://assets/Test/16x16/Tilesets/New/Solaria Demo Tiles.png" id="1_r5b4l"]
-[ext_resource type="Resource" path="res://Resources/Items/ITEM_Stone.tres" id="2_nbyba"]
+[ext_resource type="Resource" uid="uid://ds1x24qferd5s" path="res://Resources/Items/ITEM_Stone.tres" id="2_nbyba"]
 [ext_resource type="Resource" uid="uid://3ax2dp4kv63q" path="res://Resources/Items/ITEM_Gold_Ore.tres" id="2_r3diy"]
 [ext_resource type="Resource" uid="uid://pl5aig4uuqis" path="res://Resources/Items/ITEM_Coal.tres" id="3_dwlbh"]
 
