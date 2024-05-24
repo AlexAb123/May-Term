@@ -17,10 +17,6 @@ func _ready():
 	#enemy_database = e[0]
 	#enemy_id_database = e[1]
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 
 #Returns a dictionary. {Item_Name : [Item_File, Item_id]
 func read_files(directory: String, prefix: String, suffix: String):

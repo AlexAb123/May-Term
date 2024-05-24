@@ -41,14 +41,14 @@ func _on_timer_timeout():
 	
 var player_in_range: bool = false
 
-func _on_inventory_reach_body_entered(body):
+func _on_inventory_reach_body_entered(_body):
 	player_in_range = true
 
-func _on_inventory_reach_body_exited(body):
+func _on_inventory_reach_body_exited(_body):
 	player_in_range = false
 	output_inventory.close()
 
-func _on_output_inventory_slot_input(slot_id, event):
+func _on_output_inventory_slot_input(slot_id, _event):
 	if Input.is_action_just_pressed("shift_left_click"):
 		Global.player.inventory.add_item_stack(ItemStack.new(output_inventory.item_stacks[slot_id].item, output_inventory.item_stacks[slot_id].count))
 		output_inventory.remove_at(slot_id)
@@ -75,8 +75,8 @@ func deconstruct():
 	BuildingManager.close_all_open_inventories()
 	super()
 
-func select_recipe(recipe: Recipe):
-	if recipe == selected_recipe:
+func select_recipe(curr: Recipe):
+	if curr == selected_recipe:
 		return
 		
 	if not timer.is_stopped():
@@ -85,7 +85,7 @@ func select_recipe(recipe: Recipe):
 		for item_stack in selected_recipe.input_item_stacks:
 			Global.player.inventory.add_item_stack(item_stack)
 			
-	selected_recipe = recipe
+	selected_recipe = curr
 	
 	output_inventory.slot_count = selected_recipe.output_item_stacks.size()
 	output_inventory.initialize_slots()

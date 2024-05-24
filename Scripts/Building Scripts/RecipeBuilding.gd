@@ -118,7 +118,7 @@ func has_enough_resources():
 			return false
 	return true
 
-func _on_input_inventory_slot_input(slot_id, event):
+func _on_input_inventory_slot_input(slot_id, _event):
 	if Input.is_action_just_pressed("shift_left_click"):
 		Global.player.inventory.add_item_stack(input_inventory.item_stacks[slot_id])
 		input_inventory.remove_at(slot_id)
@@ -130,7 +130,7 @@ func _on_input_inventory_slot_input(slot_id, event):
 			input_inventory.item_stacks[slot_id].count -= 1
 			input_inventory.update_slots()
 			
-func _on_output_inventory_slot_input(slot_id, event):
+func _on_output_inventory_slot_input(slot_id, _event):
 	if Input.is_action_just_pressed("shift_left_click"):
 		Global.player.inventory.add_item_stack(ItemStack.new(output_inventory.item_stacks[slot_id].item, output_inventory.item_stacks[slot_id].count))
 		output_inventory.remove_at(slot_id)
@@ -142,7 +142,7 @@ func _on_output_inventory_slot_input(slot_id, event):
 			output_inventory.item_stacks[slot_id].count -= 1
 			output_inventory.update_slots()
 
-func _on_player_inventory_slot_input(slot_id, event):
+func _on_player_inventory_slot_input(slot_id, _event):
 	#If inventories are not open, don't take any input from the player
 	if not input_inventory.visible and not output_inventory.visible:
 		return
@@ -164,10 +164,10 @@ func _on_player_inventory_slot_input(slot_id, event):
 
 var player_in_range: bool = false
 
-func _on_inventory_reach_body_entered(body):
+func _on_inventory_reach_body_entered(_body):
 	player_in_range = true
 
-func _on_inventory_reach_body_exited(body):
+func _on_inventory_reach_body_exited(_body):
 	player_in_range = false
 	input_inventory.close()
 	output_inventory.close()
@@ -192,7 +192,7 @@ func deconstruct():
 	open_recipe_selector_button.visible = false
 	super()
 
-func _on_recipe_selector_slot_input(slot_id, event):
+func _on_recipe_selector_slot_input(slot_id, _event):
 	if Input.is_action_just_pressed("left_click"):
 		select_recipe(recipe_selector.item_stacks[slot_id].item)
 		recipe_selector.close()

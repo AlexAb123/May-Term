@@ -19,10 +19,10 @@ func _ready():
 	despawn_timer.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	move_and_slide()
 
 func _on_area_2d_body_entered(body):
