@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://cjdan8i7k2l0t"]
+
+[ext_resource type="PackedScene" uid="uid://klc1brlg3lae" path="res://Scenes/Building Scenes/Base Building Scenes/RecipeBuilding.tscn" id="1_lmq1m"]
+[ext_resource type="Script" path="res://Scripts/Building Scripts/Town_Hall.gd" id="2_i20ql"]
+[ext_resource type="Texture2D" uid="uid://duksn2p0qr20q" path="res://assets/Custom Sprites/Town_Hall.png" id="2_x6vin"]
+[ext_resource type="Resource" uid="uid://b3hmumux06hhn" path="res://Resources/Recipes/RECIPE_Drill.tres" id="3_ye2e1"]
+[ext_resource type="Resource" uid="uid://bilbm3dt053rr" path="res://Resources/Recipes/RECIPE_Archer_Tower.tres" id="4_8s3w0"]
+[ext_resource type="Resource" uid="uid://w3owoh6gccuh" path="res://Resources/Recipes/RECIPE_Furnace.tres" id="5_n1ghu"]
+
+[node name="TownHall" instance=ExtResource("1_lmq1m")]
+script = ExtResource("2_i20ql")
+recipes = Array[Resource("res://Scripts/Resource Scripts/Recipe Scripts/Recipe.gd")]([ExtResource("3_ye2e1"), ExtResource("4_8s3w0"), ExtResource("5_n1ghu")])
+on_sprite = ExtResource("2_x6vin")
+item_name = "Town_Hall"
+sprite = ExtResource("2_x6vin")
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(16, 16)
+
+[node name="Sprite2D" parent="." index="1"]
+position = Vector2(16, 16)
+texture = ExtResource("2_x6vin")
+
+[node name="CurrentOutputSprite" parent="." index="2"]
+position = Vector2(16, 16)
+
+[node name="AreaCollisionShape2D" parent="MouseArea2D" index="0"]
+position = Vector2(8, 8)
+
+[node name="CollisionShape2D" parent="InventoryReach" index="0"]
+position = Vector2(8, 8)
+
+[node name="HealthBar" parent="." index="5"]
+offset_left = 2.0
+offset_top = 30.0
+offset_right = 1402.0
+offset_bottom = 154.0
+
+[node name="RecipeDescription" parent="CanvasLayer/OpenRecipeSelector" index="0"]
+offset_left = -54.0
+offset_top = 31.0
+offset_right = 3.0
+offset_bottom = 83.0
