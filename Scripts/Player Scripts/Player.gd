@@ -39,7 +39,7 @@ func take_damage(damage):
 func death():
 	print("Player Died")
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	#Get inputs and move up down left and right.
 	#Normalize vector so that diagonal isn't faster
 	
@@ -68,7 +68,7 @@ func _physics_process(delta):
 	if not is_deconstructing:
 		move_and_slide()
 	
-func _process(delta):
+func _process(_delta):
 	
 
 	var mouse_position: Vector2 = get_global_mouse_position() - Vector2(8,8)
@@ -170,6 +170,6 @@ func update_selected_item_sprite_and_label():
 		selected_item_sprite.texture = null
 		selected_item_label.text = ""
 
-func _on_inventory_slot_input(slot_id, event):
+func _on_inventory_slot_input(slot_id, _event):
 	if Input.is_action_just_pressed("left_click") and not Input.is_action_just_pressed("shift_left_click"):
 		set_item_stack(inventory.item_stacks[slot_id])

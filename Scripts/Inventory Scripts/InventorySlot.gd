@@ -8,7 +8,9 @@ var slot_id: int
 @onready var itemCountLabel: Label = $ItemCountLabel
 
 signal slot_input(slot_id, event)
-func _on_area_2d_input_event(viewport, event, shape_idx):
+
+
+func _on_area_2d_input_event(_viewport, event, _shape_idx):
 	slot_input.emit(slot_id, event)
 
 func set_sprite(sprite: Texture2D):

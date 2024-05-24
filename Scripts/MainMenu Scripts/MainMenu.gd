@@ -15,10 +15,11 @@ signal in_menu
 signal quit_game
 signal instantiate_level
 
-func _on_options_menu_menu_emit():
+func _on_options_menu_menu_emit(): # going from paused ingame to menu
 	in_menu.emit()
 	get_tree().paused = false
 	visible = true
+	
 
 func _on_level_1_pressed():
 	#get_tree().change_scene_to_file("res://Scenes/Level_1.tscn")
@@ -43,8 +44,15 @@ func _on_level_3_pressed():
 	instantiate_level.emit(currlevel)
 	in_game.emit()
 	visible = false
-	#print("INGAME")
+
 
 func _on_quit_game_pressed():
 	print("QUIT GAME")
 	quit_game.emit()
+
+
+func _on_continue_button_pressed():
+	in_menu.emit()
+	get_tree().paused = false
+	visible = true
+

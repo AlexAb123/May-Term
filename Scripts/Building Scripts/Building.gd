@@ -56,7 +56,7 @@ func _on_area_2d_mouse_exited():
 var left_click_down = false
 var right_click_down = false
 
-func _on_area_2d_input_event(viewport, event, shape_idx):
+func _on_area_2d_input_event(_viewport, event, _shape_idx):
 	
 	if event is InputEventMouseButton:
 		if event.pressed:
