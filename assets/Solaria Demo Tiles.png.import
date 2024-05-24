@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://db2hdppl138t5"
-path="res://.godot/imported/towerDefense_tile251.png-e5568ef06bbff5431abd246ea7975fb5.ctex"
+uid="uid://ds5p6d23xpleh"
+path="res://.godot/imported/Solaria Demo Tiles.png-753a2f005f801246c796f01f22523ed9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Tower and Enemies/towerDefense_tile251.png"
-dest_files=["res://.godot/imported/towerDefense_tile251.png-e5568ef06bbff5431abd246ea7975fb5.ctex"]
+source_file="res://assets/Solaria Demo Tiles.png"
+dest_files=["res://.godot/imported/Solaria Demo Tiles.png-753a2f005f801246c796f01f22523ed9.ctex"]
 
 [params]
 
