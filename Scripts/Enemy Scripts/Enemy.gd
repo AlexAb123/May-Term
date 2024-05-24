@@ -3,9 +3,12 @@ extends CharacterBody2D
 class_name Enemy
 
 signal healthChanged
-@onready var animated_sprite = get_node("AnimatedSprite2D")
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var detection_shape = $DetectionArea2D/DetectionArea2DCollisionShape2D
 @onready var damage_shape = $DamageArea2D/DamageCollisionShape2D
+@onready var hit = $hit
+@onready var death_timer = $DeathTimer
+
 
 @export var speed: int = 25
 @export var damage: int = 5
@@ -15,6 +18,7 @@ signal healthChanged
 @export var armor: int
 @export var detection_range: int = 25
 @export var damage_range: int = 8
+@onready var dying = false
 
 var target
 
@@ -46,40 +50,49 @@ var attack_cooldown_timer = 0
 var is_attacking: bool = false
 
 func take_damage(dmg):
-	current_health -= dmg
-	healthChanged.emit()
-	if current_health <= 0:
-		current_health = max_health
-		death()
+	if current_health > 0:
+		current_health -= dmg
+		healthChanged.emit()
+		if current_health <= 0:
+			death()
+		else:
+			animated_sprite.play("hit")
+			hit.start()
 
 func death():
+	$CollisionShape2D.queue_free()
+	dying = true
+	animated_sprite.play("death")
+	death_timer.start()
+
+func _on_timer_timeout():
 	queue_free()
 	
 func _physics_process(delta):
-	
-	find_target()
+	if not dying:
+		find_target()
 
-	if target in damage_targets:
-		is_attacking = true
-		if attack_cooldown_timer <= 0:
-			target.take_damage(damage)
-			attack_cooldown_timer = attack_cooldown
+		if target in damage_targets:
+			is_attacking = true
+			if attack_cooldown_timer <= 0:
+				target.take_damage(damage)
+				attack_cooldown_timer = attack_cooldown
+			else:
+				attack_cooldown_timer -= delta
 		else:
+			is_attacking = false	
 			attack_cooldown_timer -= delta
-	else:
-		is_attacking = false	
-		attack_cooldown_timer -= delta
-	
-	if target:
-		if target is TownHall:
-			velocity = (target.global_position + Vector2(8,8) - global_position).normalized() * speed
+		
+		if target:
+			if target is TownHall:
+				velocity = (target.global_position + Vector2(8,8) - global_position).normalized() * speed
+			else:
+				velocity = (target.global_position - global_position).normalized() * speed
 		else:
-			velocity = (target.global_position - global_position).normalized() * speed
-	else:
-		velocity = (Vector2(0, 0) - global_position).normalized() * speed
-	
-	if not is_attacking:
-		move_and_slide()
+			velocity = (Vector2(0, 0) - global_position).normalized() * speed
+		
+		if not is_attacking:
+			move_and_slide()
 
 func find_target():
 	if detection_targets:
@@ -90,5 +103,7 @@ func find_target():
 func compare_distance(body1, body2):
 	return (global_position - body1.global_position).length() < (global_position - body2.global_position).length()
 
-func die():
-	queue_free()
+
+func _on_hit_timeout():
+	if not dying:
+		animated_sprite.play("idle")

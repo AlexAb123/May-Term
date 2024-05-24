@@ -62,7 +62,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"death",
-"speed": 4.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -73,7 +73,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"hit",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -161,7 +161,16 @@ position = Vector2(0, -3)
 rotation = 1.57149
 shape = SubResource("CapsuleShape2D_5751c")
 
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="hit" type="Timer" parent="."]
+wait_time = 0.2
+
 [connection signal="body_entered" from="DetectionArea2D" to="." method="_on_detection_area_2d_body_entered"]
 [connection signal="body_exited" from="DetectionArea2D" to="." method="_on_detection_area_2d_body_exited"]
 [connection signal="body_entered" from="DamageArea2D" to="." method="_on_damage_area_2d_body_entered"]
 [connection signal="body_exited" from="DamageArea2D" to="." method="_on_damage_area_2d_body_exited"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="hit" to="." method="_on_hit_timeout"]
