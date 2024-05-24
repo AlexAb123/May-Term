@@ -16,7 +16,7 @@ func getRandPosition():
 	var node = Marker2D.new()
 	node.position.x = randi() % 200 * (((randi() % 2) * 2) - 1)
 	node.position.y = pow( (pow(200, 2)   -   pow(node.position.x, 2)),    0.5) * ((randi() % 2)* 2 - 1)
-	print(node.global_position)
+	#print(node.global_position)
 	return node.global_position
 	
 
@@ -34,11 +34,11 @@ func playTimer():
 	spawn_timer.start()
 	
 func spawner():
-	print("wave", wave)
+	#print("wave", wave)
 	for i in wavelist[wave - 1]:
 		var enemy_instance = enemies[0].instantiate() # must edit when adding more enmemies
 		get_node("enemies").add_child(enemy_instance)
-		print("enemy spawned")
+		#print("enemy spawned")
 		enemy_instance.position = getRandPosition()
 
 	#pass # Replace with function body.
@@ -51,6 +51,6 @@ func _on_spawn_timer_timeout():
 
 func _on_levels_child_entered_tree(node):
 	await get_tree().process_frame
-	print(node.wavelist)
+	#print(node.wavelist)
 	wavelist = node.wavelist
 
