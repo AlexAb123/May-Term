@@ -39,7 +39,7 @@ func take_damage(damage):
 func death():
 	print("Player Died")
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	#Get inputs and move up down left and right.
 	#Normalize vector so that diagonal isn't faster
 	
@@ -68,22 +68,55 @@ func _physics_process(delta):
 	if not is_deconstructing:
 		move_and_slide()
 	
-func _process(delta):
+func _process(_delta):
 	
 
 	var mouse_position: Vector2 = get_global_mouse_position() - Vector2(8,8)
 	
 	selected_item_sprite.global_position = mouse_position + Vector2(8,8)
+
+	attempt_place_building()
 	
+	if Input.is_action_just_pressed("e"):
+		if inventory.visible:
+			inventory.close()
+		else:
+			inventory.open()
+	
+	if Input.is_action_just_pressed("q"):
+		set_item_stack(null)
+	if Input.is_action_just_pressed("x"):
+		inventory.add_item_stack(ItemStack.new(Database.item_database["Iron_Ore"][0], 10))
+	if Input.is_action_just_pressed("g"):
+		inventory.add_item_stack(ItemStack.new(Database.item_database["Coal"][0], 10))
+	if Input.is_action_just_pressed("v"):
+		inventory.add_item_stack(ItemStack.new(Database.item_database["Drill"][0], 10))
+	if Input.is_action_just_pressed("c"):
+		inventory.add_item_stack(ItemStack.new(Database.item_database["Furnace"][0], 10))
+	if Input.is_action_just_pressed("y"):
+		var enemy = load("res://Scenes/Enemy Scenes/Base Enemy Scenes/Enemy.tscn").instantiate()
+		enemy.global_position = mouse_position
+		owner.add_child(enemy)
+	
+func attempt_place_building():
+	var mouse_position: Vector2 = get_global_mouse_position() - Vector2(8,8)
 	if not inventory.visible and left_click_down:
 		if selected_item_stack and selected_item_stack.item is PlaceableItem and selected_item_stack.count > 0 and not BuildingManager.check_position_occupied(mouse_position):
 			var building: Building = selected_item_stack.item.buildingScene.instantiate()
 			building.global_position = snapped(mouse_position, Vector2(16, 16))
+			var cell_layer_0 = tile_map.get_cell_tile_data(0, building.global_position/16)
+			var cell_layer_1 = tile_map.get_cell_tile_data(1, building.global_position/16)
+
+			if cell_layer_0 == null:
+				return
+			var is_placeable_tile = cell_layer_0.get_custom_data("Placeable")
+			if not is_placeable_tile:
+				return
+				
 			if building is Drill:
-				var cell = tile_map.get_cell_tile_data(1, building.global_position/16)
-				if not cell:
+				if cell_layer_1 == null:
 					return
-				var ore = cell.get_custom_data("Ore")
+				var ore = cell_layer_1.get_custom_data("Ore")
 				if not ore:
 					return
 				var new_recipe = Recipe.new("Mining", drill_mining_time, [], [ItemStack.new(ore, 1)])
@@ -96,28 +129,6 @@ func _process(delta):
 				selected_item_stack = null
 			inventory.update_slots()
 			update_selected_item_sprite_and_label()
-	
-	if Input.is_action_just_pressed("e"):
-		if inventory.visible:
-			inventory.close()
-		else:
-			inventory.open()
-	
-	if Input.is_action_just_pressed("q"):
-		set_item_stack(null)
-	if Input.is_action_just_pressed("x"):
-		inventory.add_item_stack(ItemStack.new(Database.item_database["Drill"][0], 10))
-	if Input.is_action_just_pressed("g"):
-		inventory.add_item_stack(ItemStack.new(Database.item_database["Archer_Tower"][0], 10))
-	if Input.is_action_just_pressed("v"):
-		inventory.add_item_stack(ItemStack.new(Database.item_database["Iron_Ore"][0], 2))
-	if Input.is_action_just_pressed("c"):
-		inventory.add_item_stack(ItemStack.new(Database.item_database["Coal"][0], 1))
-	if Input.is_action_just_pressed("y"):
-		var enemy = load("res://Scenes/Enemy Scenes/Base Enemy Scenes/Enemy.tscn").instantiate()
-		enemy.global_position = mouse_position
-		owner.add_child(enemy)
-	
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -159,6 +170,6 @@ func update_selected_item_sprite_and_label():
 		selected_item_sprite.texture = null
 		selected_item_label.text = ""
 
-func _on_inventory_slot_input(slot_id, event):
+func _on_inventory_slot_input(slot_id, _event):
 	if Input.is_action_just_pressed("left_click") and not Input.is_action_just_pressed("shift_left_click"):
 		set_item_stack(inventory.item_stacks[slot_id])

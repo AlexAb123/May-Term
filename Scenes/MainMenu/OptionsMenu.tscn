@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://cod3136me76mx"]
+
+[ext_resource type="Script" path="res://Scripts/MainMenu Scripts/OptionsMenu.gd" id="1_m6q31"]
+
+[node name="OptionsMenu" type="Control"]
+custom_minimum_size = Vector2(1152, 648)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m6q31")
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+offset_right = 60.0
+offset_bottom = 66.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="Go to Main Menu" type="Button" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Return to Menu"
+
+[node name="Quit Level" type="Button" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Quit Game"
+
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/Go to Main Menu" to="." method="_on_go_to_main_menu_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/Quit Level" to="." method="_on_quit_level_pressed"]

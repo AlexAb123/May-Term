@@ -35,14 +35,12 @@ func _on_detection_area_2d_body_entered(body):
 func _on_detection_area_2d_body_exited(body):
 	detection_targets.erase(body)
 	
-
 func _on_damage_area_2d_body_entered(body):
 	if body is Building or body is Player:
 		damage_targets.append(body)
 		
 func _on_damage_area_2d_body_exited(body):
 	damage_targets.erase(body)
-
 	
 var attack_cooldown_timer = 0
 var is_attacking: bool = false
@@ -73,7 +71,10 @@ func _physics_process(delta):
 		attack_cooldown_timer -= delta
 	
 	if target:
-		velocity = (target.global_position - global_position).normalized() * speed
+		if target is Building:
+			velocity = (target.global_position +  target.size/2 - global_position).normalized() * speed
+		else:
+			velocity = (target.global_position - global_position).normalized() * speed
 	else:
 		velocity = (Vector2(0, 0) - global_position).normalized() * speed
 	

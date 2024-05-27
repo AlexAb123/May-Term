@@ -4,21 +4,25 @@ class_name Projectile
 
 var start_position: Vector2
 var direction: Vector2
-@export var damage: int = 10
+@export var damage: int = 2
 @export var speed: int = 200
 @export var pierce_count: int = 1
 @onready var current_pierce_count: int = pierce_count
+
+@onready var despawn_timer = $DespawnTimer
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	global_position = start_position
 	velocity = direction.normalized() * speed
+	despawn_timer.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	move_and_slide()
 
 func _on_area_2d_body_entered(body):

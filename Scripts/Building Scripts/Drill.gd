@@ -5,6 +5,9 @@ extends Building
 @onready var canvas_layer = $CanvasLayer
 @onready var timer: Timer = $Timer
 
+@onready var current_output_sprite = $CurrentOutputSprite
+@onready var current_output_count = $CurrentOutputSprite/CurrentOutputCount
+
 var recipe: Recipe
 var selected_recipe: Recipe
 
@@ -21,15 +24,25 @@ func _physics_process(delta):
 		pass
 		
 	if player_in_range:
-		if left_click_down and not Global.player.selected_item_stack:
-			BuildingManager.close_all_open_inventories()
-			output_inventory.open()
-			BuildingManager.open_inventories.append(output_inventory)
-			Global.player.inventory.open()
+		if left_click_down and Input.is_action_pressed("shift_left_click"):
+			if output_inventory.item_stacks and output_inventory.item_stacks[0].count > 0:
+				Global.player.inventory.add_item_stack(ItemStack.new(output_inventory.item_stacks[0].item, output_inventory.item_stacks[0].count))
+				output_inventory.remove_at(0)
+				update_current_output_sprite()
+				
+			elif left_click_down and Input.is_action_just_pressed("left_click") and not Global.player.selected_item_stack:
+				BuildingManager.close_all_open_inventories()
+				output_inventory.open()
+				BuildingManager.open_inventories.append(output_inventory)
+				Global.player.inventory.open()
 	
 	if Input.is_action_just_pressed("e"):
 		output_inventory.close()
 		BuildingManager.close_all_open_inventories()
+	
+	if Input.is_action_just_pressed("detailed_mode"):
+		current_output_sprite.visible = not current_output_sprite.visible
+	
 		
 	if selected_recipe and timer.is_stopped():
 		start_craft()
@@ -38,17 +51,19 @@ func _on_timer_timeout():
 	for item_stack in selected_recipe.output_item_stacks:
 		output_inventory.add_item_stack(item_stack)
 	start_craft()
+	update_current_output_sprite()	
 	
 var player_in_range: bool = false
 
-func _on_inventory_reach_body_entered(body):
+func _on_inventory_reach_body_entered(_body):
 	player_in_range = true
 
-func _on_inventory_reach_body_exited(body):
+func _on_inventory_reach_body_exited(_body):
 	player_in_range = false
 	output_inventory.close()
 
 func _on_output_inventory_slot_input(slot_id, event):
+	
 	if Input.is_action_just_pressed("shift_left_click"):
 		Global.player.inventory.add_item_stack(ItemStack.new(output_inventory.item_stacks[slot_id].item, output_inventory.item_stacks[slot_id].count))
 		output_inventory.remove_at(slot_id)
@@ -59,6 +74,17 @@ func _on_output_inventory_slot_input(slot_id, event):
 			Global.player.inventory.add_item_stack(ItemStack.new(output_inventory.item_stacks[slot_id].item, 1))
 			output_inventory.item_stacks[slot_id].count -= 1
 			output_inventory.update_slots()
+			
+	update_current_output_sprite()
+
+func update_current_output_sprite():
+		
+	if output_inventory.item_stacks[0]:
+		current_output_sprite.texture = output_inventory.item_stacks[0].item.sprite
+		current_output_count.text = str(output_inventory.item_stacks[0].count)
+	else:
+		current_output_sprite.texture = null
+		current_output_count.text = ""
 
 func start_craft():
 	timer.start()
@@ -75,8 +101,8 @@ func deconstruct():
 	BuildingManager.close_all_open_inventories()
 	super()
 
-func select_recipe(recipe: Recipe):
-	if recipe == selected_recipe:
+func select_recipe(curr: Recipe):
+	if curr == selected_recipe:
 		return
 		
 	if not timer.is_stopped():
@@ -85,7 +111,7 @@ func select_recipe(recipe: Recipe):
 		for item_stack in selected_recipe.input_item_stacks:
 			Global.player.inventory.add_item_stack(item_stack)
 			
-	selected_recipe = recipe
+	selected_recipe = curr
 	
 	output_inventory.slot_count = selected_recipe.output_item_stacks.size()
 	output_inventory.initialize_slots()

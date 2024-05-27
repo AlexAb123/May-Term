@@ -1,16 +1,35 @@
-[gd_scene load_steps=5 format=3 uid="uid://klc1brlg3lae"]
+[gd_scene load_steps=6 format=3 uid="uid://klc1brlg3lae"]
 
 [ext_resource type="PackedScene" uid="uid://dbg5hg88ngfkg" path="res://Scenes/Building Scenes/Base Building Scenes/Building.tscn" id="1_36igq"]
 [ext_resource type="Script" path="res://Scripts/Building Scripts/RecipeBuilding.gd" id="2_rwhkc"]
+[ext_resource type="FontFile" uid="uid://ca3srwdceg21l" path="res://assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="3_8jhhe"]
 [ext_resource type="PackedScene" uid="uid://xy2vr6tknt6g" path="res://Scenes/Inventory Scenes/Inventory.tscn" id="3_djvtn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hrlnc"]
+radius = 22.8576
 
 [node name="RecipeBuilding" instance=ExtResource("1_36igq")]
 script = ExtResource("2_rwhkc")
 recipes = Array[Resource("res://Scripts/Resource Scripts/Recipe Scripts/Recipe.gd")]([])
+on_sprite = null
 
-[node name="InventoryReach" type="Area2D" parent="." index="3"]
+[node name="CurrentOutputSprite" type="Sprite2D" parent="." index="2"]
+position = Vector2(8, 8)
+scale = Vector2(0.75, 0.75)
+
+[node name="CurrentOutputCount" type="Label" parent="CurrentOutputSprite" index="0"]
+offset_left = -7.0
+offset_top = -7.0
+offset_right = 33.0
+offset_bottom = 16.0
+scale = Vector2(0.35, 0.35)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+horizontal_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="InventoryReach" type="Area2D" parent="." index="4"]
 position = Vector2(8, 8)
 collision_layer = 0
 collision_mask = 8
@@ -19,7 +38,7 @@ collision_mask = 8
 scale = Vector2(7, 7)
 shape = SubResource("CircleShape2D_hrlnc")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." index="5"]
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="6"]
 layer = 0
 offset = Vector2(8, 8)
 transform = Transform2D(1, 0, 0, 1, 8, 8)
@@ -32,6 +51,17 @@ offset_right = 745.0
 offset_bottom = 107.0
 scale = Vector2(2.5, 2.5)
 text = "Select Recipe"
+
+[node name="RecipeDescription" type="Label" parent="CanvasLayer/OpenRecipeSelector" index="0"]
+layout_mode = 0
+offset_left = -52.0
+offset_top = 30.0
+offset_right = 18.0
+offset_bottom = 142.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_8jhhe")
+theme_override_font_sizes/font_size = 10
 
 [node name="InputInventory" parent="CanvasLayer" index="1" instance=ExtResource("3_djvtn")]
 offset_left = 757.0
@@ -47,7 +77,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="RecipeSelector" parent="CanvasLayer" index="3" instance=ExtResource("3_djvtn")]
 
-[node name="Timer" type="Timer" parent="." index="6"]
+[node name="Timer" type="Timer" parent="." index="7"]
 
 [connection signal="body_entered" from="InventoryReach" to="." method="_on_inventory_reach_body_entered"]
 [connection signal="body_exited" from="InventoryReach" to="." method="_on_inventory_reach_body_exited"]

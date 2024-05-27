@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bhhbpfjllofi2"]
+[gd_scene load_steps=6 format=3 uid="uid://b1defpqe6b1k5"]
 
 [ext_resource type="PackedScene" uid="uid://dbg5hg88ngfkg" path="res://Scenes/Building Scenes/Base Building Scenes/Building.tscn" id="1_l0d1t"]
 [ext_resource type="Script" path="res://Scripts/Building Scripts/Drill.gd" id="2_wm6we"]
-[ext_resource type="Texture2D" uid="uid://tltmoetu6ybi" path="res://assets/Custom Sprites/Drill.png" id="3_m1nr2"]
+[ext_resource type="Texture2D" uid="uid://tltmoetu6ybi" path="res://assets/Custom Sprites/Drill.png" id="3_gymkn"]
 [ext_resource type="PackedScene" uid="uid://xy2vr6tknt6g" path="res://Scenes/Inventory Scenes/Inventory.tscn" id="3_tibmx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a0hv6"]
@@ -10,7 +10,10 @@
 [node name="Drill" instance=ExtResource("1_l0d1t")]
 script = ExtResource("2_wm6we")
 item_name = "Drill"
-sprite = ExtResource("3_m1nr2")
+sprite = ExtResource("3_gymkn")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("3_gymkn")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." index="4"]
 layer = 0
@@ -34,6 +37,22 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InventoryReach" index="0"]
 scale = Vector2(7, 7)
 shape = SubResource("CircleShape2D_a0hv6")
+
+[node name="CurrentOutputSprite" type="Sprite2D" parent="." index="7"]
+position = Vector2(8, 8)
+scale = Vector2(0.75, 0.75)
+
+[node name="CurrentOutputCount" type="Label" parent="CurrentOutputSprite" index="0"]
+offset_left = -7.0
+offset_top = -7.0
+offset_right = 33.0
+offset_bottom = 16.0
+scale = Vector2(0.35, 0.35)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+horizontal_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
 
 [connection signal="slot_input" from="CanvasLayer/OutputInventory" to="." method="_on_output_inventory_slot_input"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

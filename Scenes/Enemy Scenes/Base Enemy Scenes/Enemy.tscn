@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b3xvsbpqeyd3s"]
+[gd_scene load_steps=20 format=3 uid="uid://b3xvsbpqeyd3s"]
 
 [ext_resource type="Script" path="res://Scripts/Enemy Scripts/Enemy.gd" id="1_8cx2i"]
 [ext_resource type="Texture2D" uid="uid://cspf1k2foi5dl" path="res://assets/sprites/slime_purple.png" id="1_pijau"]
@@ -93,18 +93,24 @@ animations = [{
 "speed": 7.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_evj7i"]
-radius = 1.99998
-height = 7.99994
+[sub_resource type="CircleShape2D" id="CircleShape2D_0mg7q"]
+radius = 6.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_io5ol"]
 radius = 47.0425
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6ctfx"]
+radius = 7.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5751c"]
+radius = 7.0
+height = 18.0
 
 [node name="Enemy" type="CharacterBody2D"]
+z_index = 1
+z_as_relative = false
 y_sort_enabled = true
-collision_layer = 6
+collision_layer = 4
 collision_mask = 6
 script = ExtResource("1_8cx2i")
 attack_cooldown = 0.3
@@ -121,8 +127,9 @@ frame_progress = 1.0
 offset = Vector2(2.08165e-12, -14)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-rotation = 1.57481
-shape = SubResource("CapsuleShape2D_evj7i")
+position = Vector2(-1.66043e-10, -3)
+rotation = 1.5708
+shape = SubResource("CircleShape2D_0mg7q")
 
 [node name="DetectionArea2D" type="Area2D" parent="."]
 collision_layer = 0
@@ -136,6 +143,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="DamageCollisionShape2D" type="CollisionShape2D" parent="DamageArea2D"]
+position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_6ctfx")
 
 [node name="HealthBar" type="TextureProgressBar" parent="." node_paths=PackedStringArray("enemy")]
@@ -147,6 +155,15 @@ scale = Vector2(0.0199957, -0.0331187)
 texture_progress = ExtResource("4_pkufp")
 script = ExtResource("4_egq4x")
 enemy = NodePath("..")
+
+[node name="HitBoxArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="HitBox" type="CollisionShape2D" parent="HitBoxArea"]
+position = Vector2(0, -3)
+rotation = 1.57149
+shape = SubResource("CapsuleShape2D_5751c")
 
 [connection signal="body_entered" from="DetectionArea2D" to="." method="_on_detection_area_2d_body_entered"]
 [connection signal="body_exited" from="DetectionArea2D" to="." method="_on_detection_area_2d_body_exited"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://br24xesgry74s"]
+[gd_scene load_steps=3 format=3 uid="uid://70e220yt8pa2"]
 
 [ext_resource type="PackedScene" uid="uid://cl667d53ayrlk" path="res://Scenes/Projectile Scenes/Projectile.tscn" id="1_naeor"]
 [ext_resource type="Script" path="res://Scripts/Projectile Scripts/RotatingProjectile.gd" id="2_b6klb"]

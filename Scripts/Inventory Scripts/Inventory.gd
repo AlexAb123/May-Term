@@ -19,7 +19,7 @@ func _ready():
 	anchors_preset = PRESET_CENTER
 	
 	visible = false
-
+	
 func initialize_slots():
 	
 	item_stacks = []

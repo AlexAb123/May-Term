@@ -5,18 +5,20 @@
 [ext_resource type="Texture2D" uid="uid://mg6onenv8ktb" path="res://assets/health/health.png" id="3_66sok"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e6rv2"]
-size = Vector2(8, 8)
+size = Vector2(32.5, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3j7wk"]
 size = Vector2(16, 16)
 
 [node name="Building" type="StaticBody2D"]
+z_index = 1
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_e7ngb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 65
+z_index = 1
 position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_e6rv2")
 

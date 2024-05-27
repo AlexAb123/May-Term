@@ -1,20 +1,28 @@
 extends Node2D
 
+signal win
+
 @onready var enemies = [preload("res://Scenes/Enemy Scenes/Base Enemy Scenes/Enemy.tscn")]
-@onready var wavelist = [1, 2, 0, 2, 0] 
+@onready var wavelist = [0, 0, 0, 0, 1, 2, 7, 10, 0] 
 var wave : int = 0
 # must edit when adding more enemies
 @onready var OptionsMenu : Control = $"../../MenuLayer/OptionsMenu"
 @onready var spawn_timer = $SpawnTimer
 @onready var main_menu = $"../../../MainMenu"
+@onready var game_over = true
 
+
+func _process(_delta):
+	if not game_over:
+		checkWin()
 
 func getRandPosition():
 	#var node = positions[randi() % positions.size()]
 	#return node.global_position
 	var node = Marker2D.new()
-	node.position.x = randi() % 200 * ((randi() % 1)* 2 - 1)
-	node.position.y = pow( (pow(200, 2)   -   pow(node.position.x, 2)),    0.5) * ((randi() % 1)* 2 - 1)
+	node.position.x = randi() % 200 * (((randi() % 2) * 2) - 1)
+	node.position.y = pow( (pow(200, 2)   -   pow(node.position.x, 2)),    0.5) * ((randi() % 2)* 2 - 1)
+	#print(node.global_position)
 	return node.global_position
 	
 
@@ -32,16 +40,30 @@ func playTimer():
 	spawn_timer.start()
 	
 func spawner():
-	print("wave", wave)
+	#print("wave", wave)
 	for i in wavelist[wave - 1]:
 		var enemy_instance = enemies[0].instantiate() # must edit when adding more enmemies
 		get_node("enemies").add_child(enemy_instance)
-		print("enemy spawned")
+		#print("enemy spawned")
 		enemy_instance.position = getRandPosition()
 
-	#pass # Replace with function body.
+func checkWin():
+	if wave == wavelist.size():
+		if get_node("enemies").get_child_count() == 0:
+			print("YOU PASSED")
+			win.emit()
+			game_over = true
 
 func _on_spawn_timer_timeout():
-	if wave < wavelist.size() - 1:
+	if wave < wavelist.size():
 		wave += 1
 		spawner()
+
+
+func _on_levels_child_entered_tree(node):
+	game_over = false
+	await get_tree().process_frame
+
+	#print(node.wavelist)
+	wavelist = node.wavelist
+

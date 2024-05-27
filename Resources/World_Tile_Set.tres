@@ -1,7 +1,10 @@
-[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://cbd5w3q2paigl"]
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://cbd5w3q2paigl"]
 
 [ext_resource type="Resource" uid="uid://y3y7pjfvyfnd" path="res://Resources/Items/ITEM_Iron_Ore.tres" id="1_1stuu"]
-[ext_resource type="Texture2D" uid="uid://ds5p6d23xpleh" path="res://assets/Test/16x16/Tilesets/New/Solaria Demo Tiles.png" id="1_r5b4l"]
+[ext_resource type="Texture2D" uid="uid://ds5p6d23xpleh" path="res://assets/Solaria Demo Tiles.png" id="1_r5b4l"]
+[ext_resource type="Resource" uid="uid://ds1x24qferd5s" path="res://Resources/Items/ITEM_Stone.tres" id="2_nbyba"]
+[ext_resource type="Resource" uid="uid://3ax2dp4kv63q" path="res://Resources/Items/ITEM_Gold_Ore.tres" id="2_r3diy"]
+[ext_resource type="Resource" uid="uid://pl5aig4uuqis" path="res://Resources/Items/ITEM_Coal.tres" id="3_dwlbh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3sgma"]
 texture = ExtResource("1_r5b4l")
@@ -23,9 +26,11 @@ texture = ExtResource("1_r5b4l")
 5:0/0 = 0
 5:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:0/0/physics_layer_0/angular_velocity = 0.0
+5:0/0/custom_data_1 = true
 6:0/0 = 0
 6:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 6:0/0/physics_layer_0/angular_velocity = 0.0
+6:0/0/custom_data_1 = true
 7:0/0 = 0
 7:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 7:0/0/physics_layer_0/angular_velocity = 0.0
@@ -101,9 +106,11 @@ texture = ExtResource("1_r5b4l")
 5:1/0 = 0
 5:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:1/0/physics_layer_0/angular_velocity = 0.0
+5:1/0/custom_data_1 = true
 6:1/0 = 0
 6:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 6:1/0/physics_layer_0/angular_velocity = 0.0
+6:1/0/custom_data_1 = true
 7:1/0 = 0
 7:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 7:1/0/physics_layer_0/angular_velocity = 0.0
@@ -478,6 +485,7 @@ texture = ExtResource("1_r5b4l")
 1:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:6/0/physics_layer_0/angular_velocity = 0.0
 1:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, -4, 8, -4, 8, -8)
+1:6/0/custom_data_1 = true
 2:6/0 = 0
 2:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:6/0/physics_layer_0/angular_velocity = 0.0
@@ -566,6 +574,7 @@ texture = ExtResource("1_r5b4l")
 1:7/0 = 0
 1:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:7/0/physics_layer_0/angular_velocity = 0.0
+1:7/0/custom_data_1 = true
 2:7/0 = 0
 2:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:7/0/physics_layer_0/angular_velocity = 0.0
@@ -574,10 +583,12 @@ texture = ExtResource("1_r5b4l")
 3:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:7/0/physics_layer_0/angular_velocity = 0.0
 3:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -8, -4, -4, 8, -4, 8, -8)
+3:7/0/custom_data_1 = true
 4:7/0 = 0
 4:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:7/0/physics_layer_0/angular_velocity = 0.0
 4:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(4, -8, 4, -4, -8, -4, -8, -8)
+4:7/0/custom_data_1 = true
 5:7/0 = 0
 5:7/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:7/0/physics_layer_0/angular_velocity = 0.0
@@ -682,7 +693,6 @@ texture = ExtResource("1_r5b4l")
 10:8/0 = 0
 10:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 10:8/0/physics_layer_0/angular_velocity = 0.0
-10:8/0/custom_data_0 = ExtResource("1_1stuu")
 12:8/0 = 0
 12:8/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 12:8/0/physics_layer_0/angular_velocity = 0.0
@@ -1124,9 +1134,27 @@ texture = ExtResource("1_r5b4l")
 12:14/0 = 0
 12:14/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 12:14/0/physics_layer_0/angular_velocity = 0.0
+18:14/0 = 0
+18:14/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+18:14/0/physics_layer_0/angular_velocity = 0.0
+18:14/0/custom_data_0 = ExtResource("1_1stuu")
+19:14/0 = 0
+19:14/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+19:14/0/physics_layer_0/angular_velocity = 0.0
+19:14/0/custom_data_0 = ExtResource("2_r3diy")
+20:14/0 = 0
+20:14/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+20:14/0/physics_layer_0/angular_velocity = 0.0
+20:14/0/custom_data_0 = ExtResource("3_dwlbh")
+21:14/0 = 0
+21:14/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+21:14/0/physics_layer_0/angular_velocity = 0.0
+21:14/0/custom_data_0 = ExtResource("2_nbyba")
 
 [resource]
 physics_layer_0/collision_layer = 1
 custom_data_layer_0/name = "Ore"
 custom_data_layer_0/type = 24
+custom_data_layer_1/name = "Placeable"
+custom_data_layer_1/type = 1
 sources/0 = SubResource("TileSetAtlasSource_3sgma")

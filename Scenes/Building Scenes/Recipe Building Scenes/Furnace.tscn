@@ -1,12 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://413lxhppw7hu"]
+[gd_scene load_steps=6 format=3 uid="uid://413lxhppw7hu"]
 
 [ext_resource type="PackedScene" uid="uid://klc1brlg3lae" path="res://Scenes/Building Scenes/Base Building Scenes/RecipeBuilding.tscn" id="1_uap2c"]
 [ext_resource type="Resource" uid="uid://4f85j6d0uiql" path="res://Resources/Recipes/RECIPE_Gold_Ore_Smelting.tres" id="3_fda4v"]
 [ext_resource type="Resource" uid="uid://xno8er2s6whp" path="res://Resources/Recipes/RECIPE_Iron_Ore_Smelting.tres" id="3_t4pgb"]
+[ext_resource type="Texture2D" uid="uid://du0w48jwxg63r" path="res://assets/Custom Sprites/Furnace_On.png" id="4_urc24"]
 [ext_resource type="Texture2D" uid="uid://wuof8losfo5a" path="res://assets/Custom Sprites/Furnace.Off.png" id="5_o64gn"]
 
 [node name="Furnace" instance=ExtResource("1_uap2c")]
 recipes = Array[Resource("res://Scripts/Resource Scripts/Recipe Scripts/Recipe.gd")]([ExtResource("3_t4pgb"), ExtResource("3_fda4v")])
+on_sprite = ExtResource("4_urc24")
 item_name = "Furnace"
 sprite = ExtResource("5_o64gn")
 
