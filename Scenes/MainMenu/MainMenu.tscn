@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/MainMenu Scripts/MainMenu.gd" id="1_ogwjs"]
 [ext_resource type="Texture2D" uid="uid://i7fqlwhall0o" path="res://assets/Custom Sprites/Button_Up.png" id="2_50dn6"]
 [ext_resource type="Texture2D" uid="uid://yxysvqd1i2us" path="res://assets/Custom Sprites/Button_Down.png" id="3_xq64s"]
-[ext_resource type="Script" path="res://Scenes/MainMenu/Button.gd" id="4_4n88o"]
+[ext_resource type="Script" path="res://Scenes/MainMenu/CustomButton.gd" id="4_4n88o"]
 [ext_resource type="FontFile" uid="uid://clnuex6p1oda3" path="res://assets/brackeys_platformer_assets/fonts/PixelOperator8-Bold.ttf" id="4_ourd8"]
 
 [node name="MainMenu" type="Control"]
@@ -111,7 +111,6 @@ layout_mode = 2
 text = "Quit Game"
 
 [connection signal="button_down" from="LevelsMargin/LevelsVBox/Level 1" to="LevelsMargin/LevelsVBox/Level 1" method="_on_button_down"]
-[connection signal="button_up" from="LevelsMargin/LevelsVBox/Level 1" to="." method="_on_level_1_button_up"]
 [connection signal="button_up" from="LevelsMargin/LevelsVBox/Level 1" to="LevelsMargin/LevelsVBox/Level 1" method="_on_button_up"]
 [connection signal="pressed" from="LevelsMargin/LevelsVBox/Level 1" to="." method="_on_level_1_pressed"]
 [connection signal="button_down" from="LevelsMargin/LevelsVBox/Level 2" to="LevelsMargin/LevelsVBox/Level 2" method="_on_button_down"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://m4gcdu32icpw"]
+[gd_scene load_steps=13 format=3 uid="uid://m4gcdu32icpw"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu Scripts/Main.gd" id="1_p8irn"]
 [ext_resource type="PackedScene" uid="uid://hmabq20jju6k" path="res://Scenes/WaveManager.tscn" id="2_qp5if"]
@@ -6,8 +6,12 @@
 [ext_resource type="Script" path="res://Scripts/MainMenu Scripts/InGame.gd" id="4_0m3lu"]
 [ext_resource type="PackedScene" uid="uid://bjexkidu8kax5" path="res://Scenes/MainMenu/MainMenu.tscn" id="4_3xufo"]
 [ext_resource type="Script" path="res://Scripts/MainMenu Scripts/MenuLayer.gd" id="5_cypep"]
+[ext_resource type="Texture2D" uid="uid://i7fqlwhall0o" path="res://assets/Custom Sprites/Button_Up.png" id="5_vjo7u"]
 [ext_resource type="Script" path="res://Scripts/MainMenu Scripts/GameItems.gd" id="6_apovs"]
+[ext_resource type="Texture2D" uid="uid://yxysvqd1i2us" path="res://assets/Custom Sprites/Button_Down.png" id="6_blri3"]
+[ext_resource type="Script" path="res://Scenes/MainMenu/CustomButton.gd" id="7_4ug43"]
 [ext_resource type="Script" path="res://Scenes/MainMenu/Levels.gd" id="7_c4qsh"]
+[ext_resource type="FontFile" uid="uid://clnuex6p1oda3" path="res://assets/brackeys_platformer_assets/fonts/PixelOperator8-Bold.ttf" id="8_357ha"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_p8irn")
@@ -47,14 +51,33 @@ text = "Continue"
 visible = false
 script = ExtResource("5_cypep")
 
-[node name="pause" type="Button" parent="InGame/MenuLayer"]
-offset_right = 100.0
-offset_bottom = 50.0
+[node name="pause" type="TextureButton" parent="InGame/MenuLayer"]
+offset_left = 6.0
+offset_right = 146.0
+offset_bottom = 54.0
+size_flags_vertical = 3
+texture_normal = ExtResource("5_vjo7u")
+texture_pressed = ExtResource("6_blri3")
+stretch_mode = 5
+script = ExtResource("7_4ug43")
+
+[node name="Label" type="Label" parent="InGame/MenuLayer/pause"]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 19.0
+offset_right = 99.0
+offset_bottom = 54.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_357ha")
+theme_override_font_sizes/font_size = 8
 text = "Pause"
-metadata/_edit_use_anchors_ = true
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="OptionsMenu" parent="InGame/MenuLayer" instance=ExtResource("3_ey0cq")]
 process_mode = 2
+visible = false
 
 [node name="GameItems" type="Node2D" parent="InGame"]
 script = ExtResource("6_apovs")
@@ -71,7 +94,8 @@ script = ExtResource("7_c4qsh")
 [connection signal="instantiate_level" from="MainMenu" to="InGame/GameItems" method="_on_main_menu_instantiate_level"]
 [connection signal="pressed" from="InGame/EndScreen/ContinueButton" to="MainMenu" method="_on_continue_button_pressed"]
 [connection signal="pressed" from="InGame/EndScreen/ContinueButton" to="InGame" method="_on_continue_button_pressed"]
-[connection signal="pressed" from="InGame/MenuLayer/pause" to="MainMenu" method="_on_pause_pressed"]
+[connection signal="button_down" from="InGame/MenuLayer/pause" to="InGame/MenuLayer/pause" method="_on_button_down"]
+[connection signal="button_up" from="InGame/MenuLayer/pause" to="InGame/MenuLayer/pause" method="_on_button_up"]
 [connection signal="pressed" from="InGame/MenuLayer/pause" to="InGame" method="_on_pause_pressed"]
 [connection signal="pressed" from="InGame/MenuLayer/pause" to="InGame/MenuLayer" method="_on_pause_pressed"]
 [connection signal="pressed" from="InGame/MenuLayer/pause" to="InGame/GameItems" method="_on_pause_pressed"]
