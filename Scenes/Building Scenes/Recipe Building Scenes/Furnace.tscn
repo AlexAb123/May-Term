@@ -18,8 +18,8 @@ light_mask = 1
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("5_o64gn")
 
-[node name="RecipeDescription" parent="CanvasLayer/OpenRecipeSelector" index="1"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 183.0
-offset_bottom = 317.0
+[node name="CanvasLayer" parent="." index="6"]
+visible = true
+
+[node name="OpenRecipeSelector" parent="CanvasLayer" index="0"]
+visible = false

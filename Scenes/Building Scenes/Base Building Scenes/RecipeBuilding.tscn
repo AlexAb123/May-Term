@@ -44,6 +44,7 @@ shape = SubResource("CircleShape2D_hrlnc")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." index="6"]
 layer = 0
+visible = false
 offset = Vector2(8, 8)
 transform = Transform2D(1, 0, 0, 1, 8, 8)
 
@@ -74,10 +75,10 @@ autowrap_mode = 2
 
 [node name="RecipeDescription" type="Label" parent="CanvasLayer/OpenRecipeSelector" index="1"]
 layout_mode = 0
-offset_left = 485.0
-offset_top = 136.0
-offset_right = 668.0
-offset_bottom = 453.0
+offset_left = -80.0
+offset_top = 115.0
+offset_right = 103.0
+offset_bottom = 432.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_8jhhe")

@@ -25,14 +25,8 @@ texture = ExtResource("2_x6vin")
 [node name="CurrentOutputSprite" parent="." index="2"]
 position = Vector2(-8, -11)
 
-[node name="MouseArea2D" parent="." index="3"]
-visible = false
-
 [node name="AreaCollisionShape2D" parent="MouseArea2D" index="0"]
 position = Vector2(8, 8)
-
-[node name="InventoryReach" parent="." index="4"]
-visible = false
 
 [node name="CollisionShape2D" parent="InventoryReach" index="0"]
 position = Vector2(8, 8)
@@ -43,6 +37,9 @@ offset_top = 31.0
 offset_right = 1501.0
 offset_bottom = 155.0
 nine_patch_stretch = true
+
+[node name="OpenRecipeSelector" parent="CanvasLayer" index="0"]
+visible = false
 
 [node name="InputInventory" parent="CanvasLayer" index="1"]
 offset_left = 741.0
