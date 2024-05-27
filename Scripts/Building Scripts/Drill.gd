@@ -30,11 +30,11 @@ func _physics_process(delta):
 				output_inventory.remove_at(0)
 				update_current_output_sprite()
 				
-			elif left_click_down and Input.is_action_just_pressed("left_click") and not Global.player.selected_item_stack:
-				BuildingManager.close_all_open_inventories()
-				output_inventory.open()
-				BuildingManager.open_inventories.append(output_inventory)
-				Global.player.inventory.open()
+		elif left_click_down and Input.is_action_just_pressed("left_click") and not Global.player.selected_item_stack:
+			BuildingManager.close_all_open_inventories()
+			output_inventory.open()
+			BuildingManager.open_inventories.append(output_inventory)
+			Global.player.inventory.open()
 	
 	if Input.is_action_just_pressed("e"):
 		output_inventory.close()

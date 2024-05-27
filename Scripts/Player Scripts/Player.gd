@@ -90,9 +90,9 @@ func _process(_delta):
 	if Input.is_action_just_pressed("g"):
 		inventory.add_item_stack(ItemStack.new(Database.item_database["Coal"][0], 10))
 	if Input.is_action_just_pressed("v"):
-		inventory.add_item_stack(ItemStack.new(Database.item_database["Drill"][0], 10))
+		inventory.add_item_stack(ItemStack.new(Database.item_database["Archer_Tower"][0], 10))
 	if Input.is_action_just_pressed("c"):
-		inventory.add_item_stack(ItemStack.new(Database.item_database["Furnace"][0], 10))
+		inventory.add_item_stack(ItemStack.new(Database.item_database["Drill"][0], 10))
 	if Input.is_action_just_pressed("y"):
 		var enemy = load("res://Scenes/Enemy Scenes/Base Enemy Scenes/Enemy.tscn").instantiate()
 		enemy.global_position = mouse_position
