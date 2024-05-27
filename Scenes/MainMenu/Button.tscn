@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8gtajxeby0xg"]
+
+[ext_resource type="Texture2D" uid="uid://i7fqlwhall0o" path="res://assets/Custom Sprites/Button_Up.png" id="1_vj2jb"]
+[ext_resource type="Texture2D" uid="uid://yxysvqd1i2us" path="res://assets/Custom Sprites/Button_Down.png" id="2_83kxi"]
+[ext_resource type="Script" path="res://Scenes/MainMenu/Button.gd" id="3_1so4k"]
+[ext_resource type="FontFile" uid="uid://clnuex6p1oda3" path="res://assets/brackeys_platformer_assets/fonts/PixelOperator8-Bold.ttf" id="4_r26ue"]
+
+[node name="Button" type="TextureButton"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -965.0
+offset_bottom = -547.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource("1_vj2jb")
+texture_pressed = ExtResource("2_83kxi")
+stretch_mode = 5
+script = ExtResource("3_1so4k")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_top = 35.0
+offset_right = 187.0
+offset_bottom = 60.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_r26ue")
+text = "Text"
+horizontal_alignment = 1
+vertical_alignment = 1
