@@ -1,6 +1,6 @@
 extends Camera2D
 
-@onready var playerNode : Node2D = owner.get_node("Player")
+@onready var playerNode : Node2D = owner.get_node("Objects").get_node("Player")
 
 # if followPlayerDirectly is on, camera will always be exactly on the player. No smoothing or catching up
 @export var followPlayerDirectly = false
