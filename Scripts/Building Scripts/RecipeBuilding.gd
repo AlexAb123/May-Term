@@ -217,7 +217,7 @@ func _on_inventory_reach_body_exited(_body):
 func destroy():
 	input_inventory.close()
 	output_inventory.close()
-	BuildingManager.close_all_open_inventories()
+	#BuildingManager.close_all_open_inventories()
 	open_recipe_selector_button.visible = false
 	super()
 	

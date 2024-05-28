@@ -15,6 +15,9 @@ item_name = "Town Hall"
 sprite = ExtResource("2_x6vin")
 size = Vector2(32, 32)
 
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(17, 16)
+
 [node name="Sprite2D" parent="." index="1"]
 position = Vector2(16, 16)
 texture = ExtResource("2_x6vin")
@@ -22,14 +25,8 @@ texture = ExtResource("2_x6vin")
 [node name="CurrentOutputSprite" parent="." index="2"]
 position = Vector2(-8, -11)
 
-[node name="MouseArea2D" parent="." index="3"]
-visible = false
-
 [node name="AreaCollisionShape2D" parent="MouseArea2D" index="0"]
 position = Vector2(8, 8)
-
-[node name="InventoryReach" parent="." index="4"]
-visible = false
 
 [node name="CollisionShape2D" parent="InventoryReach" index="0"]
 position = Vector2(8, 8)
