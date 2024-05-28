@@ -23,6 +23,9 @@ var selected_recipe : Recipe
 func _ready():
 	super()
 	
+	current_output_sprite.visible = Global.player.is_detailed_mode_on
+	
+	
 	Global.player.inventory.slot_input.connect(_on_player_inventory_slot_input)
 	
 	input_inventory.position.x = input_inventory.position.x + Global.player.inventory_xshift*0.75

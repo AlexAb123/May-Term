@@ -13,6 +13,8 @@ signal healthChanged
 @onready var inventory: Inventory = $CanvasLayer/Inventory
 @onready var tile_map: TileMap = $"../../TileMap"
 
+var is_detailed_mode_on: bool = true
+
 @export var drill_mining_time: int = 2
 
 var selected_item_stack: ItemStack
@@ -86,7 +88,9 @@ func _process(_delta):
 	
 	if Input.is_action_just_pressed("q"):
 		set_item_stack(null)
-		
+	
+	if Input.is_action_just_pressed("detailed_mode"):
+		is_detailed_mode_on = not is_detailed_mode_on
 		
 	if Input.is_action_just_pressed("x"):
 		inventory.add_item_stack(ItemStack.new(Database.item_database["Iron_Ore"][0], 10))

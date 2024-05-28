@@ -165,7 +165,7 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 10
-collision_mask = 11
+collision_mask = 9
 motion_mode = 1
 script = ExtResource("1_fb2bp")
 
