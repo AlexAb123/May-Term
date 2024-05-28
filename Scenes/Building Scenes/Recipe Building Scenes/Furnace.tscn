@@ -14,3 +14,4 @@ sprite = ExtResource("5_o64gn")
 
 [node name="CollisionShape2D" parent="." index="0"]
 light_mask = 1
+position = Vector2(8, 8)
