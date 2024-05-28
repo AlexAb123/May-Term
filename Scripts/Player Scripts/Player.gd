@@ -20,6 +20,7 @@ var selected_item_stack: ItemStack
 var is_deconstructing: bool = false
 
 var inventory_xshift
+signal dead
 
 func _ready():
 	Global.set_player(self)
@@ -40,6 +41,7 @@ func take_damage(damage):
 		
 func death():
 	print("Player Died")
+	dead.emit()
 
 func _physics_process(_delta):
 	#Get inputs and move up down left and right.
