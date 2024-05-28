@@ -54,6 +54,9 @@ func spawner():
 		await get_tree().process_frame
 
 func checkWin():
+	if spawn_timer.is_stopped():
+		return
+		
 	if wave == wavelist.size()-1:
 		if get_node("enemies").get_child_count() == 0:
 			print("YOU PASSED")
