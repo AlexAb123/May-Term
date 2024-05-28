@@ -4,8 +4,8 @@ extends Control
 # also handles level selection 
 
 @onready var levels = [	preload("res://Scenes/Levels/Level_1.tscn"),
-						preload("res://Scenes/Levels/Level_2.tscn"),]
-						#preload("res://Scenes/Levels/Level_3.tscn")]
+						preload("res://Scenes/Levels/Level_2.tscn"),
+						preload("res://Scenes/Levels/Level_3.tscn")]
 
 @onready var currlevel
 
