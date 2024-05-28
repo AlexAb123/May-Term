@@ -45,7 +45,7 @@ position = Vector2(16, 16)
 texture = ExtResource("2_x6vin")
 
 [node name="CurrentOutputSprite" type="Sprite2D" parent="."]
-position = Vector2(-8, -11)
+position = Vector2(17, 16)
 scale = Vector2(0.75, 0.75)
 
 [node name="CurrentOutputCount" type="Label" parent="CurrentOutputSprite"]
