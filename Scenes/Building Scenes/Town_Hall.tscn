@@ -1,14 +1,31 @@
-[gd_scene load_steps=7 format=3 uid="uid://cjdan8i7k2l0t"]
+[gd_scene load_steps=17 format=3 uid="uid://cjdan8i7k2l0t"]
 
-[ext_resource type="PackedScene" uid="uid://klc1brlg3lae" path="res://Scenes/Building Scenes/Base Building Scenes/RecipeBuilding.tscn" id="1_1ypwi"]
 [ext_resource type="Script" path="res://Scripts/Building Scripts/Town_Hall.gd" id="2_tycua"]
 [ext_resource type="Texture2D" uid="uid://duksn2p0qr20q" path="res://assets/Custom Sprites/Town_Hall.png" id="2_x6vin"]
 [ext_resource type="Resource" uid="uid://b3hmumux06hhn" path="res://Resources/Recipes/RECIPE_Drill.tres" id="3_ye2e1"]
 [ext_resource type="Resource" uid="uid://bilbm3dt053rr" path="res://Resources/Recipes/RECIPE_Archer_Tower.tres" id="4_8s3w0"]
 [ext_resource type="Resource" uid="uid://w3owoh6gccuh" path="res://Resources/Recipes/RECIPE_Furnace.tres" id="5_n1ghu"]
+[ext_resource type="Texture2D" uid="uid://mg6onenv8ktb" path="res://assets/health/health.png" id="6_eis2f"]
+[ext_resource type="Script" path="res://Scripts/Health Bar Scripts/BuildingHealthBar.gd" id="7_bsyou"]
+[ext_resource type="Texture2D" uid="uid://i7fqlwhall0o" path="res://assets/Custom Sprites/Button_Up.png" id="8_lm0t8"]
+[ext_resource type="Texture2D" uid="uid://yxysvqd1i2us" path="res://assets/Custom Sprites/Button_Down.png" id="9_c1ihu"]
+[ext_resource type="Script" path="res://Scenes/MainMenu/CustomButton.gd" id="10_xh67w"]
+[ext_resource type="FontFile" uid="uid://clnuex6p1oda3" path="res://assets/brackeys_platformer_assets/fonts/PixelOperator8-Bold.ttf" id="11_wtyse"]
+[ext_resource type="FontFile" uid="uid://ca3srwdceg21l" path="res://assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="12_wuas3"]
+[ext_resource type="PackedScene" uid="uid://xy2vr6tknt6g" path="res://Scenes/Inventory Scenes/Inventory.tscn" id="13_xqjyu"]
 
-[node name="TownHall" instance=ExtResource("1_1ypwi")]
-z_index = 0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e6rv2"]
+size = Vector2(14, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3j7wk"]
+size = Vector2(23, 23)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hrlnc"]
+radius = 22.8576
+
+[node name="TownHall" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 0
 script = ExtResource("2_tycua")
 recipes = Array[Resource("res://Scripts/Resource Scripts/Recipe Scripts/Recipe.gd")]([ExtResource("4_8s3w0"), ExtResource("3_ye2e1"), ExtResource("5_n1ghu")])
 on_sprite = ExtResource("2_x6vin")
@@ -17,40 +34,140 @@ sprite = ExtResource("2_x6vin")
 max_health = 250
 tile_size = Vector2(32, 32)
 
-[node name="CollisionShape2D" parent="." index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 65
+z_index = 1
 position = Vector2(17, 16)
+shape = SubResource("RectangleShape2D_e6rv2")
 
-[node name="Sprite2D" parent="." index="1"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(16, 16)
 texture = ExtResource("2_x6vin")
 
-[node name="CurrentOutputSprite" parent="." index="2"]
+[node name="CurrentOutputSprite" type="Sprite2D" parent="."]
 position = Vector2(-8, -11)
+scale = Vector2(0.75, 0.75)
 
-[node name="CollisionShape2D" parent="InventoryReach" index="0"]
+[node name="CurrentOutputCount" type="Label" parent="CurrentOutputSprite"]
+offset_left = -7.0
+offset_top = -7.0
+offset_right = 33.0
+offset_bottom = 16.0
+scale = Vector2(0.35, 0.35)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+horizontal_alignment = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="MouseArea2D" type="Area2D" parent="."]
+
+[node name="AreaCollisionShape2D" type="CollisionShape2D" parent="MouseArea2D"]
+shape = SubResource("RectangleShape2D_3j7wk")
+
+[node name="InventoryReach" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InventoryReach"]
 position = Vector2(16, 16)
+scale = Vector2(7, 7)
+shape = SubResource("CircleShape2D_hrlnc")
 
-[node name="HealthBar" parent="." index="5"]
+[node name="HealthBar" type="TextureProgressBar" parent="." node_paths=PackedStringArray("building")]
 offset_left = 1.0
 offset_top = 31.0
 offset_right = 1551.0
 offset_bottom = 155.0
+scale = Vector2(0.0199957, -0.0331187)
 nine_patch_stretch = true
+texture_progress = ExtResource("6_eis2f")
+script = ExtResource("7_bsyou")
+building = NodePath("..")
 
-[node name="InputInventory" parent="CanvasLayer" index="1"]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+offset = Vector2(8, 8)
+transform = Transform2D(1, 0, 0, 1, 8, 8)
+
+[node name="RecipeSelectorContainer" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="OpenRecipeSelector" type="TextureButton" parent="CanvasLayer/RecipeSelectorContainer"]
+layout_mode = 2
+offset_left = 591.0
+offset_top = 42.0
+offset_right = 955.0
+offset_bottom = 186.0
+size_flags_vertical = 3
+texture_normal = ExtResource("8_lm0t8")
+texture_pressed = ExtResource("9_c1ihu")
+stretch_mode = 5
+script = ExtResource("10_xh67w")
+
+[node name="Label" type="Label" parent="CanvasLayer/RecipeSelectorContainer/OpenRecipeSelector"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 56.0
+offset_right = 326.0
+offset_bottom = 132.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("11_wtyse")
+theme_override_font_sizes/font_size = 18
+text = "Select Recipe"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="RecipeDescription" type="Label" parent="CanvasLayer/RecipeSelectorContainer"]
+layout_mode = 2
+offset_left = 521.0
+offset_top = 166.0
+offset_right = 649.0
+offset_bottom = 313.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("12_wuas3")
+theme_override_font_sizes/font_size = 12
+
+[node name="InputInventory" parent="CanvasLayer" instance=ExtResource("13_xqjyu")]
 offset_left = 741.0
 offset_top = -19.0
 offset_right = 741.0
 offset_bottom = -19.0
+columns = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="OutputInventory" parent="CanvasLayer" index="2"]
+[node name="OutputInventory" parent="CanvasLayer" instance=ExtResource("13_xqjyu")]
 offset_left = 867.0
 offset_top = -19.0
 offset_right = 867.0
 offset_bottom = -19.0
+columns = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="RecipeSelector" parent="CanvasLayer" index="3"]
+[node name="RecipeSelector" parent="CanvasLayer" instance=ExtResource("13_xqjyu")]
 offset_left = -16.0
 offset_top = -19.0
 offset_right = -16.0
 offset_bottom = -19.0
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="input_event" from="MouseArea2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="MouseArea2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="MouseArea2D" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="body_entered" from="InventoryReach" to="." method="_on_inventory_reach_body_entered"]
+[connection signal="body_exited" from="InventoryReach" to="." method="_on_inventory_reach_body_exited"]
+[connection signal="button_down" from="CanvasLayer/RecipeSelectorContainer/OpenRecipeSelector" to="CanvasLayer/RecipeSelectorContainer/OpenRecipeSelector" method="_on_button_down"]
+[connection signal="button_up" from="CanvasLayer/RecipeSelectorContainer/OpenRecipeSelector" to="CanvasLayer/RecipeSelectorContainer/OpenRecipeSelector" method="_on_button_up"]
+[connection signal="pressed" from="CanvasLayer/RecipeSelectorContainer/OpenRecipeSelector" to="." method="_on_open_recipe_selector_pressed"]
+[connection signal="closed" from="CanvasLayer/InputInventory" to="." method="_on_input_inventory_closed"]
+[connection signal="slot_input" from="CanvasLayer/InputInventory" to="." method="_on_input_inventory_slot_input"]
+[connection signal="slot_input" from="CanvasLayer/OutputInventory" to="." method="_on_output_inventory_slot_input"]
+[connection signal="slot_input" from="CanvasLayer/RecipeSelector" to="." method="_on_recipe_selector_slot_input"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
