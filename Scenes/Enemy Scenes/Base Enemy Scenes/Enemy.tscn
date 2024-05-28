@@ -62,7 +62,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"death",
-"speed": 4.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -73,7 +73,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"hit",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -93,24 +93,21 @@ animations = [{
 "speed": 7.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0mg7q"]
-radius = 6.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_evj7i"]
+radius = 2.99998
+height = 9.99992
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_io5ol"]
 radius = 47.0425
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6ctfx"]
-radius = 7.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5751c"]
-radius = 7.0
-height = 18.0
 
 [node name="Enemy" type="CharacterBody2D"]
-z_index = 1
 z_as_relative = false
 y_sort_enabled = true
-collision_layer = 4
+collision_layer = 6
 collision_mask = 6
 script = ExtResource("1_8cx2i")
 attack_cooldown = 0.3
@@ -127,9 +124,9 @@ frame_progress = 1.0
 offset = Vector2(2.08165e-12, -14)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.66043e-10, -3)
-rotation = 1.5708
-shape = SubResource("CircleShape2D_0mg7q")
+position = Vector2(-1.66043e-10, -1)
+rotation = 1.57481
+shape = SubResource("CapsuleShape2D_evj7i")
 
 [node name="DetectionArea2D" type="Area2D" parent="."]
 collision_layer = 0
@@ -143,7 +140,6 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="DamageCollisionShape2D" type="CollisionShape2D" parent="DamageArea2D"]
-position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_6ctfx")
 
 [node name="HealthBar" type="TextureProgressBar" parent="." node_paths=PackedStringArray("enemy")]
@@ -165,7 +161,16 @@ position = Vector2(0, -3)
 rotation = 1.57149
 shape = SubResource("CapsuleShape2D_5751c")
 
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="hit" type="Timer" parent="."]
+wait_time = 0.2
+
 [connection signal="body_entered" from="DetectionArea2D" to="." method="_on_detection_area_2d_body_entered"]
 [connection signal="body_exited" from="DetectionArea2D" to="." method="_on_detection_area_2d_body_exited"]
 [connection signal="body_entered" from="DamageArea2D" to="." method="_on_damage_area_2d_body_entered"]
 [connection signal="body_exited" from="DamageArea2D" to="." method="_on_damage_area_2d_body_exited"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="hit" to="." method="_on_hit_timeout"]
