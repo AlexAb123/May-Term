@@ -15,7 +15,7 @@ on_sprite = ExtResource("2_x6vin")
 item_name = "Town Hall"
 sprite = ExtResource("2_x6vin")
 max_health = 250
-size = Vector2(32, 32)
+tile_size = Vector2(32, 32)
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2(17, 16)
@@ -27,11 +27,8 @@ texture = ExtResource("2_x6vin")
 [node name="CurrentOutputSprite" parent="." index="2"]
 position = Vector2(-8, -11)
 
-[node name="AreaCollisionShape2D" parent="MouseArea2D" index="0"]
-position = Vector2(4.5, 4.5)
-
 [node name="CollisionShape2D" parent="InventoryReach" index="0"]
-position = Vector2(8, 8)
+position = Vector2(16, 16)
 
 [node name="HealthBar" parent="." index="5"]
 offset_left = 1.0

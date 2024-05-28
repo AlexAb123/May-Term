@@ -20,7 +20,6 @@ script = ExtResource("1_e7ngb")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 65
 z_index = 1
-position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_e6rv2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -28,7 +27,6 @@ position = Vector2(8, 8)
 texture = ExtResource("2_tg7vd")
 
 [node name="MouseArea2D" type="Area2D" parent="."]
-position = Vector2(8, 8)
 
 [node name="AreaCollisionShape2D" type="CollisionShape2D" parent="MouseArea2D"]
 shape = SubResource("RectangleShape2D_3j7wk")
