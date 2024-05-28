@@ -10,7 +10,7 @@ class_name Building
 @onready var current_health: int = max_health
 @onready var health_bar: TextureProgressBar = $HealthBar
 @onready var collision_shape_2d = $CollisionShape2D
-@export var size: Vector2 = Vector2(16,16)
+@export var size: Vector2 =  Vector2(16,16)
 @onready var area_collision_shape_2d = $MouseArea2D/AreaCollisionShape2D
 
 signal healthChanged
@@ -21,11 +21,7 @@ func _ready():
 	sprite2D.texture = sprite
 	collision_shape_2d.position = size/2
 	collision_shape_2d.shape.size = size - Vector2(2,2)
-	
-	area_collision_shape_2d.position = size/2
 	area_collision_shape_2d.shape.size = size
-	print(size)
-	print(area_collision_shape_2d.shape.size)
 	
 func _physics_process(delta):
 	

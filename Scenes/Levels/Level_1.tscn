@@ -8,13 +8,14 @@
 [sub_resource type="GDScript" id="GDScript_6ppd8"]
 script/source = "extends Node2D
 
-@onready var wavelist = [[0, 60], [1, 15], [3, 20], [7, 5]]
+@onready var wavelist = [[0, 30], [1, 10], [3, 10], [7, 5]]
+
 var starting_item_stacks: Array[ItemStack] = [
-	ItemStack.new(Database.item_database[\"Drill\"][0], 1),
-	ItemStack.new(Database.item_database[\"Furnace\"][0], 1),
-	ItemStack.new(Database.item_database[\"Iron_Ore\"][0], 5),
-	ItemStack.new(Database.item_database[\"Coal\"][0], 5),
-	ItemStack.new(Database.item_database[\"Archer_Tower\"][0], 1)
+	ItemStack.new(Database.item_database[\"Drill\"][0], 2),
+	ItemStack.new(Database.item_database[\"Furnace\"][0], 2),
+	#ItemStack.new(Database.item_database[\"Iron_Ore\"][0], 5),
+	#ItemStack.new(Database.item_database[\"Coal\"][0], 5),
+	#ItemStack.new(Database.item_database[\"Archer_Tower\"][0], 1)
 ]
 
 func _ready():
@@ -22,12 +23,8 @@ func _ready():
 		Global.player.inventory.add_item_stack(item_stack)
 
 signal town_hall_destroyed
-
 func _on_town_hall_town_hall_destroyed():
-	town_hall_destroyed.emit()
-
-
-func _on_player_dead():
+	print(\"level 1 signal\")
 	town_hall_destroyed.emit()
 "
 
@@ -51,4 +48,4 @@ y_sort_enabled = true
 
 [node name="TownHall" parent="Objects" instance=ExtResource("4_kpr1k")]
 
-[connection signal="dead" from="Objects/Player" to="." method="_on_player_dead"]
+[connection signal="town_hall_destroyed" from="Objects/TownHall" to="." method="_on_town_hall_town_hall_destroyed"]
