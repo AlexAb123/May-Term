@@ -44,11 +44,11 @@ shape = SubResource("CircleShape2D_hrlnc")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." index="6"]
 layer = 0
-visible = false
 offset = Vector2(8, 8)
 transform = Transform2D(1, 0, 0, 1, 8, 8)
 
 [node name="OpenRecipeSelector" type="TextureButton" parent="CanvasLayer" index="0"]
+visible = false
 offset_left = 591.0
 offset_top = 42.0
 offset_right = 955.0

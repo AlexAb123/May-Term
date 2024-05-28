@@ -8,6 +8,18 @@
 script/source = "extends Node2D
 
 @onready var wavelist = [1,0,1,1,5]
+
+var starting_item_stacks: Array[ItemStack] = [
+	ItemStack.new(Database.item_database[\"Drill\"][0], 1),
+	ItemStack.new(Database.item_database[\"Furnace\"][0], 1),
+	ItemStack.new(Database.item_database[\"Iron_Ore\"][0], 5),
+	ItemStack.new(Database.item_database[\"Coal\"][0], 5),
+	ItemStack.new(Database.item_database[\"Archer_Tower\"][0], 1)
+]
+
+func _ready():
+	for item_stack in starting_item_stacks:
+		Global.player.inventory.add_item_stack(item_stack)
 "
 
 [node name="Level_2" type="Node2D"]
