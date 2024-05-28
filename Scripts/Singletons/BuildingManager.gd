@@ -9,16 +9,16 @@ const map_size: int = 100 #DO NOT GO TOO HIGH -- 1000 SHOULD BE MAXIMUM
 
 func get_adjacent(pos):
 	var neighbors : Array[RecipeBuilding]
-	var temp : Building = get_building(pos+Vector2(8,0))
+	var temp : Building = get_building(pos+Vector2(16,0))
 	if temp != null and temp is RecipeBuilding:
 		neighbors.append(temp)
-	temp = get_building(pos+Vector2(-8,0))
+	temp = get_building(pos+Vector2(-16,0))
 	if temp != null and temp is RecipeBuilding:
 		neighbors.append(temp)
-	temp = get_building(pos+Vector2(0,8))
+	temp = get_building(pos+Vector2(0,16))
 	if temp != null and temp is RecipeBuilding:
 		neighbors.append(temp)
-	temp = get_building(pos+Vector2(0,-8))
+	temp = get_building(pos+Vector2(0,-16))
 	if temp != null and temp is RecipeBuilding:
 		neighbors.append(temp)
 	return neighbors

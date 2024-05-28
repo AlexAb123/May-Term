@@ -24,7 +24,8 @@ func distribute_ore():
 		if not building.selected_recipe:
 			continue
 		for item_stack in building.selected_recipe.input_item_stacks:
-			print(output_inventory.item_stacks[0])
+			print(output_inventory.item_stacks[0].item)
+			print(item_stack.item)
 			if output_inventory.item_stacks[0].item == item_stack.item:
 				# Then we have an item that the adjacent building needs, add it to the building
 				building.input_inventory.add_item_stack(output_inventory.item_stacks[0])
