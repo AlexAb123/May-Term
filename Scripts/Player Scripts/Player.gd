@@ -11,7 +11,7 @@ signal healthChanged
 @onready var selected_item_sprite: Sprite2D = $CanvasLayer2/SelectedItemSprite
 @onready var selected_item_label: Label = $CanvasLayer2/SelectedItemSprite/SelectedItemCount
 @onready var inventory: Inventory = $CanvasLayer/Inventory
-@onready var tile_map: TileMap = $"../TileMap"
+@onready var tile_map: TileMap = $"../../TileMap"
 
 @export var drill_mining_time: int = 2
 
@@ -28,6 +28,8 @@ func _ready():
 	inventory_xshift = (16*inventory.columns+inventory.get_theme_constant("h_separation")*(inventory.columns-1))*3
 	inventory.position.x = inventory.position.x - inventory_xshift
 	selected_item_sprite.modulate = Color(1, 1, 1, 0.8)
+	
+	spawnStartingItems()
 
 func take_damage(damage):
 	current_health -= damage
@@ -70,7 +72,6 @@ func _physics_process(_delta):
 	
 func _process(_delta):
 	
-
 	var mouse_position: Vector2 = get_global_mouse_position() - Vector2(8,8)
 	
 	selected_item_sprite.global_position = mouse_position + Vector2(8,8)
@@ -85,6 +86,8 @@ func _process(_delta):
 	
 	if Input.is_action_just_pressed("q"):
 		set_item_stack(null)
+		
+		
 	if Input.is_action_just_pressed("x"):
 		inventory.add_item_stack(ItemStack.new(Database.item_database["Iron_Ore"][0], 10))
 	if Input.is_action_just_pressed("g"):
@@ -129,6 +132,11 @@ func attempt_place_building():
 				selected_item_stack = null
 			inventory.update_slots()
 			update_selected_item_sprite_and_label()
+
+
+func spawnStartingItems():
+	inventory.add_item_stack(ItemStack.new(Database.item_database["Drill"][0], 1))
+	inventory.add_item_stack(ItemStack.new(Database.item_database["Furnace"][0], 1))
 
 func _input(event):
 	if event is InputEventMouseButton:

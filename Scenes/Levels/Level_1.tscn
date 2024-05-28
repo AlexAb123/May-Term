@@ -8,11 +8,10 @@
 [sub_resource type="GDScript" id="GDScript_6ppd8"]
 script/source = "extends Node2D
 
-@onready var wavelist = [0,0,1,1,5]
+@onready var wavelist = [[0, 30], [1, 10], [3, 10], [7, 5]]
 "
 
 [node name="Level_1" type="Node2D"]
-y_sort_enabled = true
 script = SubResource("GDScript_6ppd8")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -23,9 +22,11 @@ layer_0/tile_data = PackedInt32Array(-65536, 65536, 7, -1, 65536, 7, 65535, 6553
 layer_1/name = "Ore"
 layer_1/tile_data = PackedInt32Array(-196608, 1179648, 14, -196606, 1245184, 14, -196604, 1310720, 14, -65532, 1376256, 14, 65537, 1179648, 14, 65536, 1179648, 14, 65539, 1310720, 14)
 
-[node name="Player" parent="." instance=ExtResource("2_diqae")]
-
 [node name="Camera2D" parent="." instance=ExtResource("3_3uirj")]
 
-[node name="TownHall" parent="." instance=ExtResource("4_kpr1k")]
-z_index = 0
+[node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Player" parent="Objects" instance=ExtResource("2_diqae")]
+
+[node name="TownHall" parent="Objects" instance=ExtResource("4_kpr1k")]
