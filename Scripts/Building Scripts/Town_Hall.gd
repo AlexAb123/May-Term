@@ -23,6 +23,7 @@ func _physics_process(delta):
 func deconstruct():
 	return
 
+signal town_hall_destroyed
 func destroy():
 	super()
-	print("Town Hall Destroyed")
+	town_hall_destroyed.emit()

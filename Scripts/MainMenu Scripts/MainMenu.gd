@@ -45,13 +45,16 @@ func _on_level_3_pressed():
 	in_game.emit()
 	visible = false
 
-
 func _on_quit_game_pressed():
 	print("QUIT GAME")
 	quit_game.emit()
 
-
 func _on_continue_button_pressed():
+	in_menu.emit()
+	get_tree().paused = false
+	visible = true
+
+func _on_restart_button_pressed():
 	in_menu.emit()
 	get_tree().paused = false
 	visible = true

@@ -20,6 +20,10 @@ var starting_item_stacks: Array[ItemStack] = [
 func _ready():
 	for item_stack in starting_item_stacks:
 		Global.player.inventory.add_item_stack(item_stack)
+
+signal town_hall_destroyed
+func _on_town_hall_town_hall_destroyed():
+	town_hall_destroyed.emit()
 "
 
 [node name="Level_1" type="Node2D"]
@@ -35,6 +39,7 @@ layer_1/tile_data = PackedInt32Array(-196608, 1179648, 14, -196606, 1245184, 14,
 
 [node name="Camera2D" parent="." instance=ExtResource("3_3uirj")]
 
+[connection signal="town_hall_destroyed" from="TownHall" to="." method="_on_town_hall_town_hall_destroyed"]
 [node name="Objects" type="Node2D" parent="."]
 y_sort_enabled = true
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dldw4d8cwcth1"]
+[gd_scene load_steps=6 format=3 uid="uid://dldw4d8cwcth1"]
 
 [ext_resource type="TileSet" uid="uid://cbd5w3q2paigl" path="res://Resources/World_Tile_Set.tres" id="1_vvorq"]
 [ext_resource type="PackedScene" uid="uid://cqbjmjoub20yy" path="res://Scenes/Player.tscn" id="2_320gn"]
 [ext_resource type="PackedScene" uid="uid://x1y5wk4ik7t2" path="res://Scenes/Camera.tscn" id="3_nq4ts"]
+[ext_resource type="PackedScene" uid="uid://cjdan8i7k2l0t" path="res://Scenes/Building Scenes/Town_Hall.tscn" id="4_gyq4q"]
 
 [sub_resource type="GDScript" id="GDScript_nfi18"]
 script/source = "extends Node2D
@@ -20,6 +21,10 @@ var starting_item_stacks: Array[ItemStack] = [
 func _ready():
 	for item_stack in starting_item_stacks:
 		Global.player.inventory.add_item_stack(item_stack)
+
+
+func _on_town_hall_town_hall_destroyed():
+	pass # Replace with function body.
 "
 
 [node name="Level_2" type="Node2D"]
@@ -34,3 +39,7 @@ layer_0/tile_data = PackedInt32Array(-65536, 65536, 7, -1, 65536, 7, 65535, 6553
 [node name="Player" parent="." instance=ExtResource("2_320gn")]
 
 [node name="Camera2D" parent="." instance=ExtResource("3_nq4ts")]
+
+[node name="TownHall" parent="." instance=ExtResource("4_gyq4q")]
+
+[connection signal="town_hall_destroyed" from="TownHall" to="." method="_on_town_hall_town_hall_destroyed"]
