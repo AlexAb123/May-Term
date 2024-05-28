@@ -7,6 +7,7 @@ extends Building
 
 @onready var current_output_sprite = $CurrentOutputSprite
 @onready var current_output_count = $CurrentOutputSprite/CurrentOutputCount
+@onready var adjacent : Array[RecipeBuilding]
 
 var recipe: Recipe
 var selected_recipe: Recipe
@@ -16,7 +17,20 @@ func _ready():
 	output_inventory.position.x = output_inventory.position.x + Global.player.inventory_xshift*1
 	# have to select here so that its instiatied before trying to call select recipe
 	select_recipe(recipe)
-	
+
+func distribute_ore():
+	adjacent = BuildingManager.get_adjacent(global_position)
+	for building in adjacent:
+		if not building.selected_recipe:
+			continue
+		for item_stack in building.selected_recipe.input_item_stacks:
+			print(output_inventory.item_stacks[0])
+			if output_inventory.item_stacks[0].item == item_stack.item:
+				# Then we have an item that the adjacent building needs, add it to the building
+				building.input_inventory.add_item_stack(output_inventory.item_stacks[0])
+				output_inventory.remove_item_stack(output_inventory.item_stacks[0])
+
+					
 func _physics_process(delta):
 	super(delta)
 	
@@ -51,7 +65,8 @@ func _on_timer_timeout():
 	for item_stack in selected_recipe.output_item_stacks:
 		output_inventory.add_item_stack(item_stack)
 	start_craft()
-	update_current_output_sprite()	
+	distribute_ore()
+	update_current_output_sprite()
 	
 var player_in_range: bool = false
 
