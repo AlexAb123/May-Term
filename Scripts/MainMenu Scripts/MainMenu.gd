@@ -54,7 +54,14 @@ func _on_continue_button_pressed():
 	get_tree().paused = false
 	visible = true
 
+func _on_wave_manager_win():
+	get_tree().paused = true
+
+
 func _on_restart_button_pressed():
 	in_menu.emit()
 	get_tree().paused = false
 	visible = true
+
+func _on_town_hall_destroyed():
+	get_tree().paused = true

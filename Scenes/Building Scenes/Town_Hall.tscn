@@ -32,10 +32,10 @@ position = Vector2(8, 8)
 position = Vector2(8, 8)
 
 [node name="HealthBar" parent="." index="5"]
-offset_left = -15.0
-offset_top = 14.0
-offset_right = 1485.0
-offset_bottom = 138.0
+offset_left = 1.0
+offset_top = 31.0
+offset_right = 1551.0
+offset_bottom = 155.0
 nine_patch_stretch = true
 
 [node name="InputInventory" parent="CanvasLayer" index="1"]

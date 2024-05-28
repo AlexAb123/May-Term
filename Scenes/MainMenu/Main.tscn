@@ -50,6 +50,7 @@ text = "Game Over"
 horizontal_alignment = 1
 
 [node name="RestartButton" type="TextureButton" parent="InGame/LoseScreen"]
+process_mode = 2
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -87,11 +88,15 @@ offset_left = 423.0
 offset_top = 113.0
 offset_right = 727.0
 offset_bottom = 225.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_357ha")
 text = "You Passed!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ContinueButton" type="TextureButton" parent="InGame/EndScreen"]
+process_mode = 2
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

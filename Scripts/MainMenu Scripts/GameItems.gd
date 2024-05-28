@@ -18,6 +18,7 @@ func _on_main_menu_instantiate_level(currlevel):
 
 signal town_hall_destroyed
 func _on_town_hall_destroyed():
+	print("game items signal")
 	town_hall_destroyed.emit()
 	
 func _on_main_menu_in_game():
