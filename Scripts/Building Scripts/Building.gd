@@ -20,8 +20,9 @@ var deconstruct_timer = 0
 func _ready():
 	sprite2D.texture = sprite
 	collision_shape_2d.position = size/2
-	collision_shape_2d.shape.size = size - Vector2(2,2)
-	area_collision_shape_2d.shape.size = size
+	collision_shape_2d.size = size - Vector2(2,2)
+
+
 	
 func _physics_process(delta):
 	

@@ -17,6 +17,8 @@ func _ready():
 	BuildingManager.add_building(b2)
 	BuildingManager.add_building(b3)
 	
+	area_collision_shape_2d.shape.size = size
+	
 func _physics_process(delta):
 	super(delta)
 

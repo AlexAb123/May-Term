@@ -47,8 +47,14 @@ layer = 0
 offset = Vector2(8, 8)
 transform = Transform2D(1, 0, 0, 1, 8, 8)
 
-[node name="OpenRecipeSelector" type="TextureButton" parent="CanvasLayer" index="0"]
-visible = false
+[node name="RecipeSelectorContainer" type="Control" parent="CanvasLayer" index="0"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="OpenRecipeSelector" type="TextureButton" parent="CanvasLayer/RecipeSelectorContainer" index="0"]
+layout_mode = 2
 offset_left = 591.0
 offset_top = 42.0
 offset_right = 955.0
@@ -59,7 +65,7 @@ texture_pressed = ExtResource("4_ownk6")
 stretch_mode = 5
 script = ExtResource("5_kah32")
 
-[node name="Label" type="Label" parent="CanvasLayer/OpenRecipeSelector" index="0"]
+[node name="Label" type="Label" parent="CanvasLayer/RecipeSelectorContainer/OpenRecipeSelector" index="0"]
 layout_mode = 0
 offset_left = 39.0
 offset_top = 56.0
@@ -73,16 +79,16 @@ text = "Select Recipe"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="RecipeDescription" type="Label" parent="CanvasLayer/OpenRecipeSelector" index="1"]
-layout_mode = 0
-offset_left = -80.0
-offset_top = 115.0
-offset_right = 103.0
-offset_bottom = 432.0
+[node name="RecipeDescription" type="Label" parent="CanvasLayer/RecipeSelectorContainer" index="1"]
+layout_mode = 2
+offset_left = 521.0
+offset_top = 166.0
+offset_right = 649.0
+offset_bottom = 313.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_8jhhe")
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 12
 
 [node name="InputInventory" parent="CanvasLayer" index="1" instance=ExtResource("3_djvtn")]
 offset_left = 757.0
@@ -102,9 +108,9 @@ metadata/_edit_use_anchors_ = true
 
 [connection signal="body_entered" from="InventoryReach" to="." method="_on_inventory_reach_body_entered"]
 [connection signal="body_exited" from="InventoryReach" to="." method="_on_inventory_reach_body_exited"]
-[connection signal="button_down" from="CanvasLayer/OpenRecipeSelector" to="CanvasLayer/OpenRecipeSelector" method="_on_button_down"]
-[connection signal="button_up" from="CanvasLayer/OpenRecipeSelector" to="CanvasLayer/OpenRecipeSelector" method="_on_button_up"]
-[connection signal="pressed" from="CanvasLayer/OpenRecipeSelector" to="." method="_on_open_recipe_selector_pressed"]
+[connection signal="button_down" from="CanvasLayer/RecipeSelectorContainer/OpenRecipeSelector" to="CanvasLayer/RecipeSelectorContainer/OpenRecipeSelector" method="_on_button_down"]
+[connection signal="button_up" from="CanvasLayer/RecipeSelectorContainer/OpenRecipeSelector" to="CanvasLayer/RecipeSelectorContainer/OpenRecipeSelector" method="_on_button_up"]
+[connection signal="pressed" from="CanvasLayer/RecipeSelectorContainer/OpenRecipeSelector" to="." method="_on_open_recipe_selector_pressed"]
 [connection signal="closed" from="CanvasLayer/InputInventory" to="." method="_on_input_inventory_closed"]
 [connection signal="slot_input" from="CanvasLayer/InputInventory" to="." method="_on_input_inventory_slot_input"]
 [connection signal="slot_input" from="CanvasLayer/OutputInventory" to="." method="_on_output_inventory_slot_input"]

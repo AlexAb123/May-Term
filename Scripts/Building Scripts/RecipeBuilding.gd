@@ -10,11 +10,13 @@ class_name RecipeBuilding
 @onready var input_inventory: Inventory = $CanvasLayer/InputInventory
 @onready var output_inventory: Inventory = $CanvasLayer/OutputInventory
 @onready var recipe_selector = $CanvasLayer/RecipeSelector
-@onready var open_recipe_selector_button = $CanvasLayer/OpenRecipeSelector
+@onready var recipe_selector_container = $CanvasLayer/RecipeSelectorContainer
+@onready var open_recipe_selector_button = $CanvasLayer/RecipeSelectorContainer/OpenRecipeSelector
+
 @onready var canvas_layer = $CanvasLayer
-@onready var recipe_description: Label = $CanvasLayer/OpenRecipeSelector/RecipeDescription
 @onready var current_output_sprite = $CurrentOutputSprite
 @onready var current_output_count = $CurrentOutputSprite/CurrentOutputCount
+@onready var recipe_description = $CanvasLayer/RecipeSelectorContainer/RecipeDescription
 
 @export var on_sprite: Texture2D
 
@@ -69,13 +71,13 @@ func _physics_process(delta):
 			output_inventory.open()
 			BuildingManager.open_inventories.append(output_inventory)
 			Global.player.inventory.open()
-			open_recipe_selector_button.visible = true
+			recipe_selector_container.visible = true
 	
 	if Input.is_action_just_pressed("e"):
 		input_inventory.close()
 		output_inventory.close()
 		BuildingManager.close_all_open_inventories()
-		open_recipe_selector_button.visible = false
+		recipe_selector_container.visible = false
 		
 	if Input.is_action_just_pressed("detailed_mode"):
 		current_output_sprite.visible = not current_output_sprite.visible
@@ -215,13 +217,13 @@ func _on_inventory_reach_body_exited(_body):
 	input_inventory.close()
 	output_inventory.close()
 	recipe_selector.close()
-	open_recipe_selector_button.visible = false
+	recipe_selector_container.visible = false
 
 func destroy():
 	input_inventory.close()
 	output_inventory.close()
 	#BuildingManager.close_all_open_inventories()
-	open_recipe_selector_button.visible = false
+	recipe_selector_container.visible = false
 	super()
 	
 func deconstruct():
@@ -232,7 +234,7 @@ func deconstruct():
 	input_inventory.close()
 	output_inventory.close()
 	BuildingManager.close_all_open_inventories()
-	open_recipe_selector_button.visible = false
+	recipe_selector_container.visible = false
 	super()
 
 func _on_recipe_selector_slot_input(slot_id, _event):
@@ -241,7 +243,7 @@ func _on_recipe_selector_slot_input(slot_id, _event):
 		recipe_selector.close()
 		input_inventory.open()
 		output_inventory.open()
-		open_recipe_selector_button.visible = true
+		recipe_selector_container.visible = true
 
 func _on_open_recipe_selector_pressed():
 	
@@ -250,13 +252,13 @@ func _on_open_recipe_selector_pressed():
 		recipe_selector.open()
 		input_inventory.close()
 		output_inventory.close()
-		open_recipe_selector_button.visible = false
+		recipe_selector_container.visible = false
 		
 	elif not input_inventory.visible:
 		recipe_selector.close()
 		input_inventory.open()
 		output_inventory.open()
-		open_recipe_selector_button.visible = true
+		recipe_selector_container.visible = true
 		
 func _on_input_inventory_closed():
-	open_recipe_selector_button.visible = false
+	recipe_selector_container.visible = false

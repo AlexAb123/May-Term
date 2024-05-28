@@ -31,8 +31,6 @@ func _ready():
 	inventory_xshift = (16*inventory.columns+inventory.get_theme_constant("h_separation")*(inventory.columns-1))*3
 	inventory.position.x = inventory.position.x - inventory_xshift
 	selected_item_sprite.modulate = Color(1, 1, 1, 0.8)
-	
-
 
 func take_damage(damage):
 	current_health -= damage
