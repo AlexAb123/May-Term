@@ -29,7 +29,7 @@ func _ready():
 	inventory.position.x = inventory.position.x - inventory_xshift
 	selected_item_sprite.modulate = Color(1, 1, 1, 0.8)
 	
-	spawnStartingItems()
+
 
 func take_damage(damage):
 	current_health -= damage
@@ -134,9 +134,6 @@ func attempt_place_building():
 			update_selected_item_sprite_and_label()
 
 
-func spawnStartingItems():
-	inventory.add_item_stack(ItemStack.new(Database.item_database["Drill"][0], 1))
-	inventory.add_item_stack(ItemStack.new(Database.item_database["Furnace"][0], 1))
 
 func _input(event):
 	if event is InputEventMouseButton:
