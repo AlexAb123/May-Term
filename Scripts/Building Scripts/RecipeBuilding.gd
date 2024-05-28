@@ -44,9 +44,6 @@ func _ready():
 	for slot in recipe_selector.slots:
 		slot.itemCountLabel.visible = false
 		
-	
-		
-		
 func _physics_process(delta):
 
 	super(delta)
@@ -180,13 +177,15 @@ func _on_output_inventory_slot_input(slot_id, _event):
 		Global.player.inventory.add_item_stack(ItemStack.new(output_inventory.item_stacks[slot_id].item, output_inventory.item_stacks[slot_id].count))
 		output_inventory.remove_at(slot_id)
 		
+		
 	# Remove one item
 	elif Input.is_action_just_pressed("right_click"):
 		if output_inventory.item_stacks[slot_id] and output_inventory.item_stacks[slot_id].count > 0:
 			Global.player.inventory.add_item_stack(ItemStack.new(output_inventory.item_stacks[slot_id].item, 1))
 			output_inventory.item_stacks[slot_id].count -= 1
 			output_inventory.update_slots()
-
+	update_current_output_sprite()
+	
 func _on_player_inventory_slot_input(slot_id, _event):
 	#If inventories are not open, don't take any input from the player
 	if not input_inventory.visible and not output_inventory.visible:
