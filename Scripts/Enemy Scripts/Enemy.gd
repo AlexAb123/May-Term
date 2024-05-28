@@ -72,7 +72,7 @@ func _physics_process(delta):
 	
 	if target:
 		if target is Building:
-			velocity = (target.global_position +  target.size/2 - global_position).normalized() * speed
+			velocity = (target.global_position +  target.tile_size/2 - global_position).normalized() * speed
 		else:
 			velocity = (target.global_position - global_position).normalized() * speed
 	else:
