@@ -2,9 +2,38 @@ extends Node
 
 var buildings: Array[Array]
 var open_inventories: Array[Inventory]
+var drills: Array[Building]
 
 #How many tiles can we can have in the map. If this is 100, then the map is 100x100 tiles
 const map_size: int = 100 #DO NOT GO TOO HIGH -- 1000 SHOULD BE MAXIMUM
+
+func _process(_delta):
+	if Input.is_action_just_pressed("x"):
+		fill_furnaces()
+
+func fill_furnaces():
+	for drill in drills:
+		get_adjacent(drill.global_position)
+
+
+func get_adjacent(pos):
+	var neighbors : Array[Building]
+	var temp : Building = get_building(pos+Vector2(8,0))
+	if temp != null:
+		neighbors.append(temp)
+	temp = get_building(pos+Vector2(-8,0))
+	if temp != null:
+		neighbors.append(temp)
+	temp = get_building(pos+Vector2(0,8))
+	if temp != null:
+		neighbors.append(temp)
+	temp = get_building(pos+Vector2(0,-8))
+	if temp != null:
+		neighbors.append(temp)
+	print(neighbors)
+	
+
+
 
 func _ready():
 	for i in map_size:
@@ -12,6 +41,7 @@ func _ready():
 		for j in map_size:
 			temp.append(null)
 		buildings.append(temp)
+
 
 func close_all_open_inventories():
 	for inv in open_inventories:
