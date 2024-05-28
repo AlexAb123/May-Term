@@ -16,3 +16,10 @@ func _on_wave_manager_win():
 
 func _on_continue_button_pressed():
 	get_node("EndScreen").visible = false
+
+
+func _on_town_hall_destroyed():
+	get_node("LoseScreen").visible = true
+	
+func _on_restart_button_pressed():
+	get_node("LoseScreen").visible = false

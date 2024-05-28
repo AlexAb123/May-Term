@@ -30,19 +30,20 @@ func _physics_process(delta):
 	else:
 		health_bar.visible = true
 	
-	if right_click_down and not Global.player.inventory.visible:
-		deconstruct_timer += delta
-		Global.player.is_deconstructing = true
-		
-	elif deconstruct_timer > 0:
-		deconstruct_timer = 0
-		Global.player.is_deconstructing = false
-		
-	if deconstruct_timer >= deconstruct_time:
-		deconstruct_timer = 0
-		
-		Global.player.is_deconstructing = false
-		deconstruct()
+	if not self is TownHall:
+		if right_click_down and not Global.player.inventory.visible:
+			deconstruct_timer += delta
+			Global.player.is_deconstructing = true
+			
+		elif deconstruct_timer > 0:
+			deconstruct_timer = 0
+			Global.player.is_deconstructing = false
+			
+		if deconstruct_timer >= deconstruct_time:
+			deconstruct_timer = 0
+			
+			Global.player.is_deconstructing = false
+			deconstruct()
 		
 var mouse_hover = false
 

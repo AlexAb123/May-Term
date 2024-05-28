@@ -14,7 +14,12 @@ func _on_pause_pressed():
 
 func _on_main_menu_instantiate_level(currlevel):
 	levels.add_child(currlevel)
+	currlevel.town_hall_destroyed.connect(_on_town_hall_destroyed)
 
+signal town_hall_destroyed
+func _on_town_hall_destroyed():
+	town_hall_destroyed.emit()
+	
 func _on_main_menu_in_game():
 	wave_manager.playTimer()
 

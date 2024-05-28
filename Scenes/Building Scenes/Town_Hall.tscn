@@ -38,9 +38,6 @@ offset_right = 1501.0
 offset_bottom = 155.0
 nine_patch_stretch = true
 
-[node name="CanvasLayer" parent="." index="6"]
-visible = true
-
 [node name="InputInventory" parent="CanvasLayer" index="1"]
 offset_left = 741.0
 offset_top = -19.0
