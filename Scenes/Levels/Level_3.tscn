@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://tfpq6qhx8fxt"]
+[gd_scene load_steps=6 format=3 uid="uid://cmcse1i7xsehd"]
 
 [ext_resource type="TileSet" uid="uid://cbd5w3q2paigl" path="res://Resources/World_Tile_Set.tres" id="1_nwty3"]
 [ext_resource type="PackedScene" uid="uid://x1y5wk4ik7t2" path="res://Scenes/Camera.tscn" id="2_i3bhi"]
@@ -50,3 +50,5 @@ y_sort_enabled = true
 [node name="Player" parent="Objects" instance=ExtResource("3_yib7c")]
 
 [node name="TownHall" parent="Objects" instance=ExtResource("4_xo44l")]
+
+[connection signal="dead" from="Objects/Player" to="." method="_on_player_dead"]
