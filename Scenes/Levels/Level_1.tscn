@@ -14,7 +14,7 @@ var starting_item_stacks: Array[ItemStack] = [
 	ItemStack.new(Database.item_database[\"Drill\"][0], 1),
 	ItemStack.new(Database.item_database[\"Furnace\"][0], 1),
 	ItemStack.new(Database.item_database[\"Iron_Ore\"][0], 5),
-	ItemStack.new(Database.item_database[\"Coal\"][0], 5)
+	ItemStack.new(Database.item_database[\"Coal\"][0], 5),
 	ItemStack.new(Database.item_database[\"Archer_Tower\"][0], 1)
 ]
 
