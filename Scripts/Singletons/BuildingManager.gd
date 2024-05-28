@@ -8,8 +8,9 @@ var drills: Array[Building]
 const map_size: int = 100 #DO NOT GO TOO HIGH -- 1000 SHOULD BE MAXIMUM
 
 func _process(_delta):
-	if Input.is_action_just_pressed("x"):
-		fill_furnaces()
+	pass
+	#if Input.is_action_just_pressed("x"):
+		#fill_furnaces()
 
 func fill_furnaces():
 	for drill in drills:

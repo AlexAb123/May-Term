@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Recipe" load_steps=10 format=3 uid="uid://b3hmumux06hhn"]
 
-[ext_resource type="Resource" uid="uid://b3i6dsulx1axr" path="res://Resources/Items/ITEM_Drill.tres" id="1_eni25"]
+[ext_resource type="Resource" path="res://Resources/Items/ITEM_Drill.tres" id="1_eni25"]
 [ext_resource type="Resource" uid="uid://dw8inog3jyjvp" path="res://Resources/Items/ITEM_Iron_Bar.tres" id="1_m7yyv"]
 [ext_resource type="Script" path="res://Scripts/Resource Scripts/Recipe Scripts/Recipe.gd" id="1_tr6fb"]
 [ext_resource type="Texture2D" uid="uid://tltmoetu6ybi" path="res://assets/Custom Sprites/Drill.png" id="2_88wqb"]

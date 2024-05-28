@@ -60,13 +60,11 @@ func update_slots():
 			slots[slot_id].set_sprite(null)
 			slots[slot_id].set_count_label("")
 
-func compare_item_stack_id(is1: ItemStack, is2: ItemStack):
+func compare_item_stack_id(is1, is2):
 	
 	if is1 and is2:
 		return is1.item.id < is2.item.id
-	elif is1 and not is2:
-		return true
-	elif not is1 and is2:
+	if not is1 and is2:
 		return false
 	return true
 		

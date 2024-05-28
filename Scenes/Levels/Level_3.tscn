@@ -9,6 +9,7 @@
 script/source = "extends Node2D
 
 @onready var wavelist = [[0, 30], [1, 10], [3, 10], [7, 5]]
+
 var starting_item_stacks: Array[ItemStack] = [
 	ItemStack.new(Database.item_database[\"Drill\"][0], 1),
 	ItemStack.new(Database.item_database[\"Furnace\"][0], 1),
