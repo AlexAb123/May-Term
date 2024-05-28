@@ -13,6 +13,7 @@ script = ExtResource("2_tycua")
 recipes = Array[Resource("res://Scripts/Resource Scripts/Recipe Scripts/Recipe.gd")]([ExtResource("4_8s3w0"), ExtResource("3_ye2e1"), ExtResource("5_n1ghu")])
 item_name = "Town Hall"
 sprite = ExtResource("2_x6vin")
+max_health = 250
 size = Vector2(32, 32)
 
 [node name="CollisionShape2D" parent="." index="0"]

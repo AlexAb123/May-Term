@@ -10,7 +10,7 @@
 [sub_resource type="Resource" id="Resource_wbeoy"]
 script = ExtResource("2_xj6e1")
 item = ExtResource("1_bmjsp")
-count = 2
+count = 1
 
 [sub_resource type="Resource" id="Resource_g0buj"]
 script = ExtResource("2_xj6e1")

@@ -7,12 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://dagi4vl6yv08" path="res://assets/Custom Sprites/Archer Tower.png" id="2_h8j3u"]
 [ext_resource type="Resource" uid="uid://dw8inog3jyjvp" path="res://Resources/Items/ITEM_Iron_Bar.tres" id="3_gsyk4"]
 
-[sub_resource type="Resource" id="Resource_l7x61"]
+[sub_resource type="Resource" id="Resource_0besm"]
 script = ExtResource("2_562j3")
 item = ExtResource("1_367j3")
 count = 2
 
-[sub_resource type="Resource" id="Resource_61jup"]
+[sub_resource type="Resource" id="Resource_626rx"]
 script = ExtResource("2_562j3")
 item = ExtResource("3_gsyk4")
 count = 5
@@ -25,7 +25,7 @@ count = 1
 [resource]
 script = ExtResource("1_r0h2y")
 craftingTime = 1.0
-input_item_stacks = Array[ExtResource("2_562j3")]([SubResource("Resource_l7x61"), SubResource("Resource_61jup")])
+input_item_stacks = Array[ExtResource("2_562j3")]([SubResource("Resource_0besm"), SubResource("Resource_626rx")])
 output_item_stacks = Array[ExtResource("2_562j3")]([SubResource("Resource_d10lb")])
 name = "Archer_Tower"
 sprite = ExtResource("2_h8j3u")
