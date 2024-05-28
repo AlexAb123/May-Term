@@ -26,7 +26,6 @@ shape = SubResource("RectangleShape2D_e6rv2")
 position = Vector2(8, 8)
 
 [node name="MouseArea2D" type="Area2D" parent="."]
-position = Vector2(8, 8)
 
 [node name="AreaCollisionShape2D" type="CollisionShape2D" parent="MouseArea2D"]
 shape = SubResource("RectangleShape2D_3j7wk")
