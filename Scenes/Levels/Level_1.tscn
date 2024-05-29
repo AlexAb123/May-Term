@@ -26,6 +26,10 @@ signal town_hall_destroyed
 func _on_town_hall_town_hall_destroyed():
 	print(\"level 1 signal\")
 	town_hall_destroyed.emit()
+
+
+func _on_player_dead():
+	town_hall_destroyed.emit()
 "
 
 [node name="Level_1" type="Node2D"]
@@ -48,4 +52,5 @@ y_sort_enabled = true
 
 [node name="TownHall" parent="Objects" instance=ExtResource("4_kpr1k")]
 
+[connection signal="dead" from="Objects/Player" to="." method="_on_player_dead"]
 [connection signal="town_hall_destroyed" from="Objects/TownHall" to="." method="_on_town_hall_town_hall_destroyed"]
