@@ -50,7 +50,9 @@ func _physics_process(delta):
 	input_inventory.update_slots()
 	output_inventory.update_slots()
 	
-
+	if not right_click_down:
+		can_recieve_item_right_click = true
+	
 		
 	if player_in_range:
 		if left_click_down and Input.is_action_pressed("shift_left_click"):
