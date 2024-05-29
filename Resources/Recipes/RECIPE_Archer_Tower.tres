@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Recipe" load_steps=10 format=3 uid="uid://bilbm3dt053rr"]
 
-[ext_resource type="Resource" path="res://Resources/Items/ITEM_Gold_Bar.tres" id="1_367j3"]
+[ext_resource type="Resource" uid="uid://bb8c6byaoju1e" path="res://Resources/Items/ITEM_Gold_Bar.tres" id="1_367j3"]
 [ext_resource type="Resource" uid="uid://24o8tuukndqm" path="res://Resources/Items/ITEM_Archer_Tower.tres" id="1_p8cmr"]
 [ext_resource type="Script" path="res://Scripts/Resource Scripts/Recipe Scripts/Recipe.gd" id="1_r0h2y"]
 [ext_resource type="Script" path="res://Scripts/Resource Scripts/Item Scripts/ItemStack.gd" id="2_562j3"]
