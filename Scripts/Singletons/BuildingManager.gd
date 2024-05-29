@@ -45,9 +45,11 @@ func get_building(pos: Vector2) -> Building:
 	if i < 0 or i > buildings.size()-1 or j < 0 or j > buildings.size()-1:
 		print("ERROR: BuildingManager: Tried to get_building outside of map limits")
 		return
-		
-	return buildings[i][j]
-
+	
+	if buildings[i][j]:
+		return buildings[i][j]
+	return null
+	
 func add_building(building: Building):
 	var i = snapped(building.global_position.x, 16)/16+map_size/2
 	var j = snapped(building.global_position.y, 16)/16+map_size/2
