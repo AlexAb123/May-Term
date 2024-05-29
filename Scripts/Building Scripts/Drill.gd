@@ -17,21 +17,37 @@ func _ready():
 	output_inventory.position.x = output_inventory.position.x + Global.player.inventory_xshift*1
 	# have to select here so that its instiatied before trying to call select recipe
 	select_recipe(recipe)
+	
+func check_two_arrays_have_same_values(a1, a2): # Not necessarily in same order
+	if a1.size() != a2.size():
+		return false
+	for i in a1:
+		if not i in a2:
+			return false
+	return true
 
 func distribute_ore():
-	adjacent = BuildingManager.get_adjacent(global_position)
-	for building in adjacent:
+	var get_adj = BuildingManager.get_adjacent(global_position)
+	if not check_two_arrays_have_same_values(get_adj, adjacent):
+		adjacent = get_adj
+
+	for building: RecipeBuilding in adjacent:
 		if not building.selected_recipe:
 			continue
+		if output_inventory.item_stacks[0].count <= 0:
+			break
 		for item_stack in building.selected_recipe.input_item_stacks:
-			print(output_inventory.item_stacks[0].item)
-			print(item_stack.item)
 			if output_inventory.item_stacks[0].item == item_stack.item:
 				# Then we have an item that the adjacent building needs, add it to the building
-				building.input_inventory.add_item_stack(output_inventory.item_stacks[0])
-				output_inventory.remove_item_stack(output_inventory.item_stacks[0])
-
-					
+				var one_item = ItemStack.new(output_inventory.item_stacks[0].item, output_inventory.item_stacks[0].count)
+				building.input_inventory.add_item_stack(one_item)
+				output_inventory.remove_item_stack(one_item)
+				
+	if adjacent.size() >= 1:
+		var temp = adjacent[0]
+		adjacent.remove_at(0)
+		adjacent.append(temp)
+		
 func _physics_process(delta):
 	super(delta)
 	

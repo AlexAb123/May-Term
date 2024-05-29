@@ -12,18 +12,16 @@ func get_adjacent(pos):
 	var temp : Building = get_building(pos+Vector2(16,0))
 	if temp != null and temp is RecipeBuilding:
 		neighbors.append(temp)
-	temp = get_building(pos+Vector2(-16,0))
+	temp = get_building(pos+Vector2(0,16))
 	if temp != null and temp is RecipeBuilding:
 		neighbors.append(temp)
-	temp = get_building(pos+Vector2(0,16))
+	temp = get_building(pos+Vector2(-16,0))
 	if temp != null and temp is RecipeBuilding:
 		neighbors.append(temp)
 	temp = get_building(pos+Vector2(0,-16))
 	if temp != null and temp is RecipeBuilding:
 		neighbors.append(temp)
 	return neighbors
-	
-
 
 
 func _ready():
