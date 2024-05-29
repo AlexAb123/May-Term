@@ -8,7 +8,7 @@
 [sub_resource type="GDScript" id="GDScript_6ppd8"]
 script/source = "extends Node2D
 
-@onready var wavelist = [[0, 180], [1, 30], [3, 60], [7, 5]]
+@onready var wavelist = [[0, 200], [1, 30], [3, 60], [7, 5]]
 
 var starting_item_stacks: Array[ItemStack] = [
 	ItemStack.new(Database.item_database[\"Drill\"][0], 2),
@@ -25,10 +25,6 @@ func _ready():
 signal town_hall_destroyed
 func _on_town_hall_town_hall_destroyed():
 	print(\"level 1 signal\")
-	town_hall_destroyed.emit()
-
-
-func _on_player_dead():
 	town_hall_destroyed.emit()
 "
 
@@ -52,5 +48,4 @@ y_sort_enabled = true
 
 [node name="TownHall" parent="Objects" instance=ExtResource("4_kpr1k")]
 
-[connection signal="dead" from="Objects/Player" to="." method="_on_player_dead"]
 [connection signal="town_hall_destroyed" from="Objects/TownHall" to="." method="_on_town_hall_town_hall_destroyed"]
