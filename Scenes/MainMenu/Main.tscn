@@ -188,6 +188,7 @@ script = ExtResource("7_c4qsh")
 [connection signal="menu_emit" from="InGame/MenuLayer/OptionsMenu" to="MainMenu" method="_on_options_menu_menu_emit"]
 [connection signal="play" from="InGame/MenuLayer/OptionsMenu" to="InGame/MenuLayer" method="_on_options_menu_play"]
 [connection signal="play" from="InGame/MenuLayer/OptionsMenu" to="InGame/GameItems" method="_on_options_menu_play"]
+[connection signal="quit" from="InGame/MenuLayer/OptionsMenu" to="MainMenu" method="_on_options_menu_quit"]
 [connection signal="town_hall_destroyed" from="InGame/GameItems" to="MainMenu" method="_on_town_hall_destroyed"]
 [connection signal="town_hall_destroyed" from="InGame/GameItems" to="InGame" method="_on_town_hall_destroyed"]
 [connection signal="child_entered_tree" from="InGame/GameItems/Levels" to="InGame/GameItems/WaveManager" method="_on_levels_child_entered_tree"]
