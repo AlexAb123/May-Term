@@ -24,7 +24,6 @@ func getRandPosition():
 	var node = Marker2D.new()
 	node.position.x = randi() % 200 * (((randi() % 2) * 2) - 1)
 	node.position.y = pow( (pow(200, 2)   -   pow(node.position.x, 2)),    0.5) * ((randi() % 2)* 2 - 1)
-	#print(node.global_position)
 	return node.global_position
 
 func manageQuit():
@@ -41,12 +40,9 @@ func playTimer():
 	spawn_timer.start()
 	
 func spawner():
-	#print(wavelist[wave])
 	spawn_timer.set_wait_time(wavelist[wave][1])
-	#print("WAIT TIME", spawn_timer.wait_time)
 	spawn_timer.start()
 	spawn_timer.paused = false
-	#print("time left", spawn_timer.time_left)
 	for i in wavelist[wave][0]:
 		var enemy_instance = enemies[0].instantiate() # must edit when adding more enmemies
 		get_node("enemies").add_child(enemy_instance)
@@ -59,7 +55,6 @@ func checkWin():
 		
 	if wave == wavelist.size()-1:
 		if get_node("enemies").get_child_count() == 0:
-			#print("YOU PASSED")
 			win.emit()
 			game_over = true
 
@@ -70,14 +65,11 @@ func _on_spawn_timer_timeout():
 		wave += 1
 		spawner()
 
-#func _physics_process(_delta):
-	#print(spawn_timer.time_left)
 	
 func _on_levels_child_entered_tree(node):
 	game_over = false
 	await get_tree().process_frame
 	wavelist = node.wavelist
-	#print(wavelist)
 	spawner()
 
 

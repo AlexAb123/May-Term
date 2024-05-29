@@ -26,6 +26,6 @@ func deconstruct():
 
 signal town_hall_destroyed
 func destroy():
-	print("town hall destroy")
+	print("town hall destroyed")
 	town_hall_destroyed.emit()
 	super()

@@ -94,7 +94,7 @@ func _on_inventory_reach_body_exited(_body):
 	player_in_range = false
 	output_inventory.close()
 
-func _on_output_inventory_slot_input(slot_id, event):
+func _on_output_inventory_slot_input(slot_id, _event):
 	
 	if Input.is_action_just_pressed("shift_left_click"):
 		Global.player.inventory.add_item_stack(ItemStack.new(output_inventory.item_stacks[slot_id].item, output_inventory.item_stacks[slot_id].count))
