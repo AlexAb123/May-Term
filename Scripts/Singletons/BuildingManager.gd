@@ -46,7 +46,7 @@ func get_building(pos: Vector2) -> Building:
 		print("ERROR: BuildingManager: Tried to get_building outside of map limits")
 		return
 	
-	if buildings[i][j]:
+	if is_instance_valid(buildings[i][j]):
 		return buildings[i][j]
 	return null
 	
