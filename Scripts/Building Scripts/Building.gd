@@ -33,7 +33,7 @@ func _physics_process(delta):
 		health_bar.visible = true
 	
 	if not self is TownHall:
-		if right_click_down and not Global.player.inventory.visible:
+		if right_click_down and not Global.player.inventory.visible and Global.player.selected_item_stack == null:
 			deconstruct_timer += delta
 			Global.player.is_deconstructing = true
 			
