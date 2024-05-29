@@ -98,6 +98,7 @@ func select_recipe(recipe: Recipe):
 		return
 	
 	
+	
 	for stack in input_inventory.reset_and_return_stacks():
 		Global.player.inventory.add_item_stack(stack)
 		
@@ -136,6 +137,7 @@ func select_recipe(recipe: Recipe):
 	
 	recipe_description.text = string
 	
+	update_current_output_sprite()
 
 func start_craft():
 	sprite_2d.texture = on_sprite
