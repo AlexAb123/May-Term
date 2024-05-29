@@ -55,10 +55,12 @@ func _physics_process(delta):
 	
 		
 	if player_in_range:
+		
 		if left_click_down and Input.is_action_pressed("shift_left_click"):
 			if output_inventory.item_stacks and output_inventory.item_stacks[0].count > 0:
 				Global.player.inventory.add_item_stack(ItemStack.new(output_inventory.item_stacks[0].item, output_inventory.item_stacks[0].count))
 				output_inventory.remove_at(0)
+
 				update_current_output_sprite()
 			
 			
@@ -73,10 +75,12 @@ func _physics_process(delta):
 		
 		if right_click_down and Global.player.selected_item_stack and selected_recipe and can_recieve_item_right_click:
 			for item_stack in selected_recipe.input_item_stacks:
-				if item_stack.item == Global.player.selected_item_stack.item:
+				if Global.player.selected_item_stack and item_stack.item == Global.player.selected_item_stack.item:
 					var temp_item_stack = ItemStack.new(Global.player.selected_item_stack.item, 1)
 					input_inventory.add_item_stack(temp_item_stack)
 					Global.player.inventory.remove_item_stack(temp_item_stack)
+					if Global.player.selected_item_stack.count <= 0:
+						Global.player.selected_item_stack = null
 					Global.player.update_selected_item_sprite_and_label()
 					can_recieve_item_right_click = false
 	
