@@ -50,8 +50,7 @@ func _physics_process(delta):
 	input_inventory.update_slots()
 	output_inventory.update_slots()
 	
-	if right_click_down:
-		pass
+
 		
 	if player_in_range:
 		if left_click_down and Input.is_action_pressed("shift_left_click"):
@@ -61,7 +60,7 @@ func _physics_process(delta):
 				update_current_output_sprite()
 			
 			
-		elif left_click_down and Input.is_action_just_pressed("left_click") and not Global.player.selected_item_stack:
+		elif left_click_down and Input.is_action_just_pressed("left_click") and not Global.player.selected_item_stack and BuildingManager.open_inventories.size() == 0:
 			BuildingManager.close_all_open_inventories()
 			input_inventory.open()
 			BuildingManager.open_inventories.append(input_inventory)
@@ -69,6 +68,15 @@ func _physics_process(delta):
 			BuildingManager.open_inventories.append(output_inventory)
 			Global.player.inventory.open()
 			recipe_selector_container.visible = true
+		
+		if right_click_down and Global.player.selected_item_stack and selected_recipe and can_recieve_item_right_click:
+			for item_stack in selected_recipe.input_item_stacks:
+				if item_stack.item == Global.player.selected_item_stack.item:
+					var temp_item_stack = ItemStack.new(Global.player.selected_item_stack.item, 1)
+					input_inventory.add_item_stack(temp_item_stack)
+					Global.player.inventory.remove_item_stack(temp_item_stack)
+					Global.player.update_selected_item_sprite_and_label()
+					can_recieve_item_right_click = false
 	
 	if Input.is_action_just_pressed("e"):
 		input_inventory.close()
@@ -261,3 +269,11 @@ func _on_open_recipe_selector_pressed():
 		
 func _on_input_inventory_closed():
 	recipe_selector_container.visible = false
+
+var can_recieve_item_right_click = true
+func _on_area_2d_mouse_entered():
+	super()
+func _on_area_2d_mouse_exited():
+	super()
+	can_recieve_item_right_click = true
+	
