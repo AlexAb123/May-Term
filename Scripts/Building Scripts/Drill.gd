@@ -14,9 +14,14 @@ var selected_recipe: Recipe
 
 func _ready():
 	super()
+	current_output_sprite.visible = Global.player.is_detailed_mode_on
 	output_inventory.position.x = output_inventory.position.x + Global.player.inventory_xshift*1
 	# have to select here so that its instiatied before trying to call select recipe
 	select_recipe(recipe)
+	Global.player.toggle_detailed_mode.connect(set_detailed_mode)
+	
+func set_detailed_mode(is_on):
+	current_output_sprite.visible = is_on
 	
 func check_two_arrays_have_same_values(a1, a2): # Not necessarily in same order
 	if a1.size() != a2.size():
@@ -71,10 +76,6 @@ func _physics_process(delta):
 		output_inventory.close()
 		BuildingManager.close_all_open_inventories()
 	
-	if Input.is_action_just_pressed("detailed_mode"):
-		current_output_sprite.visible = not current_output_sprite.visible
-	
-		
 	if selected_recipe and timer.is_stopped():
 		start_craft()
 

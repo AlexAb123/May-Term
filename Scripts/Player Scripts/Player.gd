@@ -72,8 +72,9 @@ func _physics_process(_delta):
 	if not is_deconstructing:
 		move_and_slide()
 	
-func _process(_delta):
+signal toggle_detailed_mode(is_on)
 	
+func _process(_delta):
 	var mouse_position: Vector2 = get_global_mouse_position() - Vector2(8,8)
 	
 	selected_item_sprite.global_position = mouse_position + Vector2(8,8)
@@ -91,6 +92,7 @@ func _process(_delta):
 	
 	if Input.is_action_just_pressed("detailed_mode"):
 		is_detailed_mode_on = not is_detailed_mode_on
+		toggle_detailed_mode.emit(is_detailed_mode_on)
 		
 	#if Input.is_action_just_pressed("x"):
 		#for item in Database.item_database.values():

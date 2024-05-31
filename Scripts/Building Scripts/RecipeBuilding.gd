@@ -25,7 +25,6 @@ var selected_recipe : Recipe
 func _ready():
 	super()
 	
-	current_output_sprite.visible = Global.player.is_detailed_mode_on
 	
 	
 	Global.player.inventory.slot_input.connect(_on_player_inventory_slot_input)
@@ -44,6 +43,12 @@ func _ready():
 	for slot in recipe_selector.slots:
 		slot.itemCountLabel.visible = false
 		
+	current_output_sprite.visible = Global.player.is_detailed_mode_on
+	Global.player.toggle_detailed_mode.connect(set_detailed_mode)
+	
+func set_detailed_mode(is_on):
+	current_output_sprite.visible = is_on
+	
 func _physics_process(delta):
 
 	super(delta)
@@ -91,8 +96,8 @@ func _physics_process(delta):
 		recipe_selector_container.visible = false
 		
 	if Input.is_action_just_pressed("detailed_mode"):
-		current_output_sprite.visible = not current_output_sprite.visible
-	
+		pass
+		
 	if selected_recipe and timer.is_stopped() and has_enough_resources():
 		start_craft()
 		
