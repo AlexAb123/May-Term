@@ -92,9 +92,9 @@ func _process(_delta):
 	if Input.is_action_just_pressed("detailed_mode"):
 		is_detailed_mode_on = not is_detailed_mode_on
 		
-	if Input.is_action_just_pressed("x"):
-		for item in Database.item_database.values():
-			inventory.add_item_stack(ItemStack.new(item[0], 10))
+	#if Input.is_action_just_pressed("x"):
+		#for item in Database.item_database.values():
+			#inventory.add_item_stack(ItemStack.new(item[0], 10))
 		##inventory.add_item_stack(ItemStack.new(Database.item_database["Iron_Ore"][0], 10))
 	##if Input.is_action_just_pressed("g"):
 		##inventory.add_item_stack(ItemStack.new(Database.item_database["Coal"][0], 10))

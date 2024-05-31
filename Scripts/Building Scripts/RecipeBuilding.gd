@@ -73,7 +73,7 @@ func _physics_process(delta):
 			Global.player.inventory.open()
 			recipe_selector_container.visible = true
 		
-		if right_click_down and Global.player.selected_item_stack and selected_recipe and can_recieve_item_right_click:
+		if right_click_down and Input.is_action_pressed("shift_right_click") and Global.player.selected_item_stack and selected_recipe and can_recieve_item_right_click:
 			for item_stack in selected_recipe.input_item_stacks:
 				if Global.player.selected_item_stack and item_stack.item == Global.player.selected_item_stack.item:
 					var temp_item_stack = ItemStack.new(Global.player.selected_item_stack.item, 1)
